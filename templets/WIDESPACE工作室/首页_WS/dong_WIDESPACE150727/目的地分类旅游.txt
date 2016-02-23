@@ -1,0 +1,93 @@
+<!--中间旅游开始-->
+<div class="tese_box">
+      	<div class="ts_tit">
+        	<h3>博大精深的欧洲啊。自助游，特色小团，半自由人，当地地道玩法</h3>
+         <p> <a target="_blank" href="/lines/all">罗马，巴黎，文艺复兴，巴洛克，巴赫，红磨坊，北欧神话，亲，让家族成员的小伙伴们陪你在欧洲愉快的玩耍吧。</a></p>
+  
+        </div>
+</div>
+
+       <div class="left_box_con">
+          
+              {sline:middlenavlist type="index" row='9' leftad="IndexDiyleftAd"}
+                <div class="{sline:global.itemindex runphp='yes'}if(@me==1)@me=zb; elseif(@me==2) @me=gn;
+elseif(@me==3) @me=cj;elseif(@me==4) @me=num4;elseif(@me==5) @me=num5;elseif(@me==6) @me=num6;elseif(@me==7) @me=num7;elseif(@me==8) @me=num8;elseif(@me==9) @me=num9;
+else @me=cj;
+
+{/sline:global.itemindex}-box">
+
+                  <div class="{sline:global.itemindex runphp='yes'}if(@me==1)@me=zb; elseif(@me==2) @me=gn;
+elseif(@me==3) @me=cj;elseif(@me==4) @me=num4;elseif(@me==5) @me=num5;elseif(@me==6) @me=num6;elseif(@me==7) @me=num7;elseif(@me==8) @me=num8;elseif(@me==9) @me=num9;
+else @me=cj;
+
+
+{/sline:global.itemindex}-tit">
+                    <h3>{sline:field.kindname/} </h3>
+<br>
+<h6>{sline:field.jieshao function="cutstr_html(@me,90)"/}</h6>
+
+                    <a href="/lines/{sline:field.pinyin/}">更多>></a>
+                  </div>
+                  <div class="{sline:global.itemindex runphp='yes'}if(@me==1)@me=zb; elseif(@me==2) @me=gn;
+elseif(@me==3) @me=cj;
+elseif(@me==4) @me=num4;elseif(@me==5) @me=num5;elseif(@me==6) @me=num6;elseif(@me==7) @me=num7;elseif(@me==8) @me=num8;elseif(@me==9) @me=num9;else @me=cj;
+{/sline:global.itemindex}-con">
+                    <div class="menu-con">
+                      <div class="menu-list">
+
+
+                        {sline:getdest flag='mdd_hot' row='12'}
+
+      <a href="/lines/[field:pinyin/]/">                  [field:title/] </a>
+
+
+                        {/sline:getdest}
+
+
+
+                      </div>
+                      <div class="adv-img">
+                        {sline:field.leftad/}
+                      </div>
+                    </div>
+                    <div class="list_con">
+                      <div class="top-list">
+                        <ul>
+
+                          {sline:getlinelist type="mdd" flag="recommend" row="3" }
+                            <li>
+                              <a class="fl" href="[field:url/]"><img class="fl" src="[field:litpic/]" alt="[field:title/]" width="280" height="210" /></a>
+                              <span class="tit"><a href="[field:url/]">[field:title/]</a></span>
+ <p class="tit_small"> [field:sellpoint function="cutstr_html(@me,25)"/]</p>
+
+                              <spn class="num">
+                                <span class="jg">¥<b>[field:sellprice/]</b></span>
+                                </span>
+
+
+                            </li>
+
+
+                          {/sline:getlinelist}
+
+                        </ul> 
+                      </div>
+                      <div class="bom-list">
+                        <ul>
+
+                          {sline:getlinelist type="mdd" flag="recommend" row="12" limit='4'}
+                            <li [field:global.autoindex runphp='yes']if(@me%2==0)@me='class="mr_0"';else @me='';[/field:global.autoindex]>
+ <span> [field:sellpoint function="cutstr_html(@me,30)"/]</span>
+                              <a href="[field:url/]">[field:title/]</a><span>¥[field:sellprice/]起</span>
+                            </li>
+                          {/sline:getlinelist}
+
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {/sline:middlenavlist}
+
+          </div>  
+        <!--中间旅游结束-->

@@ -1,0 +1,195 @@
+@charset "utf-8";
+/* CSS Document */
+/*焦点图*/
+
+	/* 攻略 */
+.deangonglve{ padding:20px 0; width:100%;  min-width:1180px;float: left;top: 50px;
+    position: relative;
+}
+.deanyjbox{ margin-top:40px;}
+.deanarticallist{}
+.deanarticallist ul{ width:1230px; margin-top:30px;}
+.deanarticallist ul li{ width:380px;float:left; background:#fff; margin:0 20px 20px 0; }
+.deanarticallist ul li:hover .deanlvinfo{border-color: #d7d7d7;box-shadow: 0 0 5px rgba(0,0,0,.2);}
+.deanlvpic{width:380px; height:251px;}
+.deanlvpic a{ width:380px; height:251px; display:block; position:relative;}
+.deanlvpic img{width:380px; height:251px; position:absolute; top:0; left:0;}
+.deanlvpic a span{ display:block; text-align:center; font-size:12px; color:#fff; background:url("http://www.euchedao.com/pic/bkbg.png") left center no-repeat; height:31px; line-height:26px; width:83px; position:absolute; top:20px; left:-5px;}
+.deanlvpic a i{ display:block; width:50px; height:25px; line-height:25px; font-size:12px; color:#fff; position:absolute; bottom:10px; right:2px; background:url("http://euchedao.com/pic/like.png") left center no-repeat; padding-left:30px;}
+.deanlvinfo{border: 1px solid #ececec;border-top: 0;padding: 0 15px;height: 129px;}
+.deanauthor{position: relative;margin-top: -25px;}
+.deanauthor a.deanauthor_avator{}
+.deanauthor img{float: left;width: 90px;height: 90px;padding: 4px;background: #FFF;border-radius: 50%;}
+.deanauthor span{float: left;margin-top: 30px;margin-left: 6px;width: 200px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;
+line-height:24px;}
+.deanauthor span a{font-size: 14px;color: #636363; }
+.deanauthor span a:hover{ color:#FF5A5F;}
+.deanauthor span h1{font-size: 10px;}
+.deanauthor h1{font-size: 10px;}
+
+
+.deanlvinfo h5{padding-top: 10px;height: 60px;overflow: hidden; width:100%;}
+.deanlvinfo h5 a{font-weight: 700; font-size:16px; color:#333;}
+.deanlvinfo h5 a:hover{ color:#FF5A5F;}
+.deaninfotitle
+{ont-weight: 700;
+    font-size: 16px;
+    color: #333;
+}
+.deaninfotext
+{
+	font-size: 14px;
+    color: #636363;
+}
+
+
+#hiddenresult{ min-height:0!important;}
+.holder {margin: 25px 0 0;text-align:center;}
+.holder a {font-size: 12px;cursor: pointer;color: #888;text-decoration: none;margin-left: 3px; display:inline-block; width:35px; height:35px; text-align:center; background:#fff; line-height:35px; border:1px solid #888;}
+.holder a.jp-next,.holder a.jp-previous{ width:35px; height:35px;}
+.holder a:hover,.holder a.jp-current {background:#FF5A5F;color: #FFF;border:1px solid #FF5A5F;}
+.holder a.jp-previous { margin-right: 1px;font-weight:bold; }
+.holder a.jp-next { margin-left: 3px; font-weight:bold; }
+.holder a.jp-current, a.jp-current:hover {color:#FFF;font-weight: bold;}
+.holder a.jp-current, a.jp-current:hover,.holder a.jp-disabled, a.jp-disabled:hover {cursor: default; }
+.holder a.jp-disabled, a.jp-disabled:hover { background:#f1eff0;color: #333;}
+.holder a.jp-disabled{ background: #FF5A5F;border:1px solid #FF5A5F;color: #fff;margin-right: 3px;}
+.holder span { margin: 0 5px; }
+
+/* 路线 */
+.deanluxian{ padding:40px 0; width:100%; min-width:1180px;}
+.deanpubtitle{ text-align:center; width:1180px; height:40px; position:relative;}
+.deanpubtitle h5{ 
+
+float: left;
+    color: #b5a15d;
+    width: 1210px;
+    font-size: 28px;
+    font-family: "SimSun";
+    font-weight: 500;
+    text-align: center;
+}
+.deanpubtitle h3{ 
+
+float: left;
+    color: #393939;
+    width: 1210px;
+    font-size: 20px;
+    font-family: "SimSun";
+    text-align: center;
+    margin-top: 10px;
+}
+
+
+
+
+
+
+
+.deanpubtitle a{ display:inline-block; font-size:14px;  position:absolute; top:25px; left:0;width: 55px;color: #777; cursor:pointer;
+display: block;background: url({STYLEIMGDIR}/rotation.png) left center no-repeat;padding-left: 20px;}
+.deanpubtitle a:hover{background: url({STYLEIMGDIR}/rotation1.png) left center no-repeat;color: #FF5A5F;}
+.width_1210_dean{
+width:1210px;
+margin: 0 auto;
+
+}
+
+.width_1210_dean_zt{
+width:1210px;
+margin: 0 auto;
+height:600px;
+}
+
+
+/* 攻略 */
+.deangonglve_zt{ padding:20px 0; width:100%;  min-width:1180px;float: left;top: 50px;
+    position: relative;
+}
+.deanyjbox_zt{ margin-top:40px;}
+.deanarticallist_zt{}
+.deanarticallist_zt ul{ width:1230px; margin-top:30px;}
+.deanarticallist_zt ul li{ width:386px;float:left; background:#fff; margin:0 20px 20px 0; }
+.deanarticallist_zt ul li:hover .deanlvinfo_zt{border-color: #d7d7d7;box-shadow: 0 0 5px rgba(0,0,0,.2);}
+.deanlvpic_zt{width:386px; height:386px;}
+.deanlvpic_zt a{ width:386px; height:386px; display:block; position:relative;}
+.deanlvpic_zt img{width:386px; height:386px; position:absolute; top:0; left:0;}
+.deanlvpic_zt a span{ display:block; text-align:center; font-size:12px; color:#fff; background:url("http://www.euchedao.com/pic/bkbg.png") left center no-repeat; height:31px; line-height:26px; width:83px; position:absolute; top:20px; left:-5px;}
+.deanlvpic_zt a i{ display:block; width:50px; height:25px; line-height:25px; font-size:12px; color:#fff; position:absolute; bottom:10px; right:2px; background:url("http://euchedao.com/pic/like.png") left center no-repeat; padding-left:30px;}
+.deanlvinfo_zt{border: 1px solid #ececec;border-top: 0;padding: 0 15px;height: 129px;}
+.deanauthor_zt{position: relative;margin-top: -25px;}
+.deanauthor_zt a.deanauthor_avator_zt{}
+.deanauthor_zt img{float: left;width: 90px;height: 90px;padding: 4px;background: #FFF;border-radius: 50%;}
+.deanauthor_zt span{float: left;margin-top: 30px;margin-left: 6px;width: 250px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;
+line-height:24px;}
+.deanauthor_zt span a{font-size: 20px;color: #636363; }
+.deanauthor_zt span a:hover{ color:#FF5A5F;}
+.deanauthor_zt span h1{font-size: 10px;}
+.deanauthor_zt span h3{font-size: 20px; color:#483636;}
+
+.deanauthor_zt h1{font-size: 10px;}
+
+
+.deanlvinfo_zt h5{padding-top: 10px;height: 60px;overflow: hidden; width:100%;}
+.deanlvinfo_zt h5 a{font-weight: 700; font-size:16px; color:#333;}
+.deanlvinfo_zt h5 a:hover{ color:#FF5A5F;}
+.deaninfotitle_zt
+{ont-weight: 700;
+    font-size: 16px;
+    color: #333;
+}
+
+
+.deaninfotext_zt
+{
+	font-size: 14px;
+    color: #636363;
+}
+
+
+.deanluxian_zt{ padding:40px 0; width:100%; min-width:1180px;}
+.deanpubtitle_zt{ text-align:center; width:1180px; height:40px; position:relative;}
+.deanpubtitle_zt h5{ 
+
+float: left;
+    color: #b5a15d;
+    width: 1210px;
+    font-size: 28px;
+    font-family: "SimSun";
+    font-weight: 500;
+    text-align: center;
+}
+.deanpubtitle_zt h3{ 
+float: left;
+    color: #393939;
+    width: 1210px;
+    font-size: 20px;
+    font-family: "SimSun";
+    text-align: center;
+    margin-top: 10px;
+}
+
+.priece {
+float: right;
+white-space:nowrap;
+color:#ff7467;
+position: relative;
+top:0px;
+font-size: 10px;
+color:#959595;
+}
+
+.priece span{
+font-size: 10px;
+color:#959595;
+}
+
+
+.priece em{
+font-family: HelveticaNeue-Thin,Helvetica,Avenir-light,"Avenir Next",Arial;
+font-size: 30px;
+color:#ff7467;
+}
+
+
+

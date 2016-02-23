@@ -1,0 +1,254 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>{sline:global.cfg_indextitle/}</title>
+<meta name="keywords" content="{sline:global.cfg_keywords/}" />
+<meta name="author" content="{sline:global.cfg_webname/}" />
+<meta name="description" content="{sline:global.cfg_description/}" />
+{sline:php}Helper_Archive::getUserCss('dong/css/base.css,dong/css/index.css');{/sline:php}
+{sline:php}Helper_Archive::getUserJs('dong/js/jquery-1.8.3.min.js,dong/js/fcous.js');{/sline:php}
+{sline:php}GetScript('common.js');{/sline:php}
+</head>
+
+<body>
+  
+  <!-- logo and search开始 -->
+  {sline:include file='public/header.htm'/}
+  <!-- 导航结束 -->
+  
+  <!--滚动焦点图开始-->
+  <div class="focus_img">
+
+    <div id="_banners" class="banners">
+    {sline:rollingAd name='IndexRollingAd' row="10" limit='0'}
+      <div class="banner">
+        <a target="_blank" href="[field:linkurl/]"><img width="1920" height="400" alt="[field:linktext/]" src="[field:picurl/]" /></a>
+      </div>
+    {/sline:rollingAd}
+
+    </div>
+    <div id="_focus" class="focus">
+    {sline:rollingAd name='IndexRollingAd' row="10" limit='0'}
+      <a data-index="[field:global.step runphp='yes']@me=(intval(@me)-1);[/field:global.step]" href="javascript:void(0);" [field:global.step runphp='yes']if(@me==1)@me='class="on"'; else @me='';[/field:global.step]><span class="bg-b"></span><span class="inner"></span></a>
+      {/sline:rollingAd}
+
+    </div>
+  </div>
+  <!--滚动焦点图结束-->
+  
+  <div class="big">
+  	<div class="width_1210">
+ 			
+      <div class="getready">
+      	<div class="get_tit">准备好，出发！</div>
+        <div class="getsearch">
+        	<div class="get_input">
+           <form action="/cloudsearch.php" method="get" target="_blank">
+          	<input type="text" class="get_text" name="keyword" placeholder="输入关键词" />
+          	<input type="submit" class="get_btn" value="搜索" />
+          </form>
+          </div>
+          <div class="hot_mdd">
+          	<span>热门目的地：</span>
+            {sline:getsearchkey row='6'}
+                <a href="[field:url/]" target="_blank">[field:title/]</a>
+              {/sline:getsearchkey}
+          </div>
+        </div>
+        <div class="imgNews">
+         {sline:middlenavlist  type="index" readad="0" row="1"}
+          <a href="/{sline:field.pinyin/}/" class="bigImg1" target="_blank"><img class="fl" src="{sline:field.litpic/}" width="472" height="400" /><span>{sline:field.kindname/}</span></a>
+         {/sline:middlenavlist}
+         {sline:middlenavlist  type="index" readad="0" row="6" limit="1"}
+          <a href="/{sline:field.pinyin/}/" class="opacity" target="_blank"><img class="fl" src="{sline:field.litpic/}" width="236" height="195" /><span>{sline:field.kindname/}</span></a>
+          {/sline:middlenavlist}
+          
+				</div>
+        <script>
+				$(function(){
+				$(".imgNews a").hover(function(){  
+				 $(this).find("span").animate({opacity:"1"},500);  
+				 $(this).find("img").stop().animate({opacity:"0.5"},1000);
+				 $(this).siblings().find("img").stop().animate({opacity:"1"},500);
+				},function(){
+					$(this).find("span").animate({opacity:"0"},500);
+					$(this).parent().find("img").stop().animate({opacity:"0.5"},500); 
+				  $(this).parent().find("img").stop().animate({opacity:"1"},500);
+				 })
+				})
+				</script>
+      </div>
+      
+      <div class="tese_box">
+      	<div class="ts_tit">
+        	<h3>特色小团</h3>
+          <p><a target="_blank" href="#">轻松出行，愉快旅程&gt;&gt;</a></p>
+        </div>
+        <div class="ts_con">
+        	<ul>
+
+          {sline:getlinelist type="top" flag="recommend" row="6"}
+          	<li [field:global.autoindex runphp='yes']if(@me%2==0)@me='class="mr_0"'; else @me='';[/field:global.autoindex]>
+            	<a class="fl" href="[field:url/]" target="_blank"><img class="fl" src="[field:litpic/]" alt="[field:linename/]" width="595" height="330" /></a>
+              <div class="txt_con">
+              	<p class="pl">
+                	<a href="[field:url/]" target="_blank">[field:linename/]</a>
+                  <span>[field:sellpoint/]</span>
+                </p>
+                <p class="pr">
+                	<span><em>&yen;<b>[field:sellprice/]</b></em>起/人</span>
+                	<a href="[field:url/]" target="_blank">预 定</a>
+                </p>
+              </div>
+            </li>
+          {/sline:getlinelist}
+          	
+          </ul>
+        </div>
+      </div>
+      
+      <div class="custom-made">
+      	<div class="cus_tit">
+          <h3>你想有个不一样的旅程？</h3>
+          <p><a target="_blank" href="#">私人订制，为您度身打造&gt;&gt;</a></p>
+        </div>
+         <form method="post" id="cusfm" action="/customize/save.php">
+        <div class="made-con">
+        	<table width="350" border="0" cellspacing="0" cellpadding="0">
+        	  <tbody><tr>
+        	    <th height="50" colspan="2" align="left" scope="row"><h4 class="tit-1">您的旅行计划</h4></th>
+       	    </tr>
+        	  <tr>
+        	    <th width="100" height="50" align="left" scope="row">目的地<s>*</s></th>
+        	    <td width="250" height="50"><input type="text" class="text noblank" name="dest" /></td>
+      	    </tr>
+        	  <tr>
+        	    <th width="100" height="50" align="left" scope="row">出发时间<s>*</s></th>
+        	    <td width="250" height="50"><input type="text" class="text noblank starttime" name="starttime"  />
+              </td>
+      	    </tr>
+        	  <tr>
+        	    <th width="100" height="50" align="left" scope="row">出发地点<s>*</s></th>
+        	    <td width="250" height="50">
+              <input type="text" class="text noblank" name="startplace"/>
+              </td>
+      	    </tr>
+        	  <tr>
+        	    <th width="100" height="50" align="left" scope="row">出行时长<s>*</s></th>
+        	    <td width="250" height="50">
+                <input type="text" class="text noblank" name="days" />
+                <span>天</span></td>
+      	    </tr>
+        	  <tr>
+        	    <th width="100" height="50" align="left" scope="row">成人数<s>*</s></th>
+        	    <td width="250" height="50">
+                <input type="text" class="text noblank" name="adultnum" />
+                <span>位</span></td>
+      	    </tr>
+        	  <tr>
+        	    <th width="100" height="50" align="left" scope="row">儿童数<s>*</s></th>
+        	    <td width="250" height="50">
+              <input type="text" class="text noblank" name="childnum" />
+              <span>位</span></td>
+      	    </tr>
+      	  </tbody></table>
+          <table width="550" border="0" cellspacing="0" cellpadding="0">
+            <tbody><tr>
+              <th height="50" colspan="2" align="left" scope="row"><h4 class="tit-2">您的联系方式</h4></th>
+            </tr>
+            <tr>
+              <th width="100" height="50" align="left" scope="row">您的称呼<s>*</s></th>
+              <td height="50"><input type="text" class="text noblank" name="contactname" /></td>
+            </tr>
+            <tr>
+              <th width="100" height="50" align="left" scope="row">您的性别</th>
+              <td height="50">
+                  <input type="hidden" name="sex" value="先生"/>
+                  <a class="active" href="javascript:;">先生</a>
+                  <a href="javascript:;">女士</a>
+                </td>
+            </tr>
+            <tr>
+              <th width="100" height="50" align="left" scope="row">所在地点<s>*</s></th>
+              <td height="50">
+            <input type="text" class="text noblank" name="address" />
+              </td>
+            </tr>
+            <tr>
+              <th width="100" height="50" align="left" scope="row">联系电话<s>*</s></th>
+              <td height="50">
+            <input type="text" class="text noblank" name="phone" />
+              </td>
+            </tr>
+            <tr>
+              <th width="100" height="50" align="left" scope="row">Email</th>
+              <td height="50">
+                <input type="text" class="text" name="email" />
+              </td>
+            </tr>
+            <tr>
+            <th width="100" height="50" align="left" scope="row">合适的联系时间</th>
+              <td height="50">
+                <input type="hidden" name="contacttime" value="9:00-12:00"/>
+                <a class="active" href="javascript:;">9:00-12:00</a>
+                <a href="javascript:;">14:00-18:00</a>
+                <a href="javascript:;">19:00-22:00</a>
+              </td>
+            </tr>
+          </tbody></table>
+          <div class="tj_btn"><a href="javascript:;" onClick="checkForm()">提交</a></div>
+           </form>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+{sline:include file='public/help.htm'/}
+
+{sline:include file='public/footer.htm'/}
+
+{sline:include file='public/flink.htm'/}
+ <script src="/templets/smore/js/DatePicker/WdatePicker.js"></script>
+  <script>
+       $(".made-con a").click(function(e) {
+           $(this).siblings("input:hidden").val($(this).text());
+           $(this).siblings("a").removeClass("active");
+           $(this).addClass("active");
+       });
+
+       //日历选择
+       $(".starttime").click(function(){
+           WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM-dd',minDate:'%y-%M-%d'})
+       })
+
+
+       function checkForm()
+       {
+           var isvalidate=true;
+           $(".noblank").each(function(index, element) {
+               var val=$(element).val();
+               val=$.trim(val);
+               if(!val)
+               {
+                   var offset=$(element).offset();
+                   $(window).scrollTop(offset.top-100);
+                   $(element).css("border","1px solid red");
+                   isvalidate=false;
+                   return false;
+               }
+               else
+               {
+                   $(element).css("border","1px solid #dcdcdc");
+               }
+           });
+           if(isvalidate)
+               $("#cusfm").submit();
+       }
+
+
+   </script>
+
+</body>
+</html>

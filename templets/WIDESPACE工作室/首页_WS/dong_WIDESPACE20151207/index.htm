@@ -1,0 +1,496 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>{sline:global.cfg_indextitle/}</title>
+<meta name="keywords" content="{sline:global.cfg_keywords/}" />
+<meta name="author" content="{sline:global.cfg_webname/}" />
+<meta name="description" content="{sline:global.cfg_description/}" />
+
+{sline:php}Helper_Archive::getUserCss('dong_WIESPACE/css/base.css,dong_WIESPACE/css/index.css');{/sline:php}
+{sline:php}Helper_Archive::getUserCss('dong_WIESPACE/css/header_sang.css');{/sline:php}
+
+
+{sline:php}Helper_Archive::getUserJs('dong_WIESPACE/js/jquery-1.8.3.min.js,dong_WIESPACE/js/fcous.js');{/sline:php}
+
+
+
+{sline:php}GetScript('common.js');{/sline:php}
+<style> 
+.caijian_pic_WS_4row{ border:0px solid #000; width:280px; height:210px;overflow:hidden}; 
+
+.caijian_pic_WS_4row img{max-width:280px;_width:expression(this.width > 280 ? "280px" : this.width);} 
+
+
+
+.caijian_pic_WS_470 img{
+
+);
+
+
+
+} 
+
+.caijian_pic_WS_470{ 
+max-width: 470px; 
+max-width: 470px; 
+
+overflow:hidden;
+} 
+
+
+
+
+.caijian_pic_WS{ border:0px solid #000; width:auto; height:300px;overflow:hidden};
+.caijian_pic_WS img{max-heigth:400px;_width:expression(this.width > 400 ? "400px" : this.width);} 
+
+.caijian_pic_WS img:hover
+
+{
+-webkit-filter: blur(5px); /* Chrome, Opera */
+       -moz-filter: blur(5px);
+        -ms-filter: blur(5px);    
+            filter: blur(5px); 
+}
+
+
+);
+} 
+
+</style>
+</head>
+
+ <body>
+
+<!-- big 是否包含顶部 -->
+
+
+
+
+  <!-- logo and search开始 -->
+  {sline:include file='public/header.htm'/}
+
+
+  <!-- 导航开始 -->
+
+<table style="width:100%; background:#f9f4e1; float:left;">
+  <tr>
+    <td>
+<div class="big">
+
+ 
+<!--滚动焦点图开始-->
+  <div class="focus_img">
+
+    <div id="_banners" class="banners">
+    {sline:rollingAd name='IndexRollingAd' row="10" limit='0'}
+      <div class="banner">
+        <a target="_blank" href="[field:linkurl/]"><img width="100%" height="auto" alt="[field:linktext/]" src="[field:picurl/]" /></a>
+      </div>
+    {/sline:rollingAd}
+
+    </div>
+    <div id="_focus" class="focus">
+    {sline:rollingAd name='IndexRollingAd' row="10" limit='0'}
+      <a data-index="[field:global.step runphp='yes']@me=(intval(@me)-1);[/field:global.step]" href="javascript:void(0);" [field:global.step runphp='yes']if(@me==1)@me='class="on"'; else @me='';[/field:global.step]><span class="bg-b"></span><span class="inner"></span></a>
+      {/sline:rollingAd}
+
+    </div>
+  </div>
+  <!--滚动焦点图结束-->
+
+
+
+
+  <!--滚动焦点图结束-->
+  
+      <div class="top_pz_box">
+  	<div class="child ico01">深度旅行线路</div>
+  	<div class="child ico02">专业精品小团</div>
+  	<div class="child ico03">全程细心指导</div>
+  	<div class="child ico04">全面安全保障</div>
+  </div>
+  
+<div class="big bg_ede">
+
+  	<div class="width_1210">
+ 		
+  
+        
+
+<!-- 目的地开始-->
+	
+      <div class="getready">
+      	<div class="get_tit">欧罗巴，出发</div>
+    <div class="get_tit_small">美食，美景，人文，风土，特色路线，当地家族成员与您共同探索。 </div>
+
+
+        <div class="imgNews">
+
+
+         {sline:middlenavlist  type="index" readad="0" row="1" limit="0"}
+          <a href="/cars/{sline:field.pinyin/}" class="bigImg1" target="_blank">
+<img class="fl" src="{sline:field.litpic/}"  />
+<span>{sline:field.kindname/}</span>
+</a>
+         {/sline:middlenavlist}
+
+         {sline:middlenavlist  type="index" readad="0" row="6" limit="1"}
+          <a href="/cars/{sline:field.pinyin/}" class="opacity" target="_blank"><img class="fl" src="{sline:field.litpic/}" width="236" height="195" /><span>{sline:field.kindname/}</span></a>
+          {/sline:middlenavlist}
+
+
+         {sline:middlenavlist  type="index" readad="0" row="1"  limit="7"}
+          <a href="/cars/{sline:field.pinyin/}" class="bigImg2" target="_blank">
+<img class="fl" src="{sline:field.litpic/}"  />
+<span>{sline:field.kindname/}</span>
+</a>
+         {/sline:middlenavlist}
+
+          
+				</div>
+
+
+
+
+
+
+
+        <script>
+				$(function(){
+				$(".imgNews a").hover(function(){  
+				 $(this).find("span").animate({opacity:"1"},500);  
+				 $(this).find("img").stop().animate({opacity:"0.5"},1000);
+				 $(this).siblings().find("img").stop().animate({opacity:"1"},500);
+				},function(){
+					$(this).find("span").animate({opacity:"0"},500);
+					$(this).parent().find("img").stop().animate({opacity:"0.5"},500); 
+				  $(this).parent().find("img").stop().animate({opacity:"1"},500);
+				 })
+				})
+				</script>
+
+
+      </div>
+
+<!-- 目的地结束-->
+
+
+
+
+
+      
+<!-- 注意，导游开始，多一个少一个css div 容易出错-->
+
+
+      <div class="tese_box_4row">
+      	<div class="ts_tit">
+        	<h3>资深家族成员</h3>
+          <p><a target="_blank" href="/cars/all">亲，数百位小车导游之家的家族成员，互帮互助，居住工作在欧洲的每个角落哦。嗯，查看一下哪些家族成员能帮上您呢?</a></p>
+        </div>
+
+
+        <div class="ts_con">
+        	<ul>
+
+         {sline:getcarlist row='8' flag='recommend' limit='0'}
+          	<li [field:global.autoindex runphp='yes']if(@me%2==0)@me='class="mr_0"'; else @me='';[/field:global.autoindex]>
+
+
+<div class="caijian_pic_WS_4row">  
+            	<a class="fl" href="[field:url/]" target="_blank"><img class="caijian_pic_WS_4row" src="[field:litpic/]" alt="[field:linename/]" /></a>
+</div>
+
+<p>[field:bigpic/] </p>
+
+              <div class="txt_con_4row">
+              	<p class="pl">
+                	<a href="[field:url/]" target="_blank">[field:carname/]</a>
+                  <span> [field:sellpoint function="cutstr_html(@me,30)"/] </span>
+                </p>
+
+                <p class="pr">
+
+                	
+                	<a href="[field:url/]" target="_blank">详情</a>
+                </p>
+              </div>
+            </li>
+
+
+
+
+
+
+         {/sline:getcarlist}
+          	
+          </ul>
+            </div>
+     </div>
+      
+
+
+<!-- 路线-->
+
+
+
+
+
+
+
+<!-- 原本路线-->
+
+<div class="tese_box">
+      	<div class="ts_tit">
+        	<h3>特色小团，地道玩法</h3>
+          <p><a target="_blank" href="/lines/all">轻松出行，愉快旅程 >></a></p>
+        </div>
+
+
+
+
+        <div class="ts_con">
+        	<ul>
+
+          {sline:getlinelist type="top" flag="recommend" row="6"}
+          	<li [field:global.autoindex runphp='yes']if(@me%2==0)@me='class="mr_0"'; else @me='';[/field:global.autoindex]>
+<div class="caijian_pic_WS">
+
+  
+            	<a class="fl" href="[field:url/]" target="_blank"><img class="fl" src="[field:litpic/]" alt="[field:linename/]" /></a>
+</div>
+              <div class="txt_con">
+              	<p class="pl">
+                	<a href="[field:url/]" target="_blank">[field:linename/]</a>
+                  <span> [field:sellpoint function="cutstr_html(@me,30)"/]</span>
+
+                
+
+
+
+                </p>
+                <p class="pr">
+                	<span><em>¥<b> [field:sellprice/]</b></em></span>
+                	<a href="[field:url/]" target="_blank">详情</a>
+                </p>
+              </div>
+            </li>
+          {/sline:getlinelist}
+          	                        
+
+
+          </ul>
+            </div>
+     </div>
+
+<!-- --->
+
+
+ <!--游记开始-->
+ <div class="tese_box">
+      	<div class="ts_tit">
+        	<h3>资深达人，游记攻略</h3>
+          <p><a target="_blank" href="/＃">游记美文，实用信息，家族成员帮您支招 >></a></p>
+        </div>
+        </div>
+        
+        <div class="cate-bd">
+          <div class="view-item">
+            <ul class="clearfix">
+              {sline:getarclist flag='recommend' haspic="0" row='7'}
+              <li class="le-figure [field:global.autoindex runphp='yes']if(@me==1)@me=' top'; else @me=' ';[/field:global.autoindex]">
+                <div class="pic">
+                  <a href="[field:url/]" target="_blank" title="[field:title/]">
+                    <img src="[field:litpic/]" width="[field:global.autoindex runphp='yes']if(@me==1)@me='333'; else @me='267';[/field:global.autoindex]" height="[field:global.autoindex runphp='yes']if(@me==1)@me='440'; else @me='155';[/field:global.autoindex]" />
+                  </a>
+                </div>
+                <div class="cont">
+                  <p class="title"><a href="[field:url/]" target="_blank" title="[field:title/]">
+                  
+                  [field:title function="cutstr_html(@me,13)"/]
+                  </a></p>
+                  <p class="detail">[field:content function="cutstr_html(@me,30)"/]<a class="more" href="[field:url/]" target="_blank">[详情]</a></p>
+                </div>
+              </li>
+               {/sline:getarclist}
+
+
+              </ul>
+            <div class="tit_box">
+              <div class="inner">
+                <i></i>
+                <h3>游记攻略</h3>
+                <span>travels</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      <!--游记开始-->
+ <!--测试图片效果开始-->
+ 
+        
+
+ 
+        
+ 
+  <!--测试图片效果-->
+
+
+
+
+
+      <div class="custom-made">
+      	<div class="cus_tit">
+          <h3>你想有个不一样的旅程？</h3>
+          <p><a target="_blank" href="http://www.euchedao.com/customize/">私人订制，为您度身打造>></a></p>
+        </div>
+
+         <form method="post" id="cusfm" action="/customize/save.php">
+        <div class="made-con">
+        	<table width="350" border="0" cellspacing="0" cellpadding="0">
+        	  <tbody><tr>
+        	    <th height="50" colspan="2" align="left" scope="row"><h4 class="tit-1">您的旅行计划</h4></th>
+       	    </tr>
+        	  <tr>
+        	    <th width="100" height="50" align="left" scope="row">目的地<s>*</s></th>
+        	    <td width="250" height="50"><input type="text" class="text noblank" name="dest" /></td>
+      	    </tr>
+        	  <tr>
+        	    <th width="100" height="50" align="left" scope="row">出发时间<s>*</s></th>
+        	    <td width="250" height="50"><input type="text" class="text noblank starttime" name="starttime"  />
+              </td>
+      	    </tr>
+        	  <tr>
+        	    <th width="100" height="50" align="left" scope="row">出发地点<s>*</s></th>
+        	    <td width="250" height="50">
+              <input type="text" class="text noblank" name="startplace"/>
+              </td>
+      	    </tr>
+        	  <tr>
+        	    <th width="100" height="50" align="left" scope="row">出行时长<s>*</s></th>
+        	    <td width="250" height="50">
+                <input type="text" class="text noblank" name="days" />
+                <span>天</span></td>
+      	    </tr>
+        	  <tr>
+        	    <th width="100" height="50" align="left" scope="row">成人数<s>*</s></th>
+        	    <td width="250" height="50">
+                <input type="text" class="text noblank" name="adultnum" />
+                <span>位</span></td>
+      	    </tr>
+        	  <tr>
+        	    <th width="100" height="50" align="left" scope="row">儿童数<s>*</s></th>
+        	    <td width="250" height="50">
+              <input type="text" class="text noblank" name="childnum" />
+              <span>位</span></td>
+      	    </tr>
+      	  </tbody></table>
+          <table width="550" border="0" cellspacing="0" cellpadding="0">
+            <tbody><tr>
+              <th height="50" colspan="2" align="left" scope="row"><h4 class="tit-2">您的联系方式</h4></th>
+            </tr>
+            <tr>
+              <th width="100" height="50" align="left" scope="row">您的称呼<s>*</s></th>
+              <td height="50"><input type="text" class="text noblank" name="contactname" /></td>
+            </tr>
+            <tr>
+              <th width="100" height="50" align="left" scope="row">您的性别</th>
+              <td height="50">
+                  <input type="hidden" name="sex" value="先生"/>
+                  <a class="active" href="javascript:;">先生</a>
+                  <a href="javascript:;">女士</a>
+                </td>
+            </tr>
+            <tr>
+              <th width="100" height="50" align="left" scope="row">所在地点<s>*</s></th>
+              <td height="50">
+            <input type="text" class="text noblank" name="address" />
+              </td>
+            </tr>
+            <tr>
+              <th width="100" height="50" align="left" scope="row">联系电话<s>*</s></th>
+              <td height="50">
+            <input type="text" class="text noblank" name="phone" />
+              </td>
+            </tr>
+            <tr>
+              <th width="100" height="50" align="left" scope="row">Email</th>
+              <td height="50">
+                <input type="text" class="text" name="email" />
+              </td>
+            </tr>
+            <tr>
+            <th width="100" height="50" align="left" scope="row">合适的联系时间</th>
+              <td height="50">
+                <input type="hidden" name="contacttime" value="9:00-12:00"/>
+                <a class="active" href="javascript:;">9:00-12:00</a>
+                <a href="javascript:;">14:00-18:00</a>
+                <a href="javascript:;">19:00-22:00</a>
+              </td>
+            </tr>
+          </tbody></table>
+          <div class="tj_btn"><a href="javascript:;" onClick="checkForm()">提交</a></div>
+           </form>
+        </div>
+      </div>
+</div>
+</div></td>
+  </tr>
+</table>
+
+  
+{sline:include file='public/help.htm'/}
+
+{sline:include file='public/footer.htm'/}
+
+{sline:include file='public/flink.htm'/}
+
+
+
+
+
+ <script src="/templets/smore/js/DatePicker/WdatePicker.js"></script>
+  <script>
+       $(".made-con a").click(function(e) {
+           $(this).siblings("input:hidden").val($(this).text());
+           $(this).siblings("a").removeClass("active");
+           $(this).addClass("active");
+       });
+
+       //日历选择
+       $(".starttime").click(function(){
+           WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM-dd',minDate:'%y-%M-%d'})
+       })
+
+
+       function checkForm()
+       {
+           var isvalidate=true;
+           $(".noblank").each(function(index, element) {
+               var val=$(element).val();
+               val=$.trim(val);
+               if(!val)
+               {
+                   var offset=$(element).offset();
+                   $(window).scrollTop(offset.top-100);
+                   $(element).css("border","1px solid red");
+                   isvalidate=false;
+                   return false;
+               }
+               else
+               {
+                   $(element).css("border","1px solid #dcdcdc");
+               }
+           });
+           if(isvalidate)
+               $("#cusfm").submit();
+       }
+
+
+
+   </script>
+
+
+
+</body>
+</html>

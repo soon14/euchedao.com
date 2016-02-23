@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>{sline:field.pageno/}{sline:field.searchtitle/}-{sline:global.cfg_webname/}</title>
+{sline:field.seokeyword/}
+{sline:field.seodescription/}
+<meta name="author" content="{sline:global.cfg_webname/}" />
+{sline:php}Helper_Archive::getUserCss('xyhlist/css/base.css,xyhlist/css/dz-list.css');{/sline:php}
+{sline:php}Helper_Archive::getUserJs('xyhlist/js/jquery-1.8.3.min.js,xyhlist/js/hotel.js,xyhlist/js/hotel.search.js');{/sline:php}
+{sline:php}GetScript('common.js','2014.03');{/sline:php}
+</head>
+
+<body>
+
+	<!-- 顶部介绍开始 -->
+	{sline:include file='public/header.htm'/}
+  <!-- 主导航结束 -->
+  
+  <div class="big bg_ede">
+  	<div class="width_1210">
+      
+      <div class="main_con">
+        <div class="search_tj_list">
+        	<dl>
+          	<dt>目的地：</dt>
+            <dd id="destid_list">
+            <a class="active" href="{sline:global.dest_id function=getSearchUrl(0,'dest_id')/}" data-field="destid" data-value="0">不限</a>
+              {sline:vlist name="destlist"}
+               <a href="[field:id function=getSearchUrl(@me,'dest_id')/]" data-field="destid" data-value="[field:id/]" >[field:kindname/]</a>
+              {/sline:vlist}
+            </dd>
+          </dl>
+          <dl>
+            <dt>星级：</dt>
+            <dd id="rank_list">
+            <a class="active" data-field="rankid" data-value="0" href="{sline:global.rankid function=getSearchUrl(0,'rankid')/}">全部</a>
+            {sline:gethotelguide flag='rank'}
+                <a href="[field:id function=getSearchUrl(@me,'rankid')/]" data-field="rankid" data-value="[field:id/]">[field:title/]</a>
+              {/sline:gethotelguide}
+            </dd>
+          </dl>
+          {sline:attrgrouplist typeid='2' filterid='216'}
+            <dl>
+              <dt>{sline:field.groupname/}：</dt>
+              <dd class="attr_list">
+              <a class="active" href="{sline:field.attrid function=getSearchUrl(null,null,@me)/}" data-field="attrid" data-value="0">全部</a>
+               {sline:getattrbygroup row='30'}
+                      <a href="[field:attrid function=getSearchUrl(@me,'attrid')/]"  data-field="attrid" data-value="[field:attrid/]">[field:title/]</a>
+                   {/sline:getattrbygroup}
+              </dd>
+            </dl>
+          {/sline:attrgrouplist}
+          <dl>
+            <dt>价格：</dt>
+            <dd id="price_list">
+            <a class="active" data-field="priceid" data-value="0" href="{sline:global.priceid function=getSearchUrl(0,'priceid')/}">全部</a>
+             {sline:gethotelguide flag='price'}
+                <a href="[field:id function=getSearchUrl(@me,'priceid')/]" data-field="priceid" data-value="[field:id/]">[field:title/]</a>
+              {/sline:gethotelguide}
+            </dd>
+          </dl>
+        </div>
+        <div class="list_con">
+        	<div class="list_menu">
+          <a class="on" href="javascript:void(0)" data-field="sorttype" data-value="0">默认排序</a>
+            <a href="javascript:void(0)" data-field="sorttype" data-value="1">推荐</a>
+            <a href="javascript:void(0)" data-field="sorttype" data-value="2">价格</a>
+            <a href="javascript:void(0)" data-field="sorttype" data-value="3">销量</a>
+            <a href="javascript:void(0)" data-field="sorttype" data-value="4">人气</a>
+          </div>
+          <div class="cp_list">
+          	<ul>
+            {sline:list}
+            	<li [field:global.autoindex runphp='yes']if(@me%2==0)@me='class="mr_0"'; else @me='';[/field:global.autoindex]>
+              	<a class="fl" href="[field:url/]" target="_blank"><img class="fl" src="[field:litpic function='getUploadFileUrl(@me)'/]" alt="[field:hotelname/]" width="595" height="295" /></a>
+                <p class="tit"><a href="[field:url/]" target="_blank"><em>[[field:kindlist function=getHotelKindCity(@me)/]]</em>[field:hotelname/]</a><span>[field:id function="Helper_Archive::getCommentNum(@me,2)"/]人已购买</span></p>
+                <p class="txt">[field:content function="cutstr_html(@me,60)"/]</p>
+                <p class="num"><span>&yen;[field:id function="Helper_Archive::getHotelMinPrice(@me)"/]</span><del>原价：&yen;[field:id function=getHotelSellPrice(@me)/]</del><s></s></p>
+              </li>
+            {/sline:list}
+            	
+            </ul>
+            <script>
+							$(function(){
+									$('.cp_list li').hover(function(){
+											$(this).addClass('hover')
+									},function(){
+											$(this).removeClass('hover')	
+									})
+							})
+						</script>
+            <div class="main_mod_page clear">
+              {sline:pagelist isstatic='1'/}
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <!--隐藏域-->
+  <input type="hidden" id="destid" value="{sline:global.dest_id/}"/>
+  <input type="hidden" id="attrid" value="{sline:global.attrid/}"/>
+  <input type="hidden" id="priceid" value="{sline:global.priceid/}"/>
+  <input type="hidden" id="rankid" value="{sline:global.rankid/}"/>
+  <input type="hidden" id="sorttype" value="{sline:global.sorttype/}"/>
+  <input type="hidden" id="pinyin" value="{sline:field.pinyin/}"/>
+  <input type="hidden" id="keyword" value="{sline:global.keyword/}"/>
+
+  {sline:include file='public/help.htm'/}
+  
+  {sline:include file='public/footer.htm'/}
+
+</body>
+</html>

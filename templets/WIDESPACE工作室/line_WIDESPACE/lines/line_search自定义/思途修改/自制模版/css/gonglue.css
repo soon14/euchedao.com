@@ -1,0 +1,374 @@
+@charset "utf-8";
+.gl-sidle-con{
+	float:left;
+	width:283px;
+	margin-top:20px}
+.box285{
+	float:left;
+	width:283px;
+	margin-bottom:15px;
+	border:1px solid #e6e6e6;
+	background:#fff}
+.box285 .box-tit{
+	float:left;
+	color:#666;
+	width:253px;
+	height:46px;
+	line-height:46px;
+	padding:0 15px;
+	font-size:18px;
+	border-bottom:1px solid #ededed}
+.box285 .box-con{
+	float:left;
+	width:253px;
+	padding:15px;}
+.box285 .box-con .pic{
+	float:left;
+	width:110px;
+	height:150px;
+	border:3px solid #ff0c8a}
+.box-con .con{
+	float:right;
+	width:120px}
+.box285 .box-con .con em{
+	color:#333;
+	float:left;
+	width:120px;
+	height:30px;
+	line-height:30px;
+	font-size:16px;
+	font-weight:bold;
+	font-style:normal}
+.box285 .box-con .con p{
+	color:#666;
+	float:left;
+	width:120px;
+	line-height:24px;
+	font-size:14px}
+.box285 .box-con .con a{
+	color:#fff;
+	float:left;
+	width:80px;
+	height:22px;
+	line-height:22px;
+	margin-top:20px;
+	font-size:14px;
+	text-align:center;
+	background:#ff0c8a;
+	border-radius:3px;}
+.box-con .sidle-list{
+	float:left;
+	width:253px}
+.box-con .sidle-list dt,
+.box-con .sidle-list dd{
+	float:left;
+	width:253px}
+.box-con .sidle-list dt .tit{
+	float:left;
+	width:253px}
+.box-con .sidle-list dt .tit a{
+	float:left;
+	color:#333;
+	width:190px;
+	height:30px;
+	line-height:30px;
+	font-size:14px;
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis}
+.box-con .sidle-list dt .tit span{
+	float:right;
+	color:#f60;
+	width:63px;
+	height:30px;
+	line-height:30px;
+	font-size:14px;
+	text-align:right;
+	overflow:hidden;
+	white-space:nowrap;
+	font-family:Arial}
+.box-con .sidle-list dt .txt{
+	color:#999;
+	float:left;
+	width:253px;
+	line-height:18px}
+.box-con .sidle-list dd,
+.box-con .sidle-list dt{
+	margin-bottom:15px;
+	padding-bottom:15px;
+	border-bottom:1px dashed #b2b2b2}
+.box-con .sidle-list dd.no_ys{
+	margin:0;
+	padding:0;
+	border:0}
+.box-con .sidle-list dd p{
+	float:right;
+	width:150px}
+.box-con .sidle-list dd p a{
+	float:left;
+	color:#666;
+	width:150px;
+	max-height:36px;
+	line-height:18px;
+	font-size:14px;
+	overflow:hidden}
+.box-con .sidle-list dd p span{
+	float:left;
+	color:#f60;
+	width:253px;
+	height:24px;
+	line-height:24px;
+	font-size:14px}
+
+.gl-con-list{
+	float:right;
+	width:910px;
+	margin-top:20px}
+
+.gl-fcous{
+	float:left;
+	width:892px;
+	padding:8px;
+	border:1px solid #e6e6e6;
+	background:#fff}
+.focus_img{
+	float:left;
+	width:100%;
+	min-width:892px;
+	background:#fff;
+	height:280px;
+	position:relative;
+	z-index:999;
+	overflow:hidden}
+.focus_img .focus {
+	width:892px;
+	padding-top:260px;
+	text-align:center;
+	margin:0 auto}
+.focus_img .focus a {
+	text-decoration:none;
+	z-index:3;
+	width:40px;
+	height:8px;
+	position:relative;
+	display:inline-block;
+	overflow:hidden;
+	zoom:1;
+	margin:0 3px}
+.focus_img .focus a .bg-m {
+	z-index:4;
+	color:#FFF;
+	line-height:40px;
+	font-size:40px;
+	position:absolute;
+	left:2px;
+	top:6px;
+	cursor:pointer;
+	display:none}
+.focus_img .focus a .bg-b {
+	color:#fff;
+	background:#fff;
+	position:absolute;
+	display:block;
+	left:0;
+	top:0;
+	cursor:pointer;
+	width:40px;
+	height:8px;
+	text-align:center}
+.focus_img .focus a .inner {
+	background:#ff0c8a;
+	position:absolute;
+	left:0;
+	top:0;
+	z-index:9;
+	opacity:0;
+	display:none;
+	width:40px;
+	height:8px;
+	text-align:center}
+.focus_img .focus a.on .inner,.focus_img .focus a:hover .inner {
+	cursor:pointer;
+	display:block;
+	border:0;
+	color:#fff;
+	background:#ff0c8a;
+	-webkit-transition:opacity .3s ease-in-out;
+	-ms-transition:opacity .3s ease-in-out;
+	transition:opacity .3s ease-in-out;
+	opacity:1}
+.focus_img .focus .hover .inner {
+	display:block}
+.focus_img .banners,.focus_img .banner {
+	width:892px;
+	height:280px;
+	overflow:hidden;
+	position:absolute;
+	left:50%;
+	margin-left:-446px}
+.focus_img .banner .info h3,.focus_img .banner .info p {
+	display:none}
+
+.gl-search{
+	float:left;
+	width:868px;
+	padding:20px;
+	margin-top:15px;
+	background:#fff;
+	border:1px solid #e6e6e6}
+.gl-search span{
+	float:left;
+	color:#e43c93;
+	height:40px;
+	line-height:40px;
+	font-size:24px;
+	padding-left:100px;
+	background:url(../images/ico05.png) no-repeat 60px -72px}
+.gl-search .gl-sou{
+	float:left;
+	height:40px;
+	margin-left:30px}
+.gl-search .gl-sou .gl-text{
+	float:left;
+	width:430px;
+	height:38px;
+	line-height:38px;
+	border:1px solid #dbdbdb;
+	border-top-left-radius:5px;
+	border-bottom-left-radius:5px;
+	box-shadow:2px 2px 8px #eee inset}
+.gl-search .gl-sou .gl-btn{
+	float:left;
+	color:#fff;
+	width:80px;
+	height:40px;
+	line-height:40px;
+	font-size:16px;
+	border:0;
+	font-family:"微软雅黑";
+	border-top-right-radius:5px;
+	border-bottom-right-radius:5px;
+	background:#e43c93}
+
+.list-star-box{
+	float:left;
+	width:878px;
+	padding:15px;
+	margin-top:15px;
+	background:#fff;
+	border:1px solid #e6e6e6;
+	border-top:3px solid #e43c93}
+.gl-dl-list{
+	float:left;
+	width:878px;}
+.gl-dl-list dt{
+	float:left;
+	width:878px;
+	height:39px;
+	position:relative}
+.gl-dl-list dt h3{
+	float:left;
+	color:#fff;
+	width:83px;
+	height:39px;
+	line-height:34px;
+	position:absolute;
+	left:-20px;
+	top:0;
+	font-size:16px;
+	font-weight:500;
+	padding-left:28px;
+	background:url(../images/ico05.png) no-repeat 0 bottom}
+.gl-dl-list dt p{
+	float:right;
+	height:39px;}
+.gl-dl-list dt p span{
+	float:left;
+	color:#666;
+	width:54px;
+	height:24px;
+	line-height:24px;
+	margin-top:7px;
+	text-align:center;
+	cursor:pointer;
+	font-size:14px}
+.gl-dl-list dt p span.on{
+	color:#fff;
+	background:url(../images/ico05.png) no-repeat 0 -476px}
+.gl-dl-list dd{
+	margin-top:15px}
+.gl-dl-list dd,
+.gl-dl-list dd ul{
+	float:left;
+	width:878px}
+.gl-dl-list dd ul li{
+	float:left;
+	width:878px;
+	position:relative;
+	margin-bottom:20px;
+	padding-bottom:20px;
+	border-bottom:1px dashed #ebebeb}
+.gl-dl-list dd ul li .dd-zt{
+	float:left;
+	width:500px;
+	margin-left:20px}
+.dd-zt p{
+	float:left;
+	width:500px}
+.dd-zt p.tit a{
+	float:left;
+	color:#444;
+	width:500px;
+	height:30px;
+	font-size:18px;
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis}
+.dd-zt p.txt{
+	color:#777;
+	max-height:66px;
+	line-height:22px;
+	overflow:hidden;
+	font-size:14px;}
+.dd-zt p.other span{
+	float:left;
+	color:#999;
+	height:30px;
+	line-height:30px;
+	padding-left:25px;
+	margin-right:40px;
+	background:url(../images/ico05.png) no-repeat}
+.dd-zt p.other span.name{
+	background-position:0 5px}
+.dd-zt p.other span.time{
+	background-position:0 -32px}
+.gl-dl-list dd ul li .look{
+	position:absolute;
+	right:10px;
+	top:12px;
+	color:#999;
+	width:40px;
+	height:30px;
+	padding-top:50px;
+	font-style:italic;
+	background:url(../images/ico05.png) no-repeat 0 -373px}
+.gl-dl-list dd ul li .look span{
+	color:#e43c93;
+	font-size:14px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

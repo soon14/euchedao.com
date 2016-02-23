@@ -1,0 +1,559 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>{sline:global.cfg_indextitle/}</title>
+<meta name="keywords" content="{sline:global.cfg_keywords/}" />
+<meta name="author" content="{sline:global.cfg_webname/}" />
+<meta name="description" content="{sline:global.cfg_description/}" />
+
+{sline:php}Helper_Archive::getUserCss('dong_WIESPACE/css/base.css,dong_WIESPACE/css/index.css');{/sline:php}
+{sline:php}Helper_Archive::getUserCss('dong_WIESPACE/css/header_sang.css');{/sline:php}
+{sline:php}Helper_Archive::getUserCss('dong_WIESPACE/css/dean.css');{/sline:php}
+
+
+{sline:php}Helper_Archive::getUserJs('dong_WIESPACE/js/jquery-1.8.3.min.js,dong_WIESPACE/js/fcous.js');{/sline:php}
+
+
+
+{sline:php}GetScript('common.js');{/sline:php}
+<style> 
+/*.caijian_pic_WS_4row{ border:0px solid #000; width:280px; height:210px;overflow:hidden}; */
+
+.caijian_pic_WS_4row img{max-width:280px;_width:expression(this.width > 280 ? "280px" : this.width);} 
+
+
+
+.caijian_pic_WS_470 img{
+
+);
+
+
+
+} 
+
+.caijian_pic_WS_470{ 
+max-width: 470px; 
+max-width: 470px; 
+
+overflow:hidden;
+} 
+
+
+
+
+.caijian_pic_WS{ border:0px solid #000; width:auto; height:300px;overflow:hidden};
+.caijian_pic_WS img{max-heigth:400px;_width:expression(this.width > 400 ? "400px" : this.width);} 
+
+.caijian_pic_WS img:hover
+
+{
+-webkit-filter: blur(5px); /* Chrome, Opera */
+       -moz-filter: blur(5px);
+        -ms-filter: blur(5px);    
+            filter: blur(5px); 
+}
+
+
+
+
+</style>
+</head>
+
+ <body>
+
+<!-- big 是否包含顶部 -->
+
+
+
+
+  <!-- logo and search开始 -->
+  {sline:include file='public/header.htm'/}
+
+  <!-- 导航开始 -->
+
+<table style="width:100%; float:left;">
+  <tr>
+    <td>
+<div class="big">
+
+ 
+<!--滚动焦点图开始-->
+  <div class="focus_img">
+
+    <div id="_banners" class="banners">
+    {sline:rollingAd name='IndexRollingAd' row="10" limit='0'}
+      <div class="banner">
+        <a target="_blank" href="[field:linkurl/]"><img width="100%" height="auto" alt="[field:linktext/]" src="[field:picurl/]" /></a>
+      </div>
+    {/sline:rollingAd}
+
+    </div>
+    <div id="_focus" class="focus">
+    {sline:rollingAd name='IndexRollingAd' row="10" limit='0'}
+      <a data-index="[field:global.step runphp='yes']@me=(intval(@me)-1);[/field:global.step]" href="javascript:void(0);" [field:global.step runphp='yes']if(@me==1)@me='class="on"'; else @me='';[/field:global.step]><span class="bg-b"></span><span class="inner"></span></a>
+      {/sline:rollingAd}
+
+    </div>
+  </div>
+  <!--滚动焦点图结束-->
+
+
+
+  <!--滚动焦点图结束-->
+  
+      <div class="top_pz_box">
+  	<div class="child ico01">
+    深度旅行线路
+
+    </div>
+  	<div class="child ico02">专业精品小团</div>
+  	<div class="child ico03">全程细心指导</div>
+  	<div class="child ico04">全面安全保障</div>
+  </div>
+<!-- 自定义图片 -->
+<div class="width_1210_dean">
+<div class="deangonglve">
+
+<div class="deanpubtitle">
+                  <h5>欧罗巴，出发</h5>
+                  <h3>美食，美景，人文，风土，特色路线，当地家族成员与您共同探索。</h3>
+                </div>
+
+
+                <div class="deanyjbox">
+                <div class="deanarticallist">
+<ul id="hiddenresult">
+
+
+    <li>
+        <div class="deanlvpic">
+            <a href="/cars/show_315.html" target="_blank">
+                <img src="pic/p1b.jpg" width="{picwidth}" height="{picheight}"/>
+                <span>6座经济</span>
+                <i> 2 评论 </i>
+            </a>
+        </div>
+        <div class="deanlvinfo">
+            <div class="deanauthor">
+                <a class="deanauthor_avator" href="/cars/show_315.html" target="_blank"><img src="pic/p1s.jpg"/></a>
+                                    <span>
+                                          <a href="http://www.euchedao.com/cars/show_315.html"
+                                             target="_blank">
+                                              沈菥萌 精彩小世界</br>
+
+                                              <h1>德国－杜塞尔多夫 </h1>
+
+
+                                          </a>
+
+                                        </span>
+
+
+                </div>
+    </div>
+    </li>
+    <li>
+        <div class="deanlvpic">
+            <a href="/cars/show_111.html" target="_blank">
+                <img src="pic/p2b.jpg" width="{picwidth}" height="{picheight}"/>
+                <span>9座豪华</span>
+                <i> 6 评论 </i>
+            </a>
+        </div>
+        <div class="deanlvinfo">
+            <div class="deanauthor">
+                <a class="deanauthor_avator" href="/cars/show_111.html" target="_blank"><img src="pic/p2s.jpg"/></a>
+                                    <span>
+                                          <a href="/cars/show_111.html"
+                                             target="_blank">
+                                              意大利全境及全欧司导</br>
+
+                                              <h1>意大利－罗马 </h1>
+
+                                              曾带过的重要客人:北航校长，华东宝信公司老总，影视一线明星等等...
+
+                                          </a>
+
+                                        </span>
+
+
+                </div>
+            </div>
+    </li>
+
+
+    <li>
+                                  <div class="deanlvpic">
+                                  <a href="/cars/show_21.html" target="_blank">
+                                      <img src="pic/p3b.jpg" width="{picwidth}" height="{picheight}" />
+                                        <span>7座豪华</span>
+                                        <i> 3 评论 </i>
+                                    </a>
+                                  </div>
+                                    <div class="deanlvinfo">
+                                    <div class="deanauthor">
+                                     <a class="deanauthor_avator" href="/cars/show_21.html" target="_blank"><img src="pic/p3s.jpg" /></a>
+                                    <span>
+                                          <a href="/cars/show_21.html" target="_blank">
+                                          凌云 欧洲艺术之旅</br>
+                                           
+                                          <h1>比利时－ 布鲁塞尔 </h1>
+                                         
+                                         高级定制私导，定居比利时。如何描述欧洲呢？是浪漫，时尚的，奢饰品交易与文艺之都...
+
+                                          </a>
+
+                                        </span>
+
+<</div>
+                                    
+                                    </div>
+                                  </li>
+                                  <!-- ／ -->
+
+                                  <!-- 下一个 -->
+                                  <li>
+                                  <div class="deanlvpic">
+                                  <a href="/cars/show_44.html" target="_blank">
+                                      <img src="pic/p4b.jpg" width="{picwidth}" height="{picheight}" />
+                                        <span>9座豪华</span>
+                                        <i> 11 评论 </i>
+                                    </a>
+                                  </div>
+                                    <div class="deanlvinfo">
+                                    <div class="deanauthor">
+                                     <a class="deanauthor_avator" href="/cars/show_44.html" target="_blank"><img src="pic/p4s.jpg" /></a>
+                                    <span>
+                                          <a href="/cars/show_44.html" target="_blank">
+                                          赵六一 游遍天下</br>
+                                           
+                                          <h1>奥地利－维也纳 </h1>
+                                         
+                                          </a>
+
+                                        </span>
+
+
+                                    </div>
+                                    </div>
+                                  </li>
+                                  <!-- ／ -->
+
+
+
+<!-- 下一个 -->
+                                  <li>
+                                  <div class="deanlvpic">
+                                  <a href="/cars/show_5.html" target="_blank">
+                                      <img src="pic/p5b.jpg" width="{picwidth}" height="{picheight}" />
+                                        <span>9座豪华</span>
+                                        <i> 11 评论 </i>
+                                    </a>
+                                  </div>
+                                    <div class="deanlvinfo">
+                                    <div class="deanauthor">
+                                     <a class="deanauthor_avator" href="/cars/show_5.html" target="_blank"><img src="pic/p5s.jpg" /></a>
+                                    <span>
+                                          <a href="/cars/show_5.html" target="_blank">
+                                          朱崎 温文尔雅，诚恳务实</br>
+                                           
+                                          <h1>德国－纽伦堡 </h1>
+                                         
+                                         
+
+                                          </a>
+
+                                        </span>
+
+</div>
+                                    
+                                    </div>
+                                  </li>
+                                  <!-- ／ -->
+<!-- 下一个 -->
+                                  <li>
+                                  <div class="deanlvpic">
+                                  <a href="/cars/show_200.html" target="_blank">
+                                      <img src="pic/p6b.jpg" width="{picwidth}" height="{picheight}" />
+                                        <span>4座豪华</span>
+                                        <i> 5 评论 </i>
+                                    </a>
+                                  </div>
+                                    <div class="deanlvinfo">
+                                    <div class="deanauthor">
+                                     <a class="deanauthor_avator" href="/cars/show_200.html" target="_blank"><img src="pic/p6s.jpg" /></a>
+                                    <span>
+                                          <a href="/cars/show_200.html" target="_blank">
+                                          王熙莹 wset2级品酒师 红酒旅游硕士生</br>
+                                           
+                                          <h1>法国－波尔多 </h1>
+                                         专攻红酒+美食+美景靠谱好姑娘 
+                                          </a>
+
+                                        </span>
+
+</div>
+                                    
+                                    </div>
+                                  </li>
+                                  <!-- ／ -->
+
+
+                                  
+                                </ul>
+
+
+                </div>
+                </div>
+
+  </div>
+
+  </div>
+
+<!-- 路线-->
+<!-- 目的地开始-->
+    <div class="width_1210"> 
+
+      <div class="getready">
+        <div class="get_tit">热门目的地</div>
+    <div class="get_tit_small"> 欧洲博大精深，源自内心向往，让脚步跟上心的节奏 </div>
+
+
+        <div class="imgNews">
+
+
+         
+          <a href="/cars/germany/" class="bigImg1" target="_blank">
+<img class="fl" src="pic/mdd1.jpg"  />
+<span>德国 沉思的童话王国
+</span></a>
+         
+
+
+
+
+          <a href="/cars/france/" class="opacity" target="_blank"><img class="fl" src="/pic/mdd2.jpg" width="380" height="360" /><span>巴黎 流动的盛宴</span></a>
+
+          <a href="/cars/denmark/" class="opacity" target="_blank"><img class="fl" src="/pic/mdd3.jpg" width="380" height="360" /><span>荷兰 挪威 丹麦 北欧神话</span></a>
+          
+          <a href="/cars/italy/" class="opacity" target="_blank"><img class="fl" src="/pic/mdd4.jpg" width="380" height="360" /><span>意大利 文明的起源</span></a>
+
+          <a href="/cars/spain/" class="opacity" target="_blank"><img class="fl" src="/pic/mdd5.jpg" width="380" height="360" /><span>西班牙 葡萄牙 大航海时代</span></a>
+
+
+         <a href="/cars/austria/" class="opacity" target="_blank"><img class="fl" src="/pic/mdd6.jpg" width="380" height="360" /><span>维也纳 古典音乐的中心</span></a>
+
+
+
+       
+          <a href="/cars/czech/" class="bigImg2" target="_blank">
+<img class="fl" src="/pic/mdd7.jpg"  />
+<span>捷克 匈牙利 布拉格的爱情宣言</span>
+</a>
+        
+
+          
+        </div>
+
+
+  </div> 
+
+
+
+
+
+        <script>
+        $(function(){
+        $(".imgNews a").hover(function(){  
+         $(this).find("span").animate({opacity:"1"},500);  
+         $(this).find("img").stop().animate({opacity:"0.5"},1000);
+         $(this).siblings().find("img").stop().animate({opacity:"1"},500);
+        },function(){
+          $(this).find("span").animate({opacity:"0"},500);
+          $(this).parent().find("img").stop().animate({opacity:"0.5"},500); 
+          $(this).parent().find("img").stop().animate({opacity:"1"},500);
+         })
+        })
+        </script>
+
+
+      </div>
+
+<!-- 目的地结束-->
+11
+ <!--测试图片效果开始-->
+<div class="width_1210_dean_zt">
+<div class="deangonglve_zt">
+
+<div class="deanpubtitle_zt">
+                  <h5>特色小团，地道玩法</h5>
+                  <h3>轻松出行，愉快旅程. 更多</h3>
+                </div>
+
+
+                <div class="deanyjbox_zt">
+                <div class="deanarticallist_zt">
+<ul id="hiddenresult_zt">
+
+
+<li>
+                                  <div class="deanlvpic_zt">
+                                  <a href="/lines/all" target="_blank">
+                                      <img src="pic/zt1.jpg" width="{picwidth}" height="{picheight}" />
+                                        <span>私家小团</span>
+                                        <i> 2 评论 </i>
+                                    </a>
+                                  </div>
+                                    <div class="deanlvinfo_zt">
+                                    <div class="deanauthor_zt">
+                                     <a class="deanauthor_avator_zt" href="/lines/all" target="_blank"><img src="pic/zt1p.jpg" /></a>
+                                    <span>
+                                          <a href="/lines/all" target="_blank">
+                                          <h1> 捷克 </h1>
+                                          <h3> 自然文化遗产之旅 </h3>
+                                          </a>
+                                        </span>
+
+
+                                    
+                                    </div>
+
+                                        <div class="priece"> <em>2000</em>元起 </div>
+
+                                  </div>
+                                  </li>
+                               
+
+
+                                  <!-- 下一个 -->
+                                  <li>
+                                  <div class="deanlvpic_zt">
+                                  <a href="/lines/all" target="_blank">
+                                      <img src="pic/zt2.jpg" width="{picwidth}" height="{picheight}" />
+                                        <span>私家小团</span>
+                                        <i> 6 评论 </i>
+                                    </a>
+                                  </div>
+                                    <div class="deanlvinfo_zt">
+                                    <div class="deanauthor_zt">
+                                     <a class="deanauthor_avator_zt" href="/lines/all" target="_blank"><img src="pic/p2s.jpg" /></a>
+                                    <span>
+                                          <a href="/lines/all" target="_blank">
+
+
+                                          <h1> 荷兰 </h1>
+                                         梦幻潜水之旅
+
+                                          </a>
+
+                                        </span>
+
+
+                                    </div>
+                                    </div>
+                                  </li>
+                                  <!-- ／ -->
+
+                                  <!-- 下一个 -->
+                                  <li>
+                                  <div class="deanlvpic_zt">
+                                  <a href="/lines/all" target="_blank">
+                                      <img src="pic/zt3.jpg" width="{picwidth}" height="{picheight}" />
+                                        <span>私家小团</span>
+                                        <i> 3 评论 </i>
+                                    </a>
+                                  </div>
+                                    <div class="deanlvinfo_zt">
+                                    <div class="deanauthor_zt">
+                                     <a class="deanauthor_avator_zt" href="/lines/all" target="_blank"><img src="pic/zt3p.jpg" /></a>
+                                    <span>
+                                          <a href="/lines/all" target="_blank">
+
+
+                                          <h1>法国 普罗旺斯 </h1>
+
+                                         私家城堡之旅
+
+                                          </a>
+
+                                        </span>
+
+
+</div>
+
+                                    </div>
+                                  </li>
+                                  <!-- ／ -->
+
+
+
+                                </ul>
+
+
+                </div>
+                </div>
+
+  </div>
+
+  </div>
+  <!--测试图片效果-->
+11
+    {sline:include file='public/help.htm'/}
+
+    {sline:include file='public/footer.htm'/}
+
+    {sline:include file='public/flink.htm'/}
+
+</div>
+        </td>
+      </tr>
+    </table>
+
+
+
+ <script src="/templets/smore/js/DatePicker/WdatePicker.js"></script>
+  <script>
+       $(".made-con a").click(function(e) {
+           $(this).siblings("input:hidden").val($(this).text());
+           $(this).siblings("a").removeClass("active");
+           $(this).addClass("active");
+       });
+
+       //日历选择
+       $(".starttime").click(function(){
+           WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM-dd',minDate:'%y-%M-%d'})
+       })
+
+
+       function checkForm()
+       {
+           var isvalidate=true;
+           $(".noblank").each(function(index, element) {
+               var val=$(element).val();
+               val=$.trim(val);
+               if(!val)
+               {
+                   var offset=$(element).offset();
+                   $(window).scrollTop(offset.top-100);
+                   $(element).css("border","1px solid red");
+                   isvalidate=false;
+                   return false;
+               }
+               else
+               {
+                   $(element).css("border","1px solid #dcdcdc");
+               }
+           });
+           if(isvalidate)
+               $("#cusfm").submit();
+       }
+
+
+
+   </script>
+
+
+
+</body>
+</html>

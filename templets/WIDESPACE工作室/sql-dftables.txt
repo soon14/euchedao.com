@@ -1,0 +1,2950 @@
+DROP TABLE IF EXISTS `sline_admin`;
+CREATE TABLE IF NOT EXISTS `sline_admin` (
+  `id` int(11) NOT NULL auto_increment,
+  `username` varchar(255) default NULL,
+  `password` varchar(255) default NULL,
+  `sxw_name` varchar(255) default NULL COMMENT '登陆搜行网的用户名',
+  `logintime` int(10) unsigned default NULL,
+  `loginip` varchar(255) default NULL,
+  `roleid` int(6) default NULL,
+  `realname` varchar(30) default NULL,
+  `beizu` varchar(500) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `sline_advertise`;
+CREATE TABLE IF NOT EXISTS `sline_advertise` (
+  `id` int(11) NOT NULL auto_increment,
+  `webid` int(11) unsigned default '0' COMMENT 'sline网站标识用于区分多网站',
+  `typeid` int(3) default '0' COMMENT '栏目标识',
+  `tagname` varchar(255) default NULL COMMENT '广告关联名称',
+  `adposition` varchar(255) default NULL COMMENT '广告位置',
+  `normalbody` text,
+  `expirebody` varchar(255) default NULL COMMENT '过期广告显示内容',
+  `starttime` int(10) unsigned default NULL,
+  `endtime` int(11) unsigned default NULL COMMENT '广告结束时间',
+  `addtime` int(10) unsigned default NULL COMMENT '添加广告时间',
+  `modtime` int(10) unsigned default NULL COMMENT '广告更新时间',
+  `picurl` varchar(255) default NULL COMMENT '广告图片路径',
+  `linkurl` varchar(255) default NULL COMMENT '链接地址',
+  `adtype` int(3) default '0' COMMENT '广告类型，0为全局，1为首页，2为栏目，',
+  `litpic` varchar(255) default NULL COMMENT '缩略图地址',
+  `linktext` varchar(255) default NULL,
+  `displayorder` int(11) default NULL,
+  `kindlist` varchar(255) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+DROP TABLE IF EXISTS `sline_advertise_type`;
+CREATE TABLE IF NOT EXISTS `sline_advertise_type` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `webid` varchar(255) default '0',
+  `position` varchar(255) default NULL COMMENT '广告位置',
+  `tagname` varchar(255) default NULL COMMENT '标识',
+  `width` int(11) default NULL COMMENT '宽度',
+  `height` int(11) default NULL COMMENT '高度',
+  `type` int(1) default NULL COMMENT '广告类型 1,首页广告,2,栏目广告,3,自定义广告',
+  `issystem` int(11) default '0' COMMENT '是否是系统广告',
+  `addtime` int(10) unsigned default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='广告分类表';
+
+
+DROP TABLE IF EXISTS `sline_allorderlist`;
+CREATE TABLE IF NOT EXISTS `sline_allorderlist` (
+  `id` int(11) NOT NULL auto_increment,
+  `webid` int(2) unsigned default '0',
+  `typeid` int(1) unsigned default NULL COMMENT '栏目类型',
+  `aid` varchar(255) default NULL COMMENT '文章的aid',
+  `classid` int(11) default NULL COMMENT '分类id',
+  `displayorder` int(11) unsigned default '9999' COMMENT '排序ID',
+  `istejia` int(1) unsigned default '0' COMMENT '特惠',
+  `isding` int(1) unsigned default '0' COMMENT '是否置顶',
+  `isjian` int(1) unsigned default '0' COMMENT '是否推荐',
+  PRIMARY KEY  (`id`),
+  KEY `typeid` (`typeid`),
+  KEY `classid` (`classid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ssmall全局排序表';
+
+
+DROP TABLE IF EXISTS `sline_article`;
+CREATE TABLE IF NOT EXISTS `sline_article` (
+  `id` int(11) NOT NULL auto_increment,
+  `webid` int(11) NOT NULL default '1',
+  `aid` int(11) unsigned default NULL,
+  `articlename` varchar(255) default NULL COMMENT '软文标题',
+  `seotitle` varchar(255) default NULL,
+  `comefrom` varchar(255) default NULL,
+  `fromsite` varchar(70) default NULL COMMENT '来源站点',
+  `author` varchar(30) default NULL COMMENT '作者',
+  `kind` varchar(50) default NULL COMMENT '所属分类',
+  `content` longtext COMMENT '文章内容',
+  `litpic` longtext,
+  `isindex` int(1) default '0' COMMENT '是否首页显示',
+  `addtime` int(10) unsigned default NULL COMMENT '添加时间',
+  `modtime` int(10) unsigned default NULL COMMENT '更新时间',
+  `shownum` int(11) default NULL COMMENT '浏览次数',
+  `isjian` int(1) default NULL COMMENT '是否推荐',
+  `isding` int(1) default NULL,
+  `tagword` varchar(50) default NULL COMMENT '文章相关词',
+  `keyword` varchar(50) default NULL COMMENT '关键词',
+  `description` varchar(255) default NULL,
+  `displayorder` int(11) default '9999',
+  `kindlist` varchar(255) default NULL,
+  `themelist` varchar(255) default NULL,
+  `webidfs` varchar(255) default NULL,
+  `attrid` varchar(255) default NULL,
+  `childkind` varchar(255) default NULL,
+  `allow` varchar(255) default NULL,
+  `yesjian` int(8) default NULL,
+  `ad_position` varchar(255) default NULL,
+  `ad_typeid` varchar(255) default NULL,
+  `ad_productid` varchar(255) default NULL,
+  `ad_kindid` varchar(255) default NULL,
+  `iscreat` int(1) unsigned default '0',
+  `redirecturl` varchar(255) default NULL,
+  `ishidden` tinyint(4) default '0',
+  `iconlist` varchar(255) default NULL,
+  `templet` varchar(255) default NULL,
+  `summary` varchar(255) default NULL COMMENT '摘要',
+  `isoffical` int(1) unsigned default '0' COMMENT '是否是官方攻略',
+  `piclist` text COMMENT '图片列表',
+  `attachment` varchar(255) default NULL COMMENT '附件',
+  `downnum` int(10) unsigned default '10' COMMENT '下载次数',
+  PRIMARY KEY  (`id`),
+  KEY `kindlist` (`kindlist`),
+  KEY `attrid` (`attrid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+
+DROP TABLE IF EXISTS `sline_article_attr`;
+CREATE TABLE IF NOT EXISTS `sline_article_attr` (
+  `id` int(11) NOT NULL auto_increment,
+  `webid` int(3) default NULL,
+  `aid` int(11) unsigned default NULL,
+  `attrname` varchar(255) default NULL,
+  `displayorder` int(11) unsigned default NULL,
+  `isopen` int(11) unsigned default '0',
+  `pid` int(10) default NULL,
+  `destid` varchar(255) default NULL,
+  `litpic` varchar(255) default NULL,
+  `description` varchar(255) default NULL,
+  `issystem` int(1) default '0' COMMENT '是否是系统属性',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+DROP TABLE IF EXISTS `sline_article_extend_field`;
+CREATE TABLE IF NOT EXISTS `sline_article_extend_field` (
+  `id` int(11) NOT NULL auto_increment COMMENT '自增id',
+  `productid` int(11) default NULL COMMENT '产品id',
+  PRIMARY KEY  (`id`),
+  KEY `id` (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='文章字段扩展表';
+
+
+DROP TABLE IF EXISTS `sline_article_gf`;
+CREATE TABLE IF NOT EXISTS `sline_article_gf` (
+  `id` int(11) NOT NULL auto_increment,
+  `pid` int(1) default '0',
+  `title` varchar(255) default NULL COMMENT '段落标题',
+  `content` mediumtext COMMENT '内容',
+  `articleid` int(11) default NULL COMMENT '攻略id',
+  `displayorder` int(4) unsigned default '9999' COMMENT '排序',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='官方攻略信息配置表';
+
+
+DROP TABLE IF EXISTS `sline_article_kindlist`;
+CREATE TABLE IF NOT EXISTS `sline_article_kindlist` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `kindid` int(11) unsigned NOT NULL default '0',
+  `seotitle` varchar(255) default NULL,
+  `keyword` varchar(255) default NULL,
+  `description` varchar(255) default NULL,
+  `tagword` varchar(255) default NULL,
+  `jieshao` text,
+  `isfinishseo` int(1) unsigned NOT NULL default '0',
+  `displayorder` int(4) unsigned default '9999',
+  `isnav` int(1) unsigned default '0' COMMENT '是否导航',
+  `ishot` int(1) unsigned default '0' COMMENT '是否热门',
+  `shownum` int(8) default NULL,
+  `templetpath` varchar(255) default NULL,
+  PRIMARY KEY  (`id`),
+  KEY `kindid` (`kindid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='ssmall线路分类总表';
+
+
+DROP TABLE IF EXISTS `sline_attrorderlist`;
+CREATE TABLE IF NOT EXISTS `sline_attrorderlist` (
+  `id` int(11) NOT NULL auto_increment,
+  `webid` int(2) unsigned default '0',
+  `typeid` int(1) unsigned default NULL COMMENT '栏目类型',
+  `aid` varchar(255) default NULL COMMENT '文章的aid',
+  `classid` int(11) default NULL COMMENT '分类id',
+  `displayorder` int(11) unsigned default '9999' COMMENT '排序ID',
+  `istejia` int(1) unsigned default '0' COMMENT '特惠',
+  `isding` int(1) unsigned default '0' COMMENT '是否置顶',
+  `isjian` int(1) unsigned default '0' COMMENT '是否推荐',
+  `destid` varchar(255) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='属性分类排序表';
+
+
+DROP TABLE IF EXISTS `sline_car`;
+CREATE TABLE IF NOT EXISTS `sline_car` (
+  `id` int(11) NOT NULL auto_increment,
+  `webid` int(11) unsigned default NULL COMMENT 'sline编号',
+  `aid` int(11) unsigned default NULL,
+  `carname` varchar(255) default NULL COMMENT '车名',
+  `seatnum` int(11) default NULL COMMENT '座位数',
+  `maxseatnum` int(11) default NULL COMMENT '建议座位数',
+  `sellpoint` varchar(255) default NULL COMMENT '卖点',
+  `displayorder` int(11) default '9999' COMMENT '车务编号排序',
+  `litpic` varchar(255) default NULL,
+  `content` longtext COMMENT '车务介绍',
+  `shownum` int(11) default '0' COMMENT '浏览次数',
+  `addtime` int(10) unsigned default NULL COMMENT '添加时间',
+  `modtime` int(10) unsigned default NULL COMMENT '更新时间',
+  `tagword` varchar(255) default NULL COMMENT '文章相关词',
+  `keyword` varchar(255) default NULL COMMENT '关键词',
+  `description` longtext COMMENT '信息描述',
+  `carbrand` varchar(255) default NULL COMMENT '车务品牌',
+  `isjian` int(1) default NULL,
+  `isding` int(1) default NULL,
+  `istejia` int(1) default NULL,
+  `seotitle` varchar(255) default NULL COMMENT 'seo标题',
+  `carkindid` int(11) default NULL COMMENT '对应的类型ID',
+  `carbrandid` int(11) default NULL COMMENT '对应的品牌id',
+  `caralt` varchar(255) default NULL COMMENT '图片描述',
+  `frecommend` int(11) default '0' COMMENT '前台推荐次数',
+  `funrecommend` int(11) default '0' COMMENT '后台推荐次数',
+  `usedyears` int(3) default NULL COMMENT '使用年限',
+  `kindlist` varchar(255) default NULL,
+  `themelist` varchar(255) default NULL,
+  `webidfs` varchar(255) default NULL,
+  `attrid` varchar(50) default NULL,
+  `ishidden` int(3) default '0',
+  `unit` varchar(255) default NULL,
+  `piclist` text,
+  `startplaceid` int(11) default NULL,
+  `tanknum` int(11) default NULL,
+  `phone` varchar(30) default NULL,
+  `notice` mediumtext,
+  `iconlist` varchar(255) default NULL,
+  `satisfyscore` varchar(11) default NULL,
+  `bookcount` varchar(11) default NULL,
+  `supplierlist` varchar(255) default NULL,
+  `templet` varchar(255) default NULL,
+  `carprice` int(11) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='车务表';
+
+
+DROP TABLE IF EXISTS `sline_car_attr`;
+CREATE TABLE IF NOT EXISTS `sline_car_attr` (
+  `id` int(11) NOT NULL auto_increment,
+  `webid` int(3) default NULL,
+  `aid` int(11) unsigned default NULL,
+  `attrname` varchar(255) default NULL,
+  `displayorder` int(11) unsigned default NULL,
+  `isopen` int(11) unsigned default '0',
+  `pid` int(10) default NULL,
+  `destid` varchar(255) default NULL,
+  `issystem` int(1) default '0' COMMENT '是否是系统属性',
+  `litpic` varchar(255) default NULL COMMENT '缩略图',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+DROP TABLE IF EXISTS `sline_car_booking`;
+CREATE TABLE IF NOT EXISTS `sline_car_booking` (
+  `id` int(11) NOT NULL auto_increment,
+  `webid` int(11) default NULL COMMENT 'sline对应ID',
+  `carid` int(11) default NULL COMMENT '预订车辆编号',
+  `carname` varchar(255) default NULL COMMENT '预订的车名',
+  `starttime` date default NULL COMMENT '用车开始时间',
+  `days` int(11) default NULL COMMENT '用车天数',
+  `num` int(11) default NULL COMMENT '租赁车数',
+  `carprice` float(10,0) default NULL COMMENT '车报价',
+  `info` mediumtext COMMENT '预订备注',
+  `name` varchar(255) default NULL COMMENT '预订人',
+  `sex` varchar(255) default NULL COMMENT '预订人性别',
+  `telephone` bigint(20) default NULL COMMENT '预订人联系电话',
+  `addtime` int(10) unsigned default NULL COMMENT '添加时间',
+  `modtime` int(10) unsigned default NULL COMMENT '更新时间',
+  `status` int(11) default '0' COMMENT '管理员处理情况',
+  `ordersn` varchar(255) default NULL,
+  `bianhao` varchar(255) default NULL,
+  `userid` int(5) NOT NULL,
+  `price` decimal(10,0) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='车务预订';
+
+
+DROP TABLE IF EXISTS `sline_car_brand`;
+CREATE TABLE IF NOT EXISTS `sline_car_brand` (
+  `id` int(11) NOT NULL auto_increment,
+  `webid` int(11) default NULL COMMENT 'sline对应ID',
+  `kindname` varchar(255) default NULL COMMENT '分类信息',
+  `keyword` varchar(255) default NULL COMMENT '关键词',
+  `tagword` varchar(255) default NULL COMMENT '文章相关词',
+  `title` varchar(255) default NULL COMMENT '品牌栏目标题',
+  `description` mediumtext COMMENT '信息描述',
+  `aid` int(11) unsigned default NULL,
+  `displayorder` int(11) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='车务品牌表';
+
+
+
+DROP TABLE IF EXISTS `sline_car_content`;
+CREATE TABLE IF NOT EXISTS `sline_car_content` (
+  `id` int(11) NOT NULL auto_increment,
+  `webid` int(3) default '0',
+  `columnname` varchar(30) default NULL COMMENT '使用的字段名称',
+  `chinesename` varchar(100) default NULL COMMENT '中文显示名称',
+  `displayorder` int(3) default '0' COMMENT '显示顺序',
+  `issystem` int(1) default NULL COMMENT '是否系统字段',
+  `isopen` int(1) default NULL COMMENT '是否使用1，0',
+  `isrealfield` int(1) unsigned default '1' COMMENT '是否真实字段',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='内容分类表';
+
+
+DROP TABLE IF EXISTS `sline_car_extend_field`;
+CREATE TABLE IF NOT EXISTS `sline_car_extend_field` (
+  `id` int(11) NOT NULL auto_increment COMMENT '自增id',
+  `productid` int(11) default NULL COMMENT '产品id',
+  `e_cartext` varchar(255) default NULL COMMENT '车辆描述',
+  `e_xinneng` mediumtext COMMENT '性能描述',
+  PRIMARY KEY  (`id`),
+  KEY `id` (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='租车字段扩展表';
+
+
+
+DROP TABLE IF EXISTS `sline_car_kind`;
+CREATE TABLE IF NOT EXISTS `sline_car_kind` (
+  `id` int(11) NOT NULL auto_increment,
+  `webid` int(11) default NULL COMMENT 'sline对应ID',
+  `aid` int(11) unsigned default NULL,
+  `kindname` varchar(255) default NULL COMMENT '分类信息',
+  `title` varchar(255) default NULL COMMENT '分类标题',
+  `keyword` varchar(255) default NULL COMMENT '关键词',
+  `tagword` varchar(255) default NULL COMMENT '文章相关词',
+  `description` mediumtext COMMENT '信息描述',
+  `orderid` varchar(255) default NULL COMMENT '排序',
+  `displayorder` int(11) unsigned default '9999',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='车务类别表';
+
+
+
+DROP TABLE IF EXISTS `sline_car_kindlist`;
+CREATE TABLE IF NOT EXISTS `sline_car_kindlist` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `kindid` int(11) unsigned NOT NULL default '0',
+  `seotitle` varchar(255) default NULL,
+  `keyword` varchar(255) default NULL,
+  `description` varchar(255) default NULL,
+  `tagword` varchar(255) default NULL,
+  `jieshao` text,
+  `isfinishseo` int(1) unsigned NOT NULL default '0',
+  `displayorder` int(4) unsigned default '9999',
+  `isnav` int(1) unsigned default '0' COMMENT '是否导航',
+  `ishot` int(1) unsigned default '0' COMMENT '是否热门',
+  `shownum` int(8) default NULL,
+  `templetpath` varchar(255) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='';
+
+
+DROP TABLE IF EXISTS `sline_car_pricelist`;
+CREATE TABLE IF NOT EXISTS `sline_car_pricelist` (
+  `id` int(11) NOT NULL auto_increment,
+  `min` int(11) default NULL COMMENT '最小值',
+  `max` int(11) default NULL COMMENT '最大值',
+  `webid` int(11) default NULL COMMENT 'sline编号',
+  `aid` int(11) unsigned default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='报价区间分类';
+
+
+DROP TABLE IF EXISTS `sline_car_suit`;
+CREATE TABLE IF NOT EXISTS `sline_car_suit` (
+  `id` int(11) NOT NULL auto_increment,
+  `carid` int(11) default NULL,
+  `suitname` varchar(255) default NULL,
+  `content` text,
+  `unit` varchar(255) default NULL,
+  `price` int(11) default NULL,
+  `jifenbook` int(11) default '0',
+  `jifentprice` int(11) default NULL,
+  `jifencomment` int(11) default NULL,
+  `paytype` int(1) unsigned default '1',
+  `dingjin` varchar(255) default NULL COMMENT '定金',
+  `suittypeid` int(11) default '0' COMMENT '套餐类型id',
+  `displayorder` int(11) default '9999',
+  `number` int(11) default '0' COMMENT '库存',
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+DROP TABLE IF EXISTS `sline_car_suit_price`;
+CREATE TABLE IF NOT EXISTS `sline_car_suit_price` (
+  `carid` int(11) NOT NULL,
+  `suitid` int(11) NOT NULL default '0',
+  `day` int(11) NOT NULL default '0',
+  `adultprofit` int(11) default NULL,
+  `adultbasicprice` int(11) default NULL,
+  `adultprice` int(11) default NULL,
+  `description` varchar(255) default NULL,
+  `number` int(11) default '0' COMMENT '库存',
+  PRIMARY KEY  (`suitid`,`day`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+
+DROP TABLE IF EXISTS `sline_car_suit_type`;
+CREATE TABLE IF NOT EXISTS `sline_car_suit_type` (
+  `id` int(11) NOT NULL auto_increment,
+  `kindname` varchar(255) default NULL COMMENT '套餐类型名称',
+  `carid` varchar(255) default NULL COMMENT '车辆id',
+  `description` varchar(255) default NULL COMMENT '类型描述',
+  `displayorder` int(11) unsigned default '9999',
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+DROP TABLE IF EXISTS `sline_comment`;
+CREATE TABLE IF NOT EXISTS `sline_comment` (
+  `id` int(11) NOT NULL auto_increment,
+  `typeid` int(2) unsigned default NULL COMMENT '栏目类型',
+  `orderid` int(11) unsigned default NULL COMMENT '订单id',
+  `articleid` varchar(50) default NULL COMMENT '文章产品自增id',
+  `memberid` int(11) unsigned default NULL COMMENT '会员id',
+  `pid` int(11) unsigned default '0' COMMENT '是否是第一级评论',
+  `content` mediumtext COMMENT '评论内容',
+  `dockid` int(10) unsigned default NULL COMMENT '停靠id',
+  `score1` float(2,1) default '0.0' COMMENT '评分1',
+  `score2` float(2,1) default NULL COMMENT '评分2',
+  `score3` float(2,1) default NULL COMMENT '评分3',
+  `score4` float(2,1) default '0.0' COMMENT '评分4',
+  `isshow` int(1) default '0' COMMENT '前台是否显示',
+  `addtime` int(10) unsigned default NULL COMMENT '评论时间',
+  `level` int(1) unsigned default '0' COMMENT '1:好评 2:中评 3 差评',
+  `kindlist` varchar(255) default NULL COMMENT '所属目的地',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+
+DROP TABLE IF EXISTS `sline_customize`;
+CREATE TABLE IF NOT EXISTS `sline_customize` (
+  `id` int(11) NOT NULL auto_increment,
+  `dest` varchar(80) default NULL,
+  `starttime` int(11) default NULL,
+  `startplace` varchar(80) default NULL,
+  `days` int(11) default NULL,
+  `adultnum` int(11) default NULL,
+  `childnum` int(11) default NULL,
+  `planerank` varchar(30) default NULL,
+  `hotelrank` varchar(30) default NULL,
+  `room` varchar(30) default NULL,
+  `food` varchar(30) default NULL,
+  `sex` varchar(6) default NULL,
+  `address` varchar(255) default NULL,
+  `phone` varchar(30) default NULL,
+  `email` varchar(50) default NULL,
+  `contacttime` varchar(50) default NULL,
+  `addtime` int(11) default NULL,
+  `contactname` varchar(30) default NULL,
+  `status` tinyint(4) default '0',
+  `content` text,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+DROP TABLE IF EXISTS `sline_destinations`;
+CREATE TABLE IF NOT EXISTS `sline_destinations` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `kindname` varchar(255) default NULL COMMENT '分类名称',
+  `pid` varchar(255) default '0' COMMENT '本表从属关系父id',
+  `seotitle` varchar(255) default NULL,
+  `keyword` varchar(255) default NULL,
+  `description` varchar(255) default NULL,
+  `tagword` varchar(255) default NULL,
+  `jieshao` text,
+  `kindtype` int(1) unsigned default NULL COMMENT '1:栏目分类 2:其它分类',
+  `isopen` int(1) unsigned default '1' COMMENT '是否开启',
+  `isfinishseo` int(1) unsigned NOT NULL default '0',
+  `displayorder` int(4) unsigned default '9999',
+  `isnav` int(1) unsigned default '0',
+  `templetpath` varchar(255) default NULL,
+  `ishot` int(1) unsigned default '0',
+  `litpic` varchar(255) default NULL,
+  `piclist` text,
+  `istopnav` tinyint(3) default '0',
+  `pinyin` varchar(255) default NULL,
+  `templet` varchar(255) default NULL,
+  `iswebsite` int(1) default '0' COMMENT '是否开启子站',
+  `weburl` varchar(50) default NULL COMMENT '子站域名',
+  `webroot` varchar(50) default NULL COMMENT '子站目录',
+  `webprefix` varchar(50) default NULL COMMENT '子站主机头',
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='';
+
+DROP TABLE IF EXISTS `sline_dzorder`;
+CREATE TABLE IF NOT EXISTS `sline_dzorder` (
+  `id` int(11) NOT NULL auto_increment,
+  `ordersn` varchar(255) default NULL,
+  `title` varchar(255) default NULL,
+  `dingjin` int(11) default NULL,
+  `username` varchar(255) default NULL,
+  `phone` varchar(255) default NULL,
+  `travelnum` int(11) default NULL,
+  `description` text,
+  `addtime` int(11) default NULL,
+  `finishtime` int(11) default NULL,
+  `status` int(11) default '0',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+
+DROP TABLE IF EXISTS `sline_extend_field`;
+CREATE TABLE IF NOT EXISTS `sline_extend_field` (
+  `id` int(11) NOT NULL auto_increment,
+  `typeid` int(11) NOT NULL default '0' COMMENT '类别',
+  `fieldname` varchar(50) NOT NULL default '0' COMMENT '字段名称',
+  `fieldtype` varchar(50) NOT NULL default '0' COMMENT '字段类型',
+  `description` varchar(50) NOT NULL default '0' COMMENT '字段描述',
+  `tips` varchar(255) NOT NULL default '0' COMMENT '填写描述',
+  `isopen` int(1) unsigned NOT NULL default '1' COMMENT '是否可用',
+  `addtime` int(10) unsigned NOT NULL default '0' COMMENT '添加时间',
+  `modtime` int(10) unsigned NOT NULL default '0' COMMENT '修改时间',
+  `isunique` int(10) unsigned NOT NULL default '0' COMMENT '是否唯一',
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='产品字段扩展表';
+
+
+DROP TABLE IF EXISTS `sline_feedback`;
+CREATE TABLE IF NOT EXISTS `sline_feedback` (
+  `id` int(11) NOT NULL auto_increment,
+  `uname` varchar(255) default NULL COMMENT '用户名',
+  `mobile` varchar(20) default NULL,
+  `content` text COMMENT '反馈内容',
+  `addtime` int(10) unsigned default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+
+DROP TABLE IF EXISTS `sline_help`;
+CREATE TABLE IF NOT EXISTS `sline_help` (
+  `id` int(11) NOT NULL auto_increment,
+  `webid` int(2) unsigned default '1',
+  `aid` int(11) unsigned default NULL,
+  `title` varchar(255) default NULL COMMENT '帮助标题',
+  `kindid` int(2) unsigned default NULL COMMENT '帮助所属分类',
+  `body` longtext COMMENT '帮助详细内容',
+  `displayorder` int(5) default NULL,
+  `addtime` int(10) unsigned default NULL,
+  `modtime` int(10) unsigned default NULL,
+  `type_id` varchar(255) default NULL COMMENT '显示到',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='帮助信息表';
+
+
+DROP TABLE IF EXISTS `sline_help_kind`;
+CREATE TABLE IF NOT EXISTS `sline_help_kind` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `webid` int(2) default NULL,
+  `aid` int(11) unsigned default NULL,
+  `kindname` varchar(255) default NULL COMMENT '帮助分类名称',
+  `imgsrc` varchar(255) default NULL COMMENT '标识图片',
+  `displayorder` int(11) unsigned default NULL COMMENT '显示顺序',
+  `isopen` int(1) unsigned default '1' COMMENT '是否启用',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='帮助类型分类表';
+
+
+
+DROP TABLE IF EXISTS `sline_hotel`;
+CREATE TABLE IF NOT EXISTS `sline_hotel` (
+  `id` int(3) NOT NULL auto_increment,
+  `webid` int(3) NOT NULL default '1',
+  `aid` int(11) unsigned default NULL,
+  `hotelname` varchar(255) NOT NULL,
+  `seotitle` varchar(100) default NULL COMMENT 'seo标题',
+  `sellpoint` varchar(255) default NULL COMMENT '卖点',
+  `lineclass` varchar(255) default NULL,
+  `hotelrankid` varchar(255) default NULL,
+  `telephone` varchar(13) character set utf8 collate utf8_bin default NULL,
+  `postcode` int(6) default NULL,
+  `hotelkind` varchar(255) default NULL,
+  `content` longtext,
+  `fuwu` longtext,
+  `hotelpics` longtext,
+  `areaid` int(11) unsigned default NULL COMMENT '对应的二级栏目区域ID',
+  `address` varchar(255) default NULL,
+  `hotelprice` int(11) unsigned default '0',
+  `shownum` int(11) default NULL,
+  `addtime` int(11) unsigned default NULL,
+  `modtime` int(11) unsigned default NULL,
+  `keyword` varchar(255) default NULL,
+  `description` longtext,
+  `nojian` int(5) unsigned default '1',
+  `yesjian` int(5) unsigned default '1',
+  `isjian` int(1) unsigned default NULL,
+  `isding` varchar(255) default NULL,
+  `tagword` varchar(255) default NULL,
+  `litpic` varchar(100) default NULL COMMENT '封面图片',
+  `displayorder` int(11) unsigned default '9999',
+  `kindlist` varchar(255) default NULL,
+  `themelist` varchar(255) default NULL,
+  `webidfs` varchar(255) default NULL,
+  `attrid` varchar(255) default NULL,
+  `ishidden` int(3) default '0',
+  `childkind` varchar(255) default NULL,
+  `mainrankid` varchar(255) NOT NULL default '0',
+  `traffic` text,
+  `aroundspots` text,
+  `notice` text,
+  `equipment` text,
+  `piclist` text,
+  `opentime` varchar(255) default NULL COMMENT '开业时间',
+  `decoratetime` varchar(255) default NULL COMMENT '装修时间',
+  `iconlist` varchar(255) default NULL,
+  `satisfyscore` varchar(255) default NULL COMMENT '满意度',
+  `bookcount` varchar(5) default NULL COMMENT '预订数量',
+  `supplierlist` varchar(255) default NULL,
+  `templet` varchar(255) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+
+DROP TABLE IF EXISTS `sline_hotel_attr`;
+CREATE TABLE IF NOT EXISTS `sline_hotel_attr` (
+  `id` int(11) NOT NULL auto_increment,
+  `webid` int(1) unsigned default '0',
+  `attrname` varchar(255) default NULL COMMENT '分类信息',
+  `displayorder` int(11) default NULL,
+  `isopen` int(1) unsigned default '0',
+  `pid` int(10) default NULL,
+  `issystem` int(1) unsigned default '0',
+  `destid` varchar(255) default NULL,
+  `litpic` varchar(255) default NULL,
+  `description` varchar(255) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='车务品牌表';
+
+
+
+DROP TABLE IF EXISTS `sline_hotel_booking`;
+CREATE TABLE IF NOT EXISTS `sline_hotel_booking` (
+  `id` int(3) NOT NULL auto_increment,
+  `webid` int(3) NOT NULL default '1',
+  `hotelid` int(11) NOT NULL,
+  `hotelname` varchar(255) default NULL COMMENT '酒店名称',
+  `hotelrank` varchar(255) default NULL COMMENT '星级',
+  `roomname` varchar(255) default NULL COMMENT '房型',
+  `startdate` varchar(50) default NULL COMMENT '入住时间',
+  `dingdays` int(3) unsigned default NULL COMMENT '预订天数',
+  `dingnum` varchar(100) default NULL COMMENT '预订人数',
+  `hotelprice` varchar(255) default NULL,
+  `info` varchar(255) default NULL COMMENT '其它备注信息',
+  `dingname` varchar(255) default NULL,
+  `sex` varchar(255) default NULL COMMENT '性别',
+  `dingtel` varchar(255) default NULL COMMENT '预订联系人电话',
+  `addtime` int(10) unsigned default NULL COMMENT '添加时间',
+  `modtime` int(10) unsigned default NULL COMMENT '处理时间',
+  `status` int(1) unsigned default NULL COMMENT '处理状态',
+  `ordersn` varchar(255) default NULL,
+  `bianhao` varchar(255) default NULL,
+  `userid` int(5) NOT NULL,
+  `price` decimal(10,0) NOT NULL,
+  `enddate` varchar(50) default NULL,
+  `email` varchar(50) default NULL,
+  `qq` varchar(20) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+
+
+DROP TABLE IF EXISTS `sline_hotel_content`;
+CREATE TABLE IF NOT EXISTS `sline_hotel_content` (
+  `id` int(11) NOT NULL auto_increment,
+  `webid` int(3) default '0',
+  `columnname` varchar(30) default NULL COMMENT '使用的字段名称',
+  `chinesename` varchar(100) default NULL COMMENT '中文显示名称',
+  `displayorder` int(3) default '0' COMMENT '显示顺序',
+  `issystem` int(1) default NULL COMMENT '是否系统字段',
+  `isopen` int(1) default NULL COMMENT '是否使用1，0',
+  `isrealfield` int(1) unsigned default '1' COMMENT '是否是真实字段',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='内容分类表';
+
+
+DROP TABLE IF EXISTS `sline_hotel_extend_field`;
+CREATE TABLE IF NOT EXISTS `sline_hotel_extend_field` (
+  `id` int(11) NOT NULL auto_increment COMMENT '自增id',
+  `productid` int(11) default NULL COMMENT '产品id',
+  `e_engname` varchar(255) default NULL COMMENT '酒店英文名',
+  `e_newcontent` mediumtext COMMENT '新的测试',
+  PRIMARY KEY  (`id`),
+  KEY `id` (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='酒店字段扩展表';
+
+
+
+DROP TABLE IF EXISTS `sline_hotel_kindlist`;
+CREATE TABLE IF NOT EXISTS `sline_hotel_kindlist` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `kindid` int(11) unsigned NOT NULL default '0',
+  `seotitle` varchar(255) default NULL,
+  `keyword` varchar(255) default NULL,
+  `description` varchar(255) default NULL,
+  `tagword` varchar(255) default NULL,
+  `jieshao` text,
+  `isfinishseo` int(1) unsigned NOT NULL default '0',
+  `displayorder` int(4) unsigned default '9999',
+  `isnav` int(1) unsigned default '0' COMMENT '是否导航',
+  `ishot` int(1) unsigned default '0' COMMENT '是否热门',
+  `shownum` int(8) default NULL,
+  `templetpath` varchar(255) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='ssmall线路分类总表';
+
+
+
+
+
+
+DROP TABLE IF EXISTS `sline_hotel_pricelist`;
+CREATE TABLE IF NOT EXISTS `sline_hotel_pricelist` (
+  `id` int(11) NOT NULL auto_increment,
+  `webid` int(11) default NULL COMMENT 'WEBID',
+  `aid` int(11) unsigned default NULL,
+  `min` int(11) default NULL COMMENT '最小酒店价格',
+  `max` int(11) default NULL COMMENT '最大酒店价格',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=gb2312 ROW_FORMAT=FIXED;
+
+
+
+DROP TABLE IF EXISTS `sline_hotel_rank`;
+CREATE TABLE IF NOT EXISTS `sline_hotel_rank` (
+  `id` int(3) NOT NULL auto_increment,
+  `webid` int(3) NOT NULL default '1',
+  `aid` int(11) unsigned default NULL,
+  `hotelrank` varchar(255) default NULL,
+  `orderid` int(11) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+
+
+DROP TABLE IF EXISTS `sline_hotel_room`;
+CREATE TABLE IF NOT EXISTS `sline_hotel_room` (
+  `id` int(3) NOT NULL auto_increment,
+  `webid` int(3) NOT NULL default '1',
+  `hotelid` int(11) default NULL,
+  `roomname` text,
+  `price` int(11) unsigned default NULL,
+  `sellprice` int(11) unsigned default NULL,
+  `breakfirst` varchar(255) default NULL,
+  `computer` varchar(255) default NULL,
+  `otherprice` varchar(255) default NULL,
+  `displayorder` int(11) default NULL,
+  `otherroom` varchar(255) default NULL COMMENT '暂时不用',
+  `otherroomurl` varchar(255) default NULL COMMENT '暂时不用',
+  `nightdays` varchar(255) default NULL COMMENT '暂时不用',
+  `roomids` varchar(255) default NULL COMMENT '暂时不用',
+  `roomstyle` varchar(255) default NULL COMMENT '床型',
+  `roomarea` varchar(255) default NULL COMMENT '房间面积',
+  `roomfloor` varchar(255) default NULL COMMENT '楼层',
+  `roomwindow` varchar(255) default NULL COMMENT '窗户',
+  `piclist` text COMMENT '房间图片列表',
+  `number` int(11) default '0',
+  `jifencomment` int(11) default '0' COMMENT '评论送积分',
+  `jifentprice` int(11) default '0' COMMENT '积分抵现金',
+  `jifenbook` int(11) default '0' COMMENT '预订送积分',
+  `paytype` int(1) unsigned default '1' COMMENT '支付类型:1全额支付,2,定金支付 3,二次确认支付',
+  `dingjin` varchar(255) default NULL COMMENT '定金',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+
+
+DROP TABLE IF EXISTS `sline_hotel_room_price`;
+CREATE TABLE IF NOT EXISTS `sline_hotel_room_price` (
+  `hotelid` int(11) NOT NULL,
+  `suitid` int(11) NOT NULL default '0' COMMENT '户型id',
+  `day` int(11) NOT NULL default '0',
+  `profit` int(11) default NULL,
+  `basicprice` int(11) default NULL,
+  `price` int(11) default NULL,
+  `description` varchar(255) default NULL,
+  `number` int(11) default NULL COMMENT '库存',
+  UNIQUE KEY `suitid` (`suitid`,`day`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_huiyi_kindlist 结构
+DROP TABLE IF EXISTS `sline_huiyi_kindlist`;
+CREATE TABLE IF NOT EXISTS `sline_huiyi_kindlist` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `kindid` int(11) unsigned NOT NULL default '0',
+  `seotitle` varchar(255) default NULL,
+  `keyword` varchar(255) default NULL,
+  `description` varchar(255) default NULL,
+  `tagword` varchar(255) default NULL,
+  `jieshao` text,
+  `isfinishseo` int(1) unsigned NOT NULL default '0',
+  `displayorder` int(4) unsigned default '9999',
+  `isnav` int(1) unsigned default '0' COMMENT '是否导航',
+  `ishot` int(1) unsigned default '0' COMMENT '是否热门',
+  `shownum` int(8) default NULL,
+  `templetpath` varchar(255) default NULL,
+  PRIMARY KEY  (`id`),
+  KEY `kindid` (`kindid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='模型目的地表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_icon 结构
+DROP TABLE IF EXISTS `sline_icon`;
+CREATE TABLE IF NOT EXISTS `sline_icon` (
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `webid` int(11) default NULL,
+  `kind` char(50) NOT NULL,
+  `picurl` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_jieban 结构
+DROP TABLE IF EXISTS `sline_jieban`;
+CREATE TABLE IF NOT EXISTS `sline_jieban` (
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `kindlist` varchar(255) default '0' COMMENT '目的地',
+  `dest_mainid` int(6) default '0' COMMENT '主目的地',
+  `dest_childid` int(6) default '0' COMMENT '子目的地',
+  `day` tinyint(3) default '0' COMMENT '天数',
+  `attrid` varchar(255) default '0' COMMENT '属性id',
+  `childnum` int(3) default '0' COMMENT '儿童数量',
+  `adultnum` int(3) default '0' COMMENT '成人数量',
+  `vartime` varchar(255) default '0' COMMENT '机动时间',
+  `lineid` varchar(255) default '0' COMMENT '相关线路id',
+  `memo` text COMMENT '行程安排',
+  `startdate` varchar(255) default '0' COMMENT '出发日期',
+  `addtime` int(10) default '0' COMMENT '添加时间',
+  `memberid` varchar(255) default '0' COMMENT '会员id',
+  `ishidden` int(1) unsigned NOT NULL default '0' COMMENT '是否隐藏',
+  `iconlist` varchar(50) default '0' COMMENT '图标',
+  `status` tinyint(1) default '0' COMMENT '约伴状态,0:关闭1:开启2:已成团',
+  `userdest` varchar(255) default '0' COMMENT '用户自定义目的地',
+  `usertheme` varchar(500) default '0' COMMENT '用户主题',
+  `shownum` int(4) default '0' COMMENT '查看次数',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='结伴表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_jieban_attr 结构
+DROP TABLE IF EXISTS `sline_jieban_attr`;
+CREATE TABLE IF NOT EXISTS `sline_jieban_attr` (
+  `id` int(11) NOT NULL auto_increment,
+  `webid` int(1) unsigned default '0',
+  `attrname` varchar(255) default NULL COMMENT '分类信息',
+  `displayorder` int(11) default NULL,
+  `isopen` int(1) unsigned default '0',
+  `pid` int(10) default NULL,
+  `issystem` int(1) unsigned default '0',
+  `destid` varchar(255) default NULL,
+  `litpic` varchar(255) default NULL,
+  `description` varchar(255) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='结伴属性表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_jieban_join 结构
+DROP TABLE IF EXISTS `sline_jieban_join`;
+CREATE TABLE IF NOT EXISTS `sline_jieban_join` (
+  `id` int(11) NOT NULL auto_increment,
+  `jiebanid` int(10) NOT NULL COMMENT '结伴id',
+  `linkman` varchar(50) default NULL COMMENT '联系人',
+  `mobile` varchar(50) default NULL COMMENT '联系人手机',
+  `memberid` tinyint(10) default NULL COMMENT '联系人会员id',
+  `adultnum` tinyint(10) default '1' COMMENT '大人数量',
+  `childnum` tinyint(10) default '0' COMMENT '小孩数量',
+  `addtime` int(10) unsigned default '0' COMMENT '添加时间',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='结伴加入人员信息表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_jieban_kindlist 结构
+DROP TABLE IF EXISTS `sline_jieban_kindlist`;
+CREATE TABLE IF NOT EXISTS `sline_jieban_kindlist` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `kindid` int(11) unsigned NOT NULL default '0',
+  `seotitle` varchar(255) default NULL,
+  `keyword` varchar(255) default NULL,
+  `description` varchar(255) default NULL,
+  `tagword` varchar(255) default NULL,
+  `jieshao` text,
+  `isfinishseo` int(1) unsigned NOT NULL default '0',
+  `displayorder` int(4) unsigned default '9999',
+  `isnav` int(1) unsigned default '0' COMMENT '是否导航',
+  `ishot` int(1) unsigned default '0' COMMENT '是否热门',
+  `shownum` int(8) default NULL,
+  `templetpath` varchar(255) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='ssmall线路分类总表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_keyword 结构
+DROP TABLE IF EXISTS `sline_keyword`;
+CREATE TABLE IF NOT EXISTS `sline_keyword` (
+  `id` int(11) NOT NULL auto_increment,
+  `typeid` int(11) default NULL,
+  `title` char(255) default NULL,
+  `linkurl` varchar(255) NOT NULL,
+  `webid` int(3) default '1',
+  `keyword` varchar(255) default NULL COMMENT '具体长尾词语',
+  `aid` int(11) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_kindorderlist 结构
+DROP TABLE IF EXISTS `sline_kindorderlist`;
+CREATE TABLE IF NOT EXISTS `sline_kindorderlist` (
+  `id` int(11) NOT NULL auto_increment,
+  `webid` int(2) unsigned default '0',
+  `typeid` int(1) unsigned default NULL COMMENT '栏目类型',
+  `aid` varchar(255) default NULL COMMENT '文章的aid',
+  `classid` int(11) default NULL COMMENT '分类id',
+  `displayorder` int(11) unsigned default '9999' COMMENT '排序ID',
+  `istejia` int(1) unsigned default '0' COMMENT '特惠',
+  `isding` int(1) unsigned default '0' COMMENT '是否置顶',
+  `isjian` int(1) unsigned default '0' COMMENT '是否推荐',
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `id` (`id`),
+  KEY `displayorder` (`displayorder`),
+  KEY `isding` (`isding`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='ssmall分类排序表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_kindset 结构
+DROP TABLE IF EXISTS `sline_kindset`;
+CREATE TABLE IF NOT EXISTS `sline_kindset` (
+  `id` int(11) NOT NULL auto_increment,
+  `webid` int(2) unsigned default '1',
+  `typeid` int(11) unsigned default '0' COMMENT '栏目类型',
+  `aid` varchar(255) default NULL COMMENT '线路id',
+  `classid` varchar(255) default NULL COMMENT '线路分类id',
+  `displayorder` int(11) unsigned default '9999' COMMENT '排序ID',
+  `istejia` int(1) unsigned default '0' COMMENT '特惠',
+  `isding` int(1) unsigned default '0' COMMENT '是否置顶',
+  `isjian` int(1) unsigned default '0' COMMENT '是否推荐',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_leave 结构
+DROP TABLE IF EXISTS `sline_leave`;
+CREATE TABLE IF NOT EXISTS `sline_leave` (
+  `id` int(13) NOT NULL auto_increment,
+  `webid` int(11) unsigned NOT NULL,
+  `aid` int(11) unsigned default NULL,
+  `ip` varchar(100) default NULL COMMENT '留言者IP地址',
+  `leavename` varchar(50) default NULL COMMENT '留言者昵称',
+  `qq` varchar(50) default NULL COMMENT '留言者QQ或MSN等联系方式',
+  `msn` varchar(50) default NULL,
+  `telephone` varchar(50) default NULL COMMENT '留言者电话（座机）',
+  `phone` varchar(11) default NULL COMMENT '留言者手机',
+  `email` varchar(50) default NULL COMMENT '留言人邮箱',
+  `title` varchar(50) default NULL COMMENT '留言主题',
+  `headimg` varchar(50) default NULL COMMENT '选择头像',
+  `content` longtext COMMENT '留言内容',
+  `addtime` int(10) unsigned default NULL COMMENT '添加时间',
+  `reply` longtext COMMENT '管理员回复内容',
+  `retime` int(10) unsigned default NULL COMMENT '管理员回复时间',
+  `approval` int(1) unsigned default NULL COMMENT '是否通过',
+  `ishidden` int(1) default NULL COMMENT '留言人是否隐藏',
+  `leaveip` varchar(50) default NULL COMMENT '留言者IP',
+  `listarea` varchar(255) default NULL COMMENT '分类区域',
+  `listspot` varchar(255) default NULL COMMENT '问题的对应景区',
+  `ismaill` int(1) default '0',
+  `tagword` varchar(255) default NULL,
+  `typeid` int(11) unsigned default NULL,
+  `ismust` int(1) unsigned NOT NULL default '0',
+  `kind` varchar(255) default NULL COMMENT '所属分类ID',
+  `kindlist` varchar(255) default NULL COMMENT '所属目的地',
+  `postid` varchar(255) default NULL,
+  PRIMARY KEY  (`id`,`ismust`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='(暂时不使用)';
+
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_line 结构
+DROP TABLE IF EXISTS `sline_line`;
+CREATE TABLE IF NOT EXISTS `sline_line` (
+  `id` int(11) NOT NULL auto_increment,
+  `webid` int(11) unsigned default '1',
+  `aid` int(11) unsigned default NULL COMMENT '文章ID',
+  `linetype` varchar(50) default NULL COMMENT '线路类型',
+  `linename` varchar(255) default NULL COMMENT '线路标题',
+  `lineicon` varchar(100) default NULL,
+  `oldname` varchar(255) default NULL COMMENT '批发商线路名称',
+  `wholesale` varchar(255) default NULL COMMENT '批发商名称',
+  `wholesalel` varchar(255) default NULL COMMENT '批发商联系方式',
+  `starttime` int(11) default NULL COMMENT '有效期开始时间',
+  `endtime` int(11) default NULL COMMENT '有效期结束时间',
+  `seotitle` varchar(100) default NULL COMMENT 'seo标题',
+  `startcity` varchar(255) default NULL COMMENT '出发城市',
+  `overcity` varchar(255) default NULL COMMENT '目的城市',
+  `linedate` varchar(255) default NULL COMMENT '出团日期',
+  `lineclassid` varchar(255) default NULL COMMENT '对应专线',
+  `tprice` decimal(10,0) default NULL COMMENT '同行价',
+  `profit` decimal(10,0) default NULL COMMENT '利润',
+  `lineprice` int(11) unsigned default NULL COMMENT '线路报价',
+  `lineday` int(3) unsigned default NULL COMMENT '线路天数',
+  `linenight` int(5) default NULL COMMENT '多少晚',
+  `linephone` int(11) default NULL COMMENT '线路电话',
+  `linespot` longtext COMMENT '线路途经景点',
+  `linepic` varchar(255) default NULL COMMENT '线路图片',
+  `linedoc` varchar(255) default NULL COMMENT '线路行程word版地址',
+  `tagword` varchar(255) default NULL COMMENT 'tag词',
+  `keyword` varchar(255) default NULL COMMENT '关键词',
+  `jieshao` longtext COMMENT '线路行程',
+  `biaozhun` longtext COMMENT '服务标准',
+  `beizu` longtext COMMENT '温鑫提示(备注)',
+  `payment` longtext COMMENT '付款方式',
+  `feeinclude` longtext COMMENT '费用包含',
+  `features` longtext COMMENT '行程特色',
+  `description` varchar(700) default NULL COMMENT '描述',
+  `shownum` int(11) default '1' COMMENT '浏览次数',
+  `seatleft` int(11) default NULL COMMENT '空位数',
+  `storeprice` int(11) default NULL COMMENT '门市价',
+  `childprice` int(11) default NULL COMMENT '小孩报价',
+  `transport` longtext COMMENT '交通方式',
+  `linebefore` int(11) default NULL COMMENT '提前报名天数',
+  `isjian` int(11) default '0' COMMENT '是否推荐',
+  `isding` int(11) default '0' COMMENT '是否置顶',
+  `istejia` int(3) default NULL COMMENT '用于置顶的字段',
+  `yesjian` int(11) unsigned default '0' COMMENT '前台推荐次数',
+  `nojian` int(11) unsigned default '0' COMMENT '前台不推荐次数',
+  `addtime` int(10) unsigned default NULL COMMENT '添加时间',
+  `modtime` int(10) unsigned default NULL COMMENT '更新时间',
+  `reserved1` longtext COMMENT '线路内容自定义1',
+  `reserved2` longtext COMMENT '线路内容自定义2',
+  `reserved3` longtext COMMENT '线路内容自定义3',
+  `displayorder` int(11) default '9999' COMMENT '排列顺序',
+  `isbold` int(2) default '0' COMMENT '是否加粗',
+  `color` varchar(255) default NULL COMMENT '标题颜色',
+  `bigpic` varchar(255) default NULL COMMENT '大图地址',
+  `ssmaltype` int(1) default '0',
+  `ssmalprovince` int(1) default NULL COMMENT '省',
+  `ssmalcity` int(1) default NULL COMMENT '市',
+  `ssmalarea` int(1) default NULL COMMENT '景区',
+  `sdisplayorder` int(11) default '9999',
+  `childrule` varchar(255) NOT NULL default '' COMMENT '小孩说明',
+  `kindlist` varchar(255) default NULL COMMENT '所属目的地',
+  `themelist` varchar(255) default NULL COMMENT '主题',
+  `webidfs` varchar(255) default NULL COMMENT '子站webid',
+  `attrid` varchar(255) default NULL COMMENT '主站属性',
+  `satisfyscore` varchar(255) default NULL COMMENT '满意度',
+  `bookcount` int(11) unsigned default NULL COMMENT '预订次数',
+  `ishidden` int(3) default '0',
+  `childkind` varchar(255) default NULL COMMENT '所属子站分类',
+  `txtjieshao` mediumtext,
+  `isstyle` varchar(255) default NULL,
+  `sellpoint` varchar(255) default NULL COMMENT '卖点',
+  `upstyle` int(1) NOT NULL default '0',
+  `piclist` text,
+  `distance` int(6) default NULL,
+  `zijiaseat` varchar(255) default NULL,
+  `zijiaprice` varchar(255) default NULL,
+  `zijiacar` varchar(255) default NULL COMMENT '车辆名称(类型)',
+  `jifencomment` int(11) default '0' COMMENT '评论送积分',
+  `jifentprice` int(11) default '0' COMMENT '积分抵现金',
+  `jifenbook` int(11) default '0' COMMENT '预订送积分',
+  `dingjin` int(11) default '0' COMMENT '是否支持定金',
+  `showrepast` int(1) default '1' COMMENT '是否显示餐饮',
+  `paytype` int(1) default '1' COMMENT '支付方式',
+  `templet` varchar(255) default 'line_show.htm' COMMENT '使用模板',
+  `iconlist` varchar(255) default NULL,
+  `supplierlist` varchar(255) default NULL,
+  PRIMARY KEY  (`id`),
+  KEY `kindlist` (`kindlist`),
+  KEY `searchkey` (`kindlist`(50),`attrid`(50)),
+  KEY `lineday` (`lineday`),
+  KEY `lineprice` (`lineprice`),
+  KEY `attrid` (`attrid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_line_attr 结构
+DROP TABLE IF EXISTS `sline_line_attr`;
+CREATE TABLE IF NOT EXISTS `sline_line_attr` (
+  `id` int(11) NOT NULL auto_increment,
+  `webid` int(3) default NULL,
+  `aid` int(11) unsigned default NULL,
+  `attrname` varchar(255) default NULL,
+  `displayorder` int(11) unsigned default NULL,
+  `isopen` int(11) unsigned default '0',
+  `issystem` int(11) unsigned default '0',
+  `channeldispaly` int(1) default NULL,
+  `pid` int(10) default NULL,
+  `destid` varchar(255) default NULL,
+  `litpic` varchar(255) default NULL,
+  `description` varchar(255) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_line_booking 结构
+DROP TABLE IF EXISTS `sline_line_booking`;
+CREATE TABLE IF NOT EXISTS `sline_line_booking` (
+  `id` int(11) NOT NULL auto_increment,
+  `webid` int(3) default '1',
+  `lineid` int(11) default NULL COMMENT '预订线路的ID',
+  `linename` varchar(255) default NULL COMMENT '线路名称',
+  `dingdate` varchar(50) default NULL COMMENT '预订日期',
+  `dingnum` int(11) unsigned default NULL COMMENT '预订人数',
+  `dingname` varchar(255) default NULL COMMENT '预订联系人',
+  `dingtel` varchar(100) default NULL COMMENT '预订人联系电话',
+  `dingqq` int(11) default NULL COMMENT '联系人QQ',
+  `dingemail` varchar(255) default NULL COMMENT '联系人email',
+  `dingotherinfo` varchar(800) default NULL COMMENT '预订人备注信息',
+  `status` int(1) default NULL COMMENT '订单处理状态0,未处理，1处理中，2，交易成功，3取消',
+  `childnum` int(11) default NULL COMMENT '小孩数量',
+  `sex` varchar(10) default NULL COMMENT '预订人性别',
+  `addtime` int(10) unsigned default NULL COMMENT '添加时间',
+  `modtime` int(10) unsigned default NULL COMMENT '更新时间',
+  `ordersn` varchar(255) default NULL,
+  `bianhao` varchar(255) default NULL,
+  `userid` int(5) NOT NULL,
+  `price` decimal(10,0) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='线路预订表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_line_content 结构
+DROP TABLE IF EXISTS `sline_line_content`;
+CREATE TABLE IF NOT EXISTS `sline_line_content` (
+  `id` int(11) NOT NULL auto_increment,
+  `webid` int(3) default '1',
+  `columnname` varchar(30) default NULL COMMENT '在线路中使用的字段名称',
+  `chinesename` varchar(100) default NULL COMMENT '中文显示名称',
+  `displayorder` int(3) default '0' COMMENT '显示顺序',
+  `issystem` int(1) default NULL,
+  `isopen` int(1) default NULL COMMENT '是否使用1，0',
+  `isline` int(1) default '0',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='线路内容分类表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_line_day 结构
+DROP TABLE IF EXISTS `sline_line_day`;
+CREATE TABLE IF NOT EXISTS `sline_line_day` (
+  `id` int(11) NOT NULL auto_increment,
+  `webid` int(3) default '1',
+  `aid` int(11) unsigned default NULL,
+  `word` int(3) unsigned default NULL COMMENT '天数(只能输入数字)',
+  `isdisplay` int(1) unsigned default '0' COMMENT '是否在前台显示',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='线路天数分类表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_line_dayspot 结构
+DROP TABLE IF EXISTS `sline_line_dayspot`;
+CREATE TABLE IF NOT EXISTS `sline_line_dayspot` (
+  `id` int(11) NOT NULL auto_increment,
+  `webid` int(2) unsigned NOT NULL default '1',
+  `lineid` int(11) unsigned default NULL COMMENT '线路id',
+  `spotname` varchar(255) default '' COMMENT '景点名称',
+  `spotid` int(11) default NULL COMMENT '景点id',
+  `litpic` mediumtext COMMENT '缩略图',
+  `displayorder` int(11) default '9999' COMMENT '显示顺序',
+  `day` int(11) unsigned default '0' COMMENT '显示在第几天',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='线路途径景点表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_line_extend 结构
+DROP TABLE IF EXISTS `sline_line_extend`;
+CREATE TABLE IF NOT EXISTS `sline_line_extend` (
+  `id` int(11) unsigned NOT NULL auto_increment COMMENT '标识',
+  `lineid` int(11) NOT NULL COMMENT '线路ID',
+  `istemplets` int(2) NOT NULL,
+  `relativeraider` varchar(50) NOT NULL,
+  `relativehotel` varchar(50) NOT NULL COMMENT '关联酒店',
+  `relativeticket` varchar(50) NOT NULL COMMENT '关联机票',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_line_extend_field 结构
+DROP TABLE IF EXISTS `sline_line_extend_field`;
+CREATE TABLE IF NOT EXISTS `sline_line_extend_field` (
+  `id` int(11) NOT NULL auto_increment COMMENT '自增id',
+  `productid` int(11) default NULL COMMENT '产品id',
+  PRIMARY KEY  (`id`),
+  KEY `id` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='线路字段扩展表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_line_jieshao 结构
+DROP TABLE IF EXISTS `sline_line_jieshao`;
+CREATE TABLE IF NOT EXISTS `sline_line_jieshao` (
+  `id` int(11) NOT NULL auto_increment,
+  `lineid` int(11) unsigned default NULL,
+  `day` int(11) unsigned default NULL COMMENT '第N天',
+  `title` varchar(255) default NULL COMMENT '标题',
+  `breakfirsthas` tinyint(1) default '0' COMMENT '早餐是否选择',
+  `breakfirst` varchar(255) default NULL,
+  `transport` varchar(255) default NULL COMMENT '交通',
+  `hotel` varchar(255) default NULL COMMENT '住宿',
+  `jieshao` text COMMENT '行程内容',
+  `lunchhas` tinyint(1) default '0',
+  `lunch` varchar(255) default NULL COMMENT '午餐描述',
+  `supperhas` tinyint(1) unsigned default '0' COMMENT '是否有晚餐',
+  `supper` varchar(255) default NULL COMMENT '晚餐描述',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_line_kindlist 结构
+DROP TABLE IF EXISTS `sline_line_kindlist`;
+CREATE TABLE IF NOT EXISTS `sline_line_kindlist` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `kindid` int(11) unsigned NOT NULL default '0',
+  `seotitle` varchar(255) default NULL,
+  `keyword` varchar(255) default NULL,
+  `description` varchar(255) default NULL,
+  `tagword` varchar(255) default NULL,
+  `jieshao` text,
+  `isfinishseo` int(1) unsigned NOT NULL default '0',
+  `displayorder` int(4) unsigned default '9999',
+  `isnav` int(1) unsigned default '0' COMMENT '是否导航',
+  `ishot` int(1) unsigned default '0' COMMENT '是否热门',
+  `shownum` int(8) default NULL,
+  `templetpath` varchar(255) default NULL,
+  PRIMARY KEY  (`id`),
+  KEY `kindid` (`kindid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='ssmall线路分类总表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_line_month 结构
+DROP TABLE IF EXISTS `sline_line_month`;
+CREATE TABLE IF NOT EXISTS `sline_line_month` (
+  `id` int(11) NOT NULL auto_increment,
+  `webid` int(2) default '1',
+  `lineid` int(11) default NULL COMMENT '线路id',
+  `yearnum` int(11) default NULL COMMENT '线路年份',
+  `monthnum` varchar(255) default NULL COMMENT '线路月份',
+  `exname` varchar(50) NOT NULL,
+  `exchange` varchar(50) NOT NULL,
+  `basicprice` text NOT NULL,
+  `profit` text NOT NULL,
+  `price` text NOT NULL,
+  `description` text NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='线路月份报价';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_line_pricelist 结构
+DROP TABLE IF EXISTS `sline_line_pricelist`;
+CREATE TABLE IF NOT EXISTS `sline_line_pricelist` (
+  `id` int(11) NOT NULL auto_increment,
+  `webid` int(3) default '1',
+  `aid` int(11) unsigned default NULL,
+  `lowerprice` int(11) default NULL,
+  `highprice` int(11) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='线路价格分段表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_line_spot 结构
+DROP TABLE IF EXISTS `sline_line_spot`;
+CREATE TABLE IF NOT EXISTS `sline_line_spot` (
+  `id` int(11) NOT NULL auto_increment,
+  `webid` int(2) unsigned NOT NULL default '1',
+  `lineid` int(11) unsigned default NULL COMMENT '线路id',
+  `spotname` varchar(255) default '' COMMENT '景点名称',
+  `spotid` int(11) default NULL COMMENT '景点id',
+  `litpic` mediumtext COMMENT '缩略图',
+  `displayorder` int(11) default '9999' COMMENT '显示顺序',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='线路途径景点表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_line_suit 结构
+DROP TABLE IF EXISTS `sline_line_suit`;
+CREATE TABLE IF NOT EXISTS `sline_line_suit` (
+  `id` int(11) NOT NULL auto_increment,
+  `lineid` int(11) NOT NULL,
+  `suitname` varchar(255) default NULL,
+  `description` text,
+  `displayorder` int(11) default '999999',
+  `jifenbook` int(11) default '0',
+  `jifentprice` int(11) default '0',
+  `jifencomment` int(11) default '0',
+  `propgroup` varchar(6) default NULL,
+  `paytype` tinyint(1) unsigned default '1',
+  `dingjin` varchar(255) default NULL,
+  PRIMARY KEY  (`id`),
+  KEY `lineid` (`lineid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_line_suit_price 结构
+DROP TABLE IF EXISTS `sline_line_suit_price`;
+CREATE TABLE IF NOT EXISTS `sline_line_suit_price` (
+  `lineid` int(11) NOT NULL,
+  `suitid` int(11) NOT NULL default '0',
+  `day` int(11) NOT NULL default '0',
+  `childprofit` int(11) default NULL,
+  `childbasicprice` int(11) default NULL,
+  `childprice` int(11) default NULL,
+  `oldprofit` int(11) default NULL,
+  `oldbasicprice` int(11) default NULL,
+  `oldprice` int(11) default NULL,
+  `adultprofit` int(11) default NULL,
+  `adultbasicprice` int(11) default NULL,
+  `adultprice` int(11) default NULL,
+  `description` varchar(50) default NULL COMMENT '描述',
+  `number` int(11) default NULL COMMENT '库存',
+  PRIMARY KEY  (`suitid`,`day`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_member 结构
+DROP TABLE IF EXISTS `sline_member`;
+CREATE TABLE IF NOT EXISTS `sline_member` (
+  `mid` mediumint(8) unsigned NOT NULL auto_increment,
+  `mtype` varchar(20) default NULL,
+  `nickname` varchar(255) default NULL COMMENT '昵称',
+  `pwd` char(32) NOT NULL default '',
+  `truename` varchar(36) NOT NULL default '' COMMENT '真实姓名',
+  `sex` enum('男','女','保密') NOT NULL default '保密',
+  `rank` smallint(5) unsigned NOT NULL default '0',
+  `money` mediumint(8) unsigned NOT NULL default '0',
+  `email` char(50) NOT NULL default '',
+  `mobile` varchar(15) NOT NULL default '',
+  `jifen` mediumint(8) unsigned NOT NULL default '0' COMMENT '积分',
+  `litpic` varchar(255) NOT NULL default '' COMMENT '会员头像',
+  `safequestion` varchar(255) NOT NULL default '0' COMMENT '安全问题',
+  `safeanswer` char(30) NOT NULL default '' COMMENT '安全答案',
+  `jointime` int(10) unsigned NOT NULL default '0',
+  `joinip` char(16) NOT NULL default '',
+  `logintime` int(10) unsigned NOT NULL default '0',
+  `loginip` char(16) NOT NULL default '',
+  `checkmail` smallint(6) NOT NULL default '0' COMMENT 'email是否通过验证',
+  `checkphone` int(1) unsigned default '0' COMMENT '手机是否验证',
+  `province` varchar(50) default NULL COMMENT '省份',
+  `city` varchar(50) default NULL COMMENT '城市',
+  `cardid` varchar(20) default NULL COMMENT '身份证号',
+  `address` varchar(200) default NULL COMMENT '地址',
+  `postcode` varchar(8) default NULL COMMENT '邮政编码',
+  `connectid` varchar(255) default '' COMMENT '第三方登陆连接id',
+  `from` varchar(255) default '' COMMENT '新浪/QQ登陆',
+  PRIMARY KEY  (`mid`),
+  KEY `logintime` (`logintime`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_member_jifen_log 结构
+DROP TABLE IF EXISTS `sline_member_jifen_log`;
+CREATE TABLE IF NOT EXISTS `sline_member_jifen_log` (
+  `id` int(11) NOT NULL auto_increment,
+  `memberid` int(11) default NULL,
+  `content` text COMMENT '积分描述',
+  `addtime` int(10) unsigned default NULL COMMENT '添加时间',
+  `type` int(1) unsigned default NULL COMMENT '消息类型,1,使用,2,获取',
+  `jifen` int(11) unsigned default NULL COMMENT '本次操作的积分数',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='会员积分使用记录表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_member_order 结构
+DROP TABLE IF EXISTS `sline_member_order`;
+CREATE TABLE IF NOT EXISTS `sline_member_order` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `ordersn` varchar(255) default NULL COMMENT '订单号',
+  `memberid` int(11) unsigned default NULL COMMENT '会员id',
+  `typeid` int(3) unsigned default NULL COMMENT '订单类型',
+  `webid` int(3) unsigned default NULL COMMENT '所属站点',
+  `productaid` int(11) unsigned default NULL COMMENT '产品aid',
+  `productname` varchar(255) default NULL COMMENT '产品名称',
+  `productautoid` int(11) unsigned default NULL COMMENT '对应产品表自增id(第三方后台用)',
+  `litpic` varchar(255) default NULL COMMENT '产品图片',
+  `price` float(10,2) unsigned default NULL COMMENT '价格(单价)',
+  `childprice` float(10,2) unsigned default NULL COMMENT '小孩报价',
+  `usedate` varchar(255) default NULL COMMENT '使用日期',
+  `dingnum` int(3) unsigned default NULL COMMENT '数量',
+  `childnum` int(11) unsigned default '0' COMMENT '儿童数量',
+  `ispay` int(10) unsigned default '0' COMMENT '是否已经付款',
+  `status` int(1) unsigned default '0' COMMENT '订单状态',
+  `linkman` varchar(255) default NULL COMMENT '订单联系人',
+  `linktel` varchar(255) default NULL COMMENT '订单联系电话',
+  `linkemail` varchar(100) default NULL COMMENT '联系人邮件',
+  `linkqq` varchar(16) default NULL COMMENT '联系人QQ',
+  `isneedpiao` int(1) unsigned default '0' COMMENT '是否需要发票',
+  `addtime` int(10) unsigned default NULL COMMENT '预订时间',
+  `finishtime` int(10) unsigned default NULL COMMENT '成交时间',
+  `ispinlun` int(1) unsigned default '0' COMMENT '是否已经评论,1:已评论,0:未评论',
+  `jifencomment` int(11) default '0' COMMENT '评论送积分',
+  `jifentprice` int(11) default '0' COMMENT '积分抵现金',
+  `jifenbook` int(11) default '0' COMMENT '预订送积分',
+  `dingjin` int(11) default '0' COMMENT '是否支持定金',
+  `suitid` int(11) default '0' COMMENT '用于预订产品有子分类时',
+  `paytype` int(1) default '1' COMMENT '支付方式',
+  `oldnum` int(11) default '0' COMMENT '老人数量',
+  `oldprice` float(10,2) default '0.00' COMMENT '老人价格',
+  `usejifen` int(1) unsigned default '0' COMMENT '是否使用积分',
+  `needjifen` int(11) unsigned default NULL COMMENT '需要的积分',
+  `pid` int(11) default '0' COMMENT '父级订单id',
+  `haschild` int(1) unsigned default '0' COMMENT '是否有子级订单',
+  `remark` mediumtext,
+  `kindlist` varchar(255) default '' COMMENT '所属目的地',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_member_order_tourer 结构
+DROP TABLE IF EXISTS `sline_member_order_tourer`;
+CREATE TABLE IF NOT EXISTS `sline_member_order_tourer` (
+  `id` int(11) NOT NULL auto_increment,
+  `orderid` varchar(255) default '0' COMMENT '订单编号',
+  `tourername` varchar(255) default '0' COMMENT '游客姓名',
+  `sex` enum('男','女') default '男',
+  `cardtype` varchar(255) default '0' COMMENT '证件类型',
+  `cardnumber` varchar(255) default '0' COMMENT '证件号码',
+  `mobile` varchar(15) default '0' COMMENT '手机',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='订单游客表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_model 结构
+DROP TABLE IF EXISTS `sline_model`;
+CREATE TABLE IF NOT EXISTS `sline_model` (
+  `id` int(10) unsigned NOT NULL auto_increment COMMENT '模型id',
+  `modulename` varchar(255) default NULL COMMENT '模块名称',
+  `pinyin` varchar(255) default NULL COMMENT '拼音标识',
+  `maintable` varchar(255) default NULL COMMENT '主表',
+  `addtable` varchar(255) default NULL COMMENT '附加表',
+  `attrtable` varchar(255) default 'model_attr' COMMENT '属性表',
+  `issystem` int(1) default '0' COMMENT '是否系统',
+  `isopen` int(1) default '1' COMMENT '是否开启',
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `pinyin` (`pinyin`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='思途模型表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_model_archive 结构
+DROP TABLE IF EXISTS `sline_model_archive`;
+CREATE TABLE IF NOT EXISTS `sline_model_archive` (
+  `id` int(11) NOT NULL auto_increment COMMENT '自增id',
+  `webid` int(11) NOT NULL default '1' COMMENT '站点ID',
+  `aid` int(11) unsigned default NULL COMMENT '前台访问aid',
+  `typeid` int(11) unsigned default NULL COMMENT '模型id',
+  `title` varchar(255) default NULL COMMENT '标题',
+  `seotitle` varchar(255) default NULL COMMENT '优化标题',
+  `content` longtext COMMENT '文章内容',
+  `piclist` text COMMENT '图片列表',
+  `price` varchar(255) default '0' COMMENT '价格',
+  `litpic` varchar(255) default NULL COMMENT '封面图片',
+  `addtime` int(10) unsigned default NULL COMMENT '添加时间',
+  `modtime` int(10) unsigned default NULL COMMENT '更新时间',
+  `shownum` int(11) default NULL COMMENT '浏览次数',
+  `tagword` varchar(50) default NULL COMMENT 'tag词',
+  `keyword` varchar(50) default NULL COMMENT '关键词',
+  `description` varchar(500) default NULL COMMENT '描述',
+  `kindlist` varchar(255) default NULL COMMENT '目的地id',
+  `themelist` varchar(255) default NULL COMMENT '专题id',
+  `attrid` varchar(255) default NULL COMMENT '属性id',
+  `ishidden` tinyint(4) default '0' COMMENT '是否隐藏',
+  `iconlist` varchar(255) default NULL COMMENT '图标id',
+  `templet` varchar(255) default NULL COMMENT '使用模板',
+  `satisfyscore` varchar(255) default NULL COMMENT '满意度',
+  `sellpoint` varchar(255) default NULL COMMENT '卖点',
+  `supplierlist` varchar(255) default NULL COMMENT '供应商',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='扩展信息表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_model_attr 结构
+DROP TABLE IF EXISTS `sline_model_attr`;
+CREATE TABLE IF NOT EXISTS `sline_model_attr` (
+  `id` int(11) NOT NULL auto_increment,
+  `webid` int(11) NOT NULL default '0' COMMENT '站点id',
+  `typeid` int(11) NOT NULL COMMENT '模型id',
+  `attrname` varchar(255) default NULL,
+  `displayorder` int(4) unsigned default '9999',
+  `isopen` int(11) unsigned default '0',
+  `issystem` int(11) unsigned default '0',
+  `pid` int(10) default NULL,
+  `destid` varchar(255) default NULL,
+  `litpic` varchar(255) default NULL,
+  `description` varchar(255) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='扩展模块属性表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_model_suit 结构
+DROP TABLE IF EXISTS `sline_model_suit`;
+CREATE TABLE IF NOT EXISTS `sline_model_suit` (
+  `id` int(11) NOT NULL auto_increment,
+  `productid` int(11) NOT NULL COMMENT '产品id',
+  `suitname` varchar(255) default NULL COMMENT '套餐名称',
+  `description` text COMMENT '描述',
+  `displayorder` int(11) default '9999' COMMENT '排序',
+  `jifenbook` int(11) default '0' COMMENT '预订送积分',
+  `jifentprice` int(11) default '0' COMMENT '积分抵现金',
+  `jifencomment` int(11) default '0' COMMENT '评论送积分',
+  `paytype` tinyint(1) unsigned default '1' COMMENT '支付类型',
+  `number` int(11) default '-1' COMMENT '库存',
+  `dingjin` varchar(255) default NULL COMMENT '定金',
+  `sellprice` varchar(255) default NULL COMMENT '市场价格',
+  `ourprice` varchar(255) default NULL COMMENT '本站价格',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_module_config 结构
+DROP TABLE IF EXISTS `sline_module_config`;
+CREATE TABLE IF NOT EXISTS `sline_module_config` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `webid` int(2) unsigned default '1',
+  `aid` int(11) unsigned default NULL COMMENT '页面ID',
+  `pagename` varchar(255) default NULL,
+  `shortname` varchar(255) default NULL COMMENT '前台调用标识',
+  `typeid` int(11) unsigned default '0',
+  `moduleids` varchar(255) default NULL COMMENT '存储需要显示模块id',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='模块配置表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_module_list 结构
+DROP TABLE IF EXISTS `sline_module_list`;
+CREATE TABLE IF NOT EXISTS `sline_module_list` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `aid` int(11) unsigned default NULL COMMENT '模块id',
+  `webid` int(2) unsigned default '1',
+  `modulename` varchar(255) default NULL COMMENT '模块名称',
+  `body` mediumtext COMMENT '模块内容',
+  `issystem` int(1) unsigned default '0',
+  `type` int(1) default '0' COMMENT '模块类型',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='右侧模块列表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_nav 结构
+DROP TABLE IF EXISTS `sline_nav`;
+CREATE TABLE IF NOT EXISTS `sline_nav` (
+  `id` int(11) NOT NULL auto_increment,
+  `webid` int(11) unsigned default '0' COMMENT '用于区分多个sline系统',
+  `aid` int(11) unsigned default NULL,
+  `typeid` int(1) default NULL COMMENT '栏目ID',
+  `pid` smallint(6) unsigned default '0' COMMENT '父栏目ID',
+  `typename` varchar(255) default NULL COMMENT '栏目名称',
+  `shortname` varchar(255) default NULL COMMENT '栏目名称简写',
+  `seotitle` varchar(255) default NULL COMMENT 'seo标题',
+  `keyword` varchar(255) default NULL,
+  `description` varchar(255) default NULL,
+  `jieshao` mediumtext COMMENT '栏目介绍',
+  `tagword` varchar(255) default NULL,
+  `url` varchar(255) default NULL,
+  `linktype` int(1) default NULL COMMENT '1,站内链接,0:站外链接',
+  `isopen` int(1) default '1' COMMENT '是否开放1,开放,0关闭',
+  `displayorder` int(5) default '9999',
+  `issystem` int(1) unsigned default '0' COMMENT '是否系统栏目',
+  `linktitle` varchar(255) default NULL,
+  `isfinishseo` int(11) unsigned default '0',
+  `kind` int(2) default '0',
+  `indexshownum` int(2) default '5',
+  `shownum` int(2) default '5',
+  `isleft` int(1) unsigned default '0',
+  `templetpath` varchar(255) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+
+
+-- 导出  表 www_standsmore_com.sline_page 结构
+DROP TABLE IF EXISTS `sline_page`;
+CREATE TABLE IF NOT EXISTS `sline_page` (
+  `id` int(11) NOT NULL auto_increment,
+  `pid` varchar(255) default NULL,
+  `kindname` varchar(255) default NULL COMMENT '页面名称',
+  `pagename` varchar(255) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='思途页面模块列表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_page_config 结构
+DROP TABLE IF EXISTS `sline_page_config`;
+CREATE TABLE IF NOT EXISTS `sline_page_config` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `pageid` int(11) unsigned default NULL COMMENT '页面id',
+  `path` varchar(255) default NULL COMMENT '模板路径',
+  `isuse` tinyint(1) unsigned default '0' COMMENT '是否使用',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='页面配置表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_photo 结构
+DROP TABLE IF EXISTS `sline_photo`;
+CREATE TABLE IF NOT EXISTS `sline_photo` (
+  `id` int(11) NOT NULL auto_increment,
+  `webid` int(11) NOT NULL,
+  `aid` int(11) unsigned default NULL,
+  `photoname` varchar(50) default NULL COMMENT '相册名',
+  `seotitle` varchar(255) default NULL,
+  `litpic` varchar(200) default NULL COMMENT '相册封面',
+  `title` varchar(200) default NULL,
+  `alt` varchar(200) default NULL,
+  `photokind` int(4) default NULL,
+  `displayorder` int(11) unsigned default '9999' COMMENT '排序',
+  `lineclass` varchar(50) default NULL COMMENT '对应专线',
+  `author` varchar(50) default NULL COMMENT '作者',
+  `imginfo` longtext COMMENT '相册说明',
+  `tagword` varchar(200) default NULL COMMENT '文章相关词',
+  `shownum` int(11) default NULL COMMENT '浏览数',
+  `isding` int(1) default NULL,
+  `isjian` int(1) default NULL,
+  `modtime` int(10) default NULL,
+  `keyword` varchar(255) default NULL,
+  `description` varchar(255) default NULL,
+  `kindlist` varchar(255) default NULL,
+  `themelist` varchar(255) default NULL,
+  `webidfs` varchar(255) default NULL,
+  `attrid` varchar(255) default NULL,
+  `headimgid` int(11) unsigned default NULL,
+  `childkind` varchar(255) default NULL,
+  `addtime` int(10) NOT NULL default '0',
+  `favorite` int(10) default '0',
+  `ishidden` tinyint(4) default '0',
+  `templet` varchar(255) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_photo_attr 结构
+DROP TABLE IF EXISTS `sline_photo_attr`;
+CREATE TABLE IF NOT EXISTS `sline_photo_attr` (
+  `id` int(11) NOT NULL auto_increment,
+  `webid` int(3) default NULL,
+  `aid` int(11) unsigned default NULL,
+  `attrname` varchar(255) default NULL,
+  `displayorder` int(11) unsigned default NULL,
+  `isopen` int(1) unsigned default '0',
+  `pid` int(10) default NULL,
+  `issystem` int(1) NOT NULL default '0',
+  `litpic` varchar(255) default NULL,
+  `description` varchar(255) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_photo_extend_field 结构
+DROP TABLE IF EXISTS `sline_photo_extend_field`;
+CREATE TABLE IF NOT EXISTS `sline_photo_extend_field` (
+  `id` int(11) NOT NULL auto_increment COMMENT '自增id',
+  `productid` int(11) default NULL COMMENT '产品id',
+  PRIMARY KEY  (`id`),
+  KEY `id` (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='相册字段扩展表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_photo_kindlist 结构
+DROP TABLE IF EXISTS `sline_photo_kindlist`;
+CREATE TABLE IF NOT EXISTS `sline_photo_kindlist` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `kindid` int(11) unsigned NOT NULL default '0',
+  `seotitle` varchar(255) default NULL,
+  `keyword` varchar(255) default NULL,
+  `description` varchar(255) default NULL,
+  `tagword` varchar(255) default NULL,
+  `jieshao` text,
+  `isfinishseo` int(1) unsigned NOT NULL default '0',
+  `displayorder` int(4) unsigned default '9999',
+  `isnav` int(1) unsigned default '0' COMMENT '是否导航',
+  `ishot` int(1) unsigned default '0' COMMENT '是否热门',
+  `shownum` int(8) default NULL,
+  `templetpath` varchar(255) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='ssmall线路分类总表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_photo_picture 结构
+DROP TABLE IF EXISTS `sline_photo_picture`;
+CREATE TABLE IF NOT EXISTS `sline_photo_picture` (
+  `id` int(11) NOT NULL auto_increment,
+  `webid` int(11) default NULL,
+  `pid` int(11) NOT NULL COMMENT '所属相册id',
+  `litpic` varchar(100) default NULL COMMENT '小图连接地址',
+  `bigpic` varchar(100) default NULL COMMENT '大图连接地址',
+  `description` varchar(200) default NULL,
+  `isindex` int(1) default NULL,
+  `modtime` int(10) unsigned default NULL,
+  `displayorder` int(5) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_plugins 结构
+DROP TABLE IF EXISTS `sline_plugins`;
+CREATE TABLE IF NOT EXISTS `sline_plugins` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `webid` int(2) unsigned default NULL,
+  `name` varchar(255) default NULL COMMENT '插件名称',
+  `description` text COMMENT '插件描述',
+  `datatables` varchar(255) default NULL COMMENT '插件所使用的表',
+  `copyright` varchar(255) default NULL,
+  `isopen` int(1) unsigned default '0',
+  `folder` varchar(255) default NULL,
+  `identify` varchar(255) default NULL COMMENT '插件唯一标识',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_plugin_autotitle 结构
+DROP TABLE IF EXISTS `sline_plugin_autotitle`;
+CREATE TABLE IF NOT EXISTS `sline_plugin_autotitle` (
+  `id` int(11) NOT NULL auto_increment,
+  `name` varchar(255) default NULL,
+  `value` text,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_plugin_leftnav 结构
+DROP TABLE IF EXISTS `sline_plugin_leftnav`;
+CREATE TABLE IF NOT EXISTS `sline_plugin_leftnav` (
+  `id` int(11) NOT NULL auto_increment,
+  `webid` int(2) unsigned default NULL,
+  `kindname` varchar(255) default NULL,
+  `pid` int(11) unsigned default NULL,
+  `linkurl` varchar(255) default NULL,
+  `color` varchar(255) default NULL,
+  `displayorder` int(4) unsigned NOT NULL default '9999',
+  `isopen` int(1) unsigned NOT NULL default '1',
+  `litpic` varchar(200) default NULL COMMENT '图标',
+  `remark` varchar(200) default NULL COMMENT '自定义说明',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_plugin_nav 结构
+DROP TABLE IF EXISTS `sline_plugin_nav`;
+CREATE TABLE IF NOT EXISTS `sline_plugin_nav` (
+  `id` int(11) NOT NULL auto_increment,
+  `webid` int(2) unsigned default NULL,
+  `kindname` varchar(255) default NULL,
+  `pid` int(11) unsigned default NULL,
+  `linkurl` varchar(255) default NULL,
+  `color` varchar(255) default NULL,
+  `displayorder` int(4) unsigned NOT NULL default '9999',
+  `isopen` int(1) unsigned NOT NULL default '1',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_qq_group 结构
+DROP TABLE IF EXISTS `sline_qq_group`;
+CREATE TABLE IF NOT EXISTS `sline_qq_group` (
+  `id` int(11) NOT NULL auto_increment,
+  `groupname` varchar(30) default NULL,
+  `groupdes` varchar(150) default NULL,
+  `isopen` tinyint(1) default '1',
+  `webid` int(2) NOT NULL default '0',
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_qq_kefu 结构
+DROP TABLE IF EXISTS `sline_qq_kefu`;
+CREATE TABLE IF NOT EXISTS `sline_qq_kefu` (
+  `id` int(11) NOT NULL auto_increment,
+  `pid` int(11) unsigned default '0',
+  `qqname` varchar(50) default NULL,
+  `qqnum` varchar(20) default NULL,
+  `isopen` tinyint(3) default '1',
+  `displayorder` int(4) default '9999',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_question 结构
+DROP TABLE IF EXISTS `sline_question`;
+CREATE TABLE IF NOT EXISTS `sline_question` (
+  `id` int(11) NOT NULL auto_increment,
+  `typeid` int(2) unsigned default NULL COMMENT '栏目类型',
+  `productid` int(11) default NULL COMMENT '文章所在表的id',
+  `content` text COMMENT '提问内容',
+  `replycontent` mediumtext COMMENT '回复内容',
+  `replytime` int(10) unsigned default NULL COMMENT '回复日期',
+  `nickname` varchar(25) default '' COMMENT '评论人昵称',
+  `ip` varchar(23) default NULL COMMENT '评论人ip地址',
+  `status` int(2) unsigned default '0' COMMENT '回复状态',
+  `memberid` int(11) unsigned default NULL COMMENT '会员id',
+  `addtime` int(10) unsigned default NULL COMMENT '添加时间',
+  `kindlist` varchar(255) default null comment '目的地',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='问答表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_question_kindlist 结构
+DROP TABLE IF EXISTS `sline_question_kindlist`;
+CREATE TABLE IF NOT EXISTS `sline_question_kindlist` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `kindid` int(11) unsigned NOT NULL default '0',
+  `seotitle` varchar(255) default NULL,
+  `keyword` varchar(255) default NULL,
+  `description` varchar(255) default NULL,
+  `tagword` varchar(255) default NULL,
+  `jieshao` text,
+  `isfinishseo` int(1) unsigned NOT NULL default '0',
+  `displayorder` int(4) unsigned default '9999',
+  `isnav` int(1) unsigned default '0' COMMENT '是否导航',
+  `ishot` int(1) unsigned default '0' COMMENT '是否热门',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='ssmall线路分类总表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_relationship 结构
+DROP TABLE IF EXISTS `sline_relationship`;
+CREATE TABLE IF NOT EXISTS `sline_relationship` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `webid` int(2) unsigned default NULL,
+  `kindid` int(11) unsigned default NULL COMMENT '分类id',
+  `destinationid` varchar(255) default NULL COMMENT '对应目的地ID',
+  `typeid` int(11) unsigned default NULL COMMENT '栏目ID',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='分类与目的地对应关系表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_right 结构
+DROP TABLE IF EXISTS `sline_right`;
+CREATE TABLE IF NOT EXISTS `sline_right` (
+  `rightid` int(11) NOT NULL auto_increment,
+  `rightname` varchar(20) NOT NULL,
+  `description` varchar(255) default NULL,
+  `typid` int(10) default NULL,
+  PRIMARY KEY  (`rightid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_right_module 结构
+DROP TABLE IF EXISTS `sline_right_module`;
+CREATE TABLE IF NOT EXISTS `sline_right_module` (
+  `moduleid` int(11) NOT NULL auto_increment,
+  `modulename` varchar(30) default NULL,
+  `description` varchar(100) default NULL,
+  `typeid` int(11) default NULL,
+  `pid` int(11) NOT NULL default '0',
+  PRIMARY KEY  (`moduleid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_role 结构
+DROP TABLE IF EXISTS `sline_role`;
+CREATE TABLE IF NOT EXISTS `sline_role` (
+  `roleid` int(11) NOT NULL auto_increment,
+  `rolename` varchar(20) default NULL,
+  `description` varchar(100) default NULL,
+  `masterid` int(11) default NULL,
+  `createdate` int(11) default NULL,
+  `isoptn` tinyint(4) NOT NULL default '1',
+  PRIMARY KEY  (`roleid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_role_module 结构
+DROP TABLE IF EXISTS `sline_role_module`;
+CREATE TABLE IF NOT EXISTS `sline_role_module` (
+  `roleid` int(11) NOT NULL,
+  `moduleid` char(15) default NULL,
+  `slook` tinyint(1) NOT NULL default '0',
+  `smodify` tinyint(1) NOT NULL default '0',
+  `sadd` tinyint(1) NOT NULL default '0',
+  `sdelete` tinyint(1) NOT NULL default '0',
+  `sall` tinyint(1) NOT NULL default '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_search_keyword 结构
+DROP TABLE IF EXISTS `sline_search_keyword`;
+CREATE TABLE IF NOT EXISTS `sline_search_keyword` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `keyword` varchar(255) default NULL,
+  `keynumber` int(11) unsigned default '1',
+  `displayorder` int(4) default '9999' COMMENT '排序',
+  `isopen` int(1) default '0' COMMENT '是否开启',
+  `addtime` int(10) default '0' COMMENT '添加时间',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='搜索词表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_serverlist 结构
+DROP TABLE IF EXISTS `sline_serverlist`;
+CREATE TABLE IF NOT EXISTS `sline_serverlist` (
+  `id` int(11) NOT NULL auto_increment,
+  `webid` int(11) default NULL,
+  `aid` int(11) unsigned default NULL,
+  `servername` varchar(20) default NULL COMMENT '名称',
+  `keywords` varchar(50) default NULL,
+  `description` varchar(255) default NULL,
+  `content` longtext COMMENT '详细内容',
+  `addtime` int(11) unsigned default NULL,
+  `modtime` int(11) unsigned default NULL,
+  `isdisplay` int(1) unsigned default '1' COMMENT '是否显示',
+  `isauto` int(1) default '0' COMMENT '是否默认分类',
+  `displayorder` int(5) default '9999',
+  `sline_yqlj` int(5) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='副导航表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_site_page 结构
+DROP TABLE IF EXISTS `sline_site_page`;
+CREATE TABLE IF NOT EXISTS `sline_site_page` (
+  `id` int(11) NOT NULL auto_increment,
+  `pid` varchar(255) default NULL,
+  `kindname` varchar(255) default NULL COMMENT '页面名称',
+  `pagename` varchar(255) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='思途子站页面模块列表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_site_page_config 结构
+DROP TABLE IF EXISTS `sline_site_page_config`;
+CREATE TABLE IF NOT EXISTS `sline_site_page_config` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `webid` int(11) unsigned default NULL COMMENT '子站id',
+  `pageid` int(11) unsigned default NULL COMMENT '页面id',
+  `path` varchar(255) default NULL COMMENT '模板路径',
+  `isuse` tinyint(1) unsigned default '0' COMMENT '是否使用',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='子站用户页面配置表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_sms_msg 结构
+DROP TABLE IF EXISTS `sline_sms_msg`;
+CREATE TABLE IF NOT EXISTS `sline_sms_msg` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `msgtype` varchar(255) default NULL,
+  `msg` varchar(255) default NULL,
+  `isopen` int(1) unsigned default '1',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_spot 结构
+DROP TABLE IF EXISTS `sline_spot`;
+CREATE TABLE IF NOT EXISTS `sline_spot` (
+  `id` int(11) NOT NULL auto_increment,
+  `webid` int(11) NOT NULL default '1',
+  `aid` int(11) unsigned default NULL,
+  `spotname` varchar(50) NOT NULL COMMENT '景区名',
+  `shortname` varchar(20) default NULL,
+  `seotitle` varchar(255) default NULL,
+  `isspotarea` int(1) NOT NULL,
+  `lineclass` int(10) default NULL COMMENT '对应专线',
+  `doorprice` int(8) default '0' COMMENT '门票',
+  `area` varchar(40) character set utf8 collate utf8_bin default NULL COMMENT '对应景区分类',
+  `spotpicid` varchar(200) character set utf8 collate utf8_bin default NULL COMMENT '景区图片',
+  `litpic` varchar(255) default NULL,
+  `content` longtext COMMENT '景区介绍',
+  `addtime` int(10) unsigned default NULL COMMENT '添加时间',
+  `modtime` int(10) unsigned default NULL COMMENT '更新时间',
+  `shownum` int(11) default '1' COMMENT '浏览量',
+  `author` varchar(20) default NULL COMMENT '添加人',
+  `went` varchar(255) default NULL COMMENT '去过',
+  `want` varchar(255) default NULL COMMENT '想去',
+  `isjian` int(1) default '0' COMMENT '推荐',
+  `isding` int(1) default NULL,
+  `tagword` varchar(200) default NULL COMMENT '文章相关词',
+  `keyword` varchar(200) default NULL COMMENT '关键词',
+  `description` varchar(255) default NULL,
+  `lng` double default NULL COMMENT '经度坐标',
+  `lat` double default NULL COMMENT '纬度坐标',
+  `displayorder` int(11) default '9999',
+  `kindlist` varchar(255) default NULL,
+  `themelist` varchar(255) default NULL,
+  `webidfs` varchar(255) default NULL,
+  `attrid` varchar(255) default NULL,
+  `childkind` varchar(255) default NULL,
+  `piclist` text,
+  `booknotice` text COMMENT '预订说明',
+  `friendtip` varchar(255) default NULL COMMENT '友情提示',
+  `getway` varchar(255) default NULL COMMENT '取票方式',
+  `sellpoint` varchar(255) default NULL COMMENT '卖点',
+  `address` varchar(255) default NULL COMMENT '景区地址',
+  `dingjin` int(11) default '0' COMMENT '是否支持定金',
+  `iconlist` varchar(255) default NULL,
+  `ishidden` tinyint(1) default '0',
+  `satisfyscore` varchar(255) default NULL,
+  `yesjian` varchar(255) default NULL,
+  `bookcount` varchar(255) default NULL,
+  `supplierlist` varchar(255) default NULL,
+  `templet` varchar(255) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_spot_attr 结构
+DROP TABLE IF EXISTS `sline_spot_attr`;
+CREATE TABLE IF NOT EXISTS `sline_spot_attr` (
+  `id` int(11) NOT NULL auto_increment,
+  `webid` int(11) default NULL COMMENT 'sline对应ID',
+  `attrname` varchar(255) default NULL COMMENT '分类信息',
+  `displayorder` int(11) default NULL,
+  `isopen` int(1) unsigned default '0',
+  `pid` int(10) default NULL,
+  `destid` varchar(255) default NULL,
+  `issystem` int(1) default '0',
+  `litpic` varchar(255) default NULL,
+  `description` varchar(255) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='车务品牌表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_spot_content 结构
+DROP TABLE IF EXISTS `sline_spot_content`;
+CREATE TABLE IF NOT EXISTS `sline_spot_content` (
+  `id` int(11) NOT NULL auto_increment,
+  `webid` int(3) default '0',
+  `columnname` varchar(30) default NULL COMMENT '使用的字段名称',
+  `chinesename` varchar(100) default NULL COMMENT '中文显示名称',
+  `displayorder` int(3) default '0' COMMENT '显示顺序',
+  `issystem` int(1) default NULL COMMENT '是否系统字段',
+  `isopen` int(1) default NULL COMMENT '是否使用1，0',
+  `isrealfield` int(1) unsigned default '1' COMMENT '是否真实字段',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='内容分类表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_spot_extend_field 结构
+DROP TABLE IF EXISTS `sline_spot_extend_field`;
+CREATE TABLE IF NOT EXISTS `sline_spot_extend_field` (
+  `id` int(11) NOT NULL auto_increment COMMENT '自增id',
+  `productid` int(11) default NULL COMMENT '产品id',
+  PRIMARY KEY  (`id`),
+  KEY `id` (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='景点字段扩展表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_spot_kindlist 结构
+DROP TABLE IF EXISTS `sline_spot_kindlist`;
+CREATE TABLE IF NOT EXISTS `sline_spot_kindlist` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `kindid` int(11) unsigned NOT NULL default '0',
+  `seotitle` varchar(255) default NULL,
+  `keyword` varchar(255) default NULL,
+  `description` varchar(255) default NULL,
+  `tagword` varchar(255) default NULL,
+  `jieshao` text,
+  `isfinishseo` int(1) unsigned NOT NULL default '0',
+  `displayorder` int(4) unsigned default '9999',
+  `isnav` int(1) unsigned default '0' COMMENT '是否导航',
+  `ishot` int(1) unsigned default '0' COMMENT '是否热门',
+  `shownum` int(8) default NULL,
+  `templetpath` varchar(255) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='ssmall线路分类总表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_spot_pricelist 结构
+DROP TABLE IF EXISTS `sline_spot_pricelist`;
+CREATE TABLE IF NOT EXISTS `sline_spot_pricelist` (
+  `id` int(11) NOT NULL auto_increment,
+  `webid` int(11) default NULL COMMENT 'WEBID',
+  `aid` int(11) unsigned default NULL,
+  `min` int(11) default NULL COMMENT '最小酒店价格',
+  `max` int(11) default NULL COMMENT '最大酒店价格',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=gb2312 ROW_FORMAT=FIXED;
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_spot_ticket 结构
+DROP TABLE IF EXISTS `sline_spot_ticket`;
+CREATE TABLE IF NOT EXISTS `sline_spot_ticket` (
+  `id` int(11) NOT NULL auto_increment,
+  `spotid` int(11) unsigned default NULL,
+  `title` varchar(255) default NULL COMMENT '门票名称',
+  `tickettypeid` int(11) unsigned default NULL COMMENT '门票类型id',
+  `sellprice` varchar(255) default NULL COMMENT '票面价格',
+  `ourprice` varchar(255) default NULL COMMENT '优惠价格',
+  `memberdayprice` varchar(255) default NULL,
+  `paytype` varchar(255) default NULL COMMENT '支付方式',
+  `award` int(11) unsigned default NULL COMMENT '会员预订返现奖金',
+  `description` varchar(255) default NULL COMMENT '门票描述',
+  `addtime` int(10) unsigned default NULL,
+  `modtime` int(10) unsigned default NULL,
+  `displayorder` int(11) unsigned default '9999',
+  `number` int(11) default NULL COMMENT '门票数量(库存)',
+  `bnum` varchar(255) default NULL COMMENT '已被预订数量',
+  `mnum` varchar(255) default NULL COMMENT '会员限制预订数量',
+  `startdate` varchar(255) default NULL COMMENT '限制开始日期',
+  `enddate` varchar(255) default NULL COMMENT '限制结束时间',
+  `jifencomment` int(11) default '0' COMMENT '评论送积分',
+  `jifentprice` int(11) default '0' COMMENT '积分抵现金',
+  `jifenbook` int(11) default '0' COMMENT '预订送积分',
+  `dingjin` varchar(255) default NULL COMMENT '定金',
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_spot_ticket_type 结构
+DROP TABLE IF EXISTS `sline_spot_ticket_type`;
+CREATE TABLE IF NOT EXISTS `sline_spot_ticket_type` (
+  `id` int(11) NOT NULL auto_increment,
+  `kindname` varchar(255) default NULL COMMENT '门票类型名称',
+  `spotid` varchar(255) default NULL COMMENT '景点id',
+  `description` varchar(255) default NULL COMMENT '类型描述',
+  `displayorder` int(11) unsigned default '9999',
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_startplace 结构
+DROP TABLE IF EXISTS `sline_startplace`;
+CREATE TABLE IF NOT EXISTS `sline_startplace` (
+  `id` int(11) NOT NULL auto_increment,
+  `destid` int(11) default NULL COMMENT '目的地ID',
+  `cityname` varchar(255) default NULL,
+  `isdefault` int(1) unsigned default '0' COMMENT '是否默认',
+  `isopen` int(1) unsigned default '0',
+  `displayorder` int(11) default '9999',
+  `domain` varchar(255) default NULL COMMENT '域名',
+  `pid` int(8) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_stats 结构
+DROP TABLE IF EXISTS `sline_stats`;
+CREATE TABLE IF NOT EXISTS `sline_stats` (
+  `id` int(11) NOT NULL auto_increment,
+  `access_time` int(10) unsigned NOT NULL default '0',
+  `ip_address` varchar(15) NOT NULL default '',
+  `visit_times` smallint(5) unsigned NOT NULL default '1',
+  `browser` varchar(60) NOT NULL default '',
+  `system` varchar(20) NOT NULL default '',
+  `language` varchar(20) NOT NULL default '',
+  `referer_domain` varchar(100) NOT NULL default '',
+  `referer_path` varchar(200) NOT NULL default '',
+  `access_url` varchar(255) NOT NULL default '',
+  `searchengine` varchar(255) NOT NULL default '',
+  `keywords` varchar(255) NOT NULL default '',
+  `keynum` int(10) NOT NULL default '0',
+  `webid` int(3) NOT NULL default '0',
+  `timemark` int(10) unsigned default NULL,
+  `title` varchar(255) default NULL COMMENT '页面标题',
+  PRIMARY KEY  (`id`),
+  KEY `access_time` (`access_time`),
+  KEY `keynum` (`keynum`),
+  KEY `id` (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_supplier 结构
+DROP TABLE IF EXISTS `sline_supplier`;
+CREATE TABLE IF NOT EXISTS `sline_supplier` (
+  `id` int(11) NOT NULL auto_increment,
+  `suppliername` varchar(255) default NULL COMMENT '供应商名称',
+  `linkman` varchar(100) default NULL COMMENT '联系人',
+  `telephone` varchar(100) default NULL COMMENT '联系电话',
+  `mobile` varchar(100) default NULL COMMENT '手机',
+  `fax` varchar(50) default NULL COMMENT '传真',
+  `address` varchar(255) default NULL COMMENT '地址',
+  `litpic` varchar(255) default NULL,
+  `qq` varchar(255) default NULL,
+  `addtime` int(10) unsigned default NULL,
+  `modtime` int(10) unsigned default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='供应商表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_sysconfig 结构
+DROP TABLE IF EXISTS `sline_sysconfig`;
+CREATE TABLE IF NOT EXISTS `sline_sysconfig` (
+  `id` int(11) NOT NULL auto_increment,
+  `webid` int(3) default NULL,
+  `varname` varchar(30) default NULL COMMENT '变量名称',
+  `info` varchar(255) default NULL COMMENT '参数描述',
+  `value` mediumtext COMMENT '变量值',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='系统变量配置表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_tagword 结构
+DROP TABLE IF EXISTS `sline_tagword`;
+CREATE TABLE IF NOT EXISTS `sline_tagword` (
+  `id` int(11) NOT NULL auto_increment,
+  `webid` int(3) default '1',
+  `typeid` int(11) default NULL,
+  `title` char(255) default NULL,
+  `tagword` varchar(255) default NULL COMMENT '具体词语',
+  `aid` int(11) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='相关词总汇';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_talist 结构
+DROP TABLE IF EXISTS `sline_talist`;
+CREATE TABLE IF NOT EXISTS `sline_talist` (
+  `id` int(11) NOT NULL auto_increment,
+  `webid` int(2) unsigned default NULL,
+  `tauser` varchar(255) default NULL,
+  `face` varchar(255) default NULL COMMENT '客服头像',
+  `nickname` varchar(50) default NULL COMMENT '客服昵称',
+  `education` text COMMENT '教育背景',
+  `jobtime` int(11) default NULL COMMENT '从业时间',
+  `masterlines` text COMMENT '精通线路',
+  `product` text COMMENT '产品理念',
+  `profile` text COMMENT '个人述职',
+  `mycase` text COMMENT '成功案例',
+  `code` varchar(255) default NULL COMMENT '聊天代码',
+  `msn` varchar(150) default NULL COMMENT 'msn',
+  `destinations` varchar(255) NOT NULL COMMENT '销售产品分类',
+  `work` varchar(255) default NULL,
+  `kind` int(3) default NULL COMMENT '客服类型',
+  `linkname` varchar(255) default NULL COMMENT '联系人',
+  `phone` varchar(255) default NULL COMMENT '联系电话',
+  `qq` varchar(255) default NULL COMMENT '联系QQ',
+  `email` varchar(30) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='客服表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_templet 结构
+DROP TABLE IF EXISTS `sline_templet`;
+CREATE TABLE IF NOT EXISTS `sline_templet` (
+  `id` int(11) NOT NULL auto_increment,
+  `tempname` varchar(30) default NULL,
+  `description` varchar(255) default NULL,
+  `addtime` int(11) default NULL,
+  `zippath` varchar(255) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_theme 结构
+DROP TABLE IF EXISTS `sline_theme`;
+CREATE TABLE IF NOT EXISTS `sline_theme` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `aid` varchar(255) default NULL,
+  `webid` int(2) unsigned default '0',
+  `ztname` varchar(255) default NULL,
+  `seotitle` varchar(255) default NULL COMMENT 'seo标题',
+  `shortname` varchar(255) default NULL COMMENT '专题简短主题',
+  `keyword` varchar(255) default NULL,
+  `description` varchar(255) default NULL,
+  `logo` varchar(255) default NULL COMMENT '主题游LOGO',
+  `jieshao` text COMMENT '专题介绍',
+  `bgcolor` varchar(255) default NULL COMMENT '背景颜色',
+  `bgimage` varchar(255) default NULL COMMENT '专题背景',
+  `templetpath` varchar(255) default NULL COMMENT '自定义模板名称',
+  `kindlist` varchar(255) default NULL COMMENT '专题所属目的地',
+  `tagword` varchar(255) default NULL,
+  `shownum` int(11) unsigned default NULL,
+  `displayorder` int(11) unsigned default '9999',
+  `addtime` int(11) unsigned default NULL,
+  `modtime` varchar(255) default NULL,
+  `isopen` int(1) unsigned default '1',
+  `templet` varchar(255) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='主题游';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_ticket 结构
+DROP TABLE IF EXISTS `sline_ticket`;
+CREATE TABLE IF NOT EXISTS `sline_ticket` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `webid` int(2) unsigned default NULL,
+  `aid` int(11) unsigned default NULL,
+  `startcity` varchar(50) default NULL COMMENT '起飞城市',
+  `midcity` varchar(50) default NULL COMMENT '中转城市',
+  `overcity` varchar(50) default NULL COMMENT '到达城市',
+  `tickettype` int(1) unsigned default NULL COMMENT '机票类型 1,单程,2联程,3往返',
+  `taketime` varchar(255) default NULL COMMENT '起飞时间',
+  `arrivetime` varchar(255) default NULL COMMENT '到达时间',
+  `company` varchar(255) default NULL COMMENT '航空公司',
+  `planenum` varchar(255) default NULL COMMENT '航班号',
+  `flighttypeid` varchar(255) default NULL COMMENT '机型id',
+  `addtime` int(10) unsigned default NULL,
+  `modtime` int(10) unsigned default NULL,
+  `ismiddle` int(2) NOT NULL,
+  `timerate` varchar(255) default NULL COMMENT '准点率',
+  `hasrepast` int(1) default '0' COMMENT '是否有餐饮',
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='票务表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_ticket_airport 结构
+DROP TABLE IF EXISTS `sline_ticket_airport`;
+CREATE TABLE IF NOT EXISTS `sline_ticket_airport` (
+  `id` int(11) NOT NULL auto_increment,
+  `destid` int(11) default NULL COMMENT '目的地ID(扩展)',
+  `planename` varchar(255) default NULL,
+  `isdefault` int(1) unsigned default '0' COMMENT '是否默认',
+  `isopen` int(1) unsigned default '0',
+  `displayorder` int(11) default '9999',
+  `domain` varchar(255) default NULL COMMENT '域名',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_ticket_booking 结构
+DROP TABLE IF EXISTS `sline_ticket_booking`;
+CREATE TABLE IF NOT EXISTS `sline_ticket_booking` (
+  `id` int(11) NOT NULL auto_increment,
+  `fatherid` int(11) NOT NULL COMMENT '机票ID',
+  `name` varchar(50) NOT NULL COMMENT '订票人',
+  `ordernum` int(11) NOT NULL COMMENT '预定机票张数',
+  `planedate` int(10) NOT NULL COMMENT '航班日期',
+  `cell` varchar(50) NOT NULL COMMENT '联系电话',
+  `qqmsn` varchar(50) NOT NULL COMMENT 'QQ',
+  `emaill` varchar(50) NOT NULL COMMENT '邮箱',
+  `status` int(1) unsigned NOT NULL default '0',
+  `webid` int(11) NOT NULL default '1',
+  `ordersn` varchar(255) default NULL,
+  `bianhao` varchar(255) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=gb2312 ROW_FORMAT=DYNAMIC;
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_ticket_company 结构
+DROP TABLE IF EXISTS `sline_ticket_company`;
+CREATE TABLE IF NOT EXISTS `sline_ticket_company` (
+  `id` int(11) NOT NULL auto_increment,
+  `destid` int(11) default NULL COMMENT '目的地ID(扩展)',
+  `companyname` varchar(255) default NULL,
+  `isdefault` int(1) unsigned default '0' COMMENT '是否默认',
+  `isopen` int(1) unsigned default '0',
+  `displayorder` int(11) default '9999',
+  `domain` varchar(255) default NULL COMMENT '域名',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+
+
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_tool_link 结构
+DROP TABLE IF EXISTS `sline_tool_link`;
+CREATE TABLE IF NOT EXISTS `sline_tool_link` (
+  `id` int(11) NOT NULL auto_increment,
+  `title` varchar(255) default NULL,
+  `type` int(1) default '2' COMMENT '1,重要目标关键词,2,长尾关键词',
+  `linkurl` varchar(500) default NULL COMMENT '链接地址',
+  `linelink` int(6) default '0' COMMENT '线路链接数量',
+  `addtime` int(10) unsigned default '0',
+  `hotellink` int(6) unsigned default '0',
+  `carlink` int(6) unsigned default '0',
+  `articlelink` int(6) unsigned default '0',
+  `spotlink` int(6) unsigned default '0',
+  `photolink` int(6) unsigned default '0',
+  `visalink` int(6) unsigned default '0',
+  `questionlink` int(6) unsigned default '0',
+  `tuanlink` int(6) unsigned default '0',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='智能链接优化表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_tuan 结构
+DROP TABLE IF EXISTS `sline_tuan`;
+CREATE TABLE IF NOT EXISTS `sline_tuan` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `aid` int(11) unsigned default NULL,
+  `webid` int(2) unsigned default '0',
+  `title` varchar(600) default NULL,
+  `shortname` varchar(255) default NULL,
+  `seotitle` varchar(600) default NULL,
+  `keyword` varchar(255) default NULL,
+  `tagword` varchar(255) default NULL,
+  `description` varchar(255) default NULL,
+  `sellprice` int(11) default NULL COMMENT '原价',
+  `ourprice` int(11) default NULL COMMENT '优惠价',
+  `litpic` varchar(255) default NULL,
+  `starttime` int(10) unsigned default NULL COMMENT '团购开始时间',
+  `endtime` int(10) unsigned default NULL COMMENT '团购结束时间',
+  `bookcount` int(11) unsigned default '0' COMMENT '预订单数',
+  `content` mediumtext COMMENT '团购内容介绍',
+  `kindlist` varchar(255) default NULL,
+  `attrid` varchar(255) default NULL,
+  `shownum` int(11) unsigned default NULL,
+  `displayorder` int(11) unsigned default '9999',
+  `isjian` int(1) unsigned default '0',
+  `isding` int(1) unsigned default '0',
+  `addtime` int(10) unsigned default NULL,
+  `modtime` int(10) unsigned default NULL,
+  `totalnum` varchar(50) default NULL COMMENT '产品总数量',
+  `virtualnum` varchar(255) default NULL COMMENT '虚拟购买数量',
+  `validdate` varchar(255) default NULL COMMENT '券使用的有效期',
+  `piclist` text,
+  `ishidden` int(1) unsigned default '0',
+  `jifenbook` int(11) default '0',
+  `jifentprice` int(11) default '0',
+  `jifencomment` int(11) default '0',
+  `sellpoint` varchar(255) default NULL COMMENT '卖点',
+  `dingjin` varchar(255) default NULL COMMENT '定金',
+  `paytype` int(1) default '1' COMMENT '支付方式',
+  `themelist` varchar(255) default NULL,
+  `iconlist` varchar(255) default NULL,
+  `supplierlist` varchar(255) default NULL,
+  `templet` varchar(255) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='团购表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_tuan_attr 结构
+DROP TABLE IF EXISTS `sline_tuan_attr`;
+CREATE TABLE IF NOT EXISTS `sline_tuan_attr` (
+  `id` int(11) NOT NULL auto_increment,
+  `webid` int(1) unsigned default '0',
+  `attrname` varchar(255) default NULL COMMENT '分类信息',
+  `displayorder` int(11) default NULL,
+  `isopen` int(1) unsigned default '0',
+  `pid` int(10) default NULL,
+  `issystem` int(1) unsigned default '0',
+  `destid` varchar(255) default NULL,
+  `litpic` varchar(255) default NULL,
+  `description` varchar(255) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='团购属性表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_tuan_booking 结构
+DROP TABLE IF EXISTS `sline_tuan_booking`;
+CREATE TABLE IF NOT EXISTS `sline_tuan_booking` (
+  `id` int(3) NOT NULL auto_increment,
+  `webid` int(3) unsigned NOT NULL default '0',
+  `tuanid` int(11) default NULL,
+  `dingnum` varchar(100) default NULL COMMENT '预订数量',
+  `price` varchar(255) default NULL,
+  `info` varchar(255) default NULL COMMENT '其它备注信息',
+  `dingname` varchar(255) default NULL,
+  `sex` varchar(255) default NULL COMMENT '性别',
+  `dingtel` varchar(255) default NULL COMMENT '预订联系人电话',
+  `addtime` int(10) unsigned default NULL COMMENT '添加时间',
+  `modtime` int(10) unsigned default NULL COMMENT '处理时间',
+  `status` int(1) unsigned default '0' COMMENT '处理状态',
+  `ordersn` varchar(255) default NULL,
+  `email` varchar(255) default NULL,
+  `qq` varchar(255) default NULL,
+  `memberid` int(11) default NULL COMMENT '会员ID',
+  `validdate` varchar(255) default NULL COMMENT '有效期',
+  `ispay` int(1) unsigned default '0',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_tuan_content 结构
+DROP TABLE IF EXISTS `sline_tuan_content`;
+CREATE TABLE IF NOT EXISTS `sline_tuan_content` (
+  `id` int(11) NOT NULL auto_increment,
+  `webid` int(3) default '0',
+  `columnname` varchar(30) default NULL COMMENT '使用的字段名称',
+  `chinesename` varchar(100) default NULL COMMENT '中文显示名称',
+  `displayorder` int(3) default '0' COMMENT '显示顺序',
+  `issystem` int(1) default NULL COMMENT '是否系统字段',
+  `isopen` int(1) default NULL COMMENT '是否使用1，0',
+  `isrealfield` int(1) unsigned default '1' COMMENT '是否真实字段',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='内容分类表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_tuan_extend_field 结构
+DROP TABLE IF EXISTS `sline_tuan_extend_field`;
+CREATE TABLE IF NOT EXISTS `sline_tuan_extend_field` (
+  `id` int(11) NOT NULL auto_increment COMMENT '自增id',
+  `productid` int(11) default NULL COMMENT '产品id',
+  PRIMARY KEY  (`id`),
+  KEY `id` (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='团购字段扩展表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_tuan_kindlist 结构
+DROP TABLE IF EXISTS `sline_tuan_kindlist`;
+CREATE TABLE IF NOT EXISTS `sline_tuan_kindlist` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `kindid` int(11) unsigned NOT NULL default '0',
+  `seotitle` varchar(255) default NULL,
+  `keyword` varchar(255) default NULL,
+  `description` varchar(255) default NULL,
+  `tagword` varchar(255) default NULL,
+  `jieshao` text,
+  `isfinishseo` int(1) unsigned NOT NULL default '0',
+  `displayorder` int(4) unsigned default '9999',
+  `isnav` int(1) unsigned default '0' COMMENT '是否导航',
+  `ishot` int(1) unsigned default '0' COMMENT '是否热门',
+  `shownum` int(8) default NULL,
+  `templetpath` varchar(255) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='ssmall线路分类总表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_user_log 结构
+DROP TABLE IF EXISTS `sline_user_log`;
+CREATE TABLE IF NOT EXISTS `sline_user_log` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `logtime` int(11) unsigned NOT NULL,
+  `uid` int(6) unsigned NOT NULL,
+  `username` char(50) NOT NULL,
+  `loginfo` varchar(100) NOT NULL,
+  `logip` varchar(100) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_visa 结构
+DROP TABLE IF EXISTS `sline_visa`;
+CREATE TABLE IF NOT EXISTS `sline_visa` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `webid` int(11) unsigned default '0',
+  `aid` int(11) unsigned default NULL,
+  `title` varchar(255) default NULL COMMENT '签证名称',
+  `seotitle` varchar(255) default NULL,
+  `sellpoint` varchar(255) default NULL COMMENT '卖点',
+  `keyword` varchar(255) default NULL,
+  `description` varchar(255) default NULL,
+  `tagword` varchar(255) default NULL,
+  `litpic` varchar(255) NOT NULL default '' COMMENT '图片',
+  `visatype` int(2) unsigned default NULL COMMENT '签证类型',
+  `handleday` varchar(255) default NULL COMMENT '办理时间',
+  `validday` varchar(255) default NULL COMMENT '有效时间',
+  `needinterview` int(1) default '0' COMMENT '是否需要面签',
+  `needletter` int(1) unsigned default '0' COMMENT '是否需要邀请函',
+  `price` varchar(255) default NULL COMMENT '网站报价',
+  `marketprice` varchar(255) default NULL COMMENT '市场价',
+  `feeinclude` longtext COMMENT '费用包含',
+  `content` longtext COMMENT '内容介绍',
+  `handlerange` varchar(255) default NULL COMMENT '受理范围',
+  `addtime` int(10) unsigned default NULL,
+  `modtime` int(10) unsigned default NULL,
+  `shownum` int(11) unsigned default NULL,
+  `areaid` varchar(255) default NULL COMMENT '区域id',
+  `nationid` varchar(255) default NULL COMMENT '国家id',
+  `displayorder` int(4) unsigned default '9999',
+  `partday` varchar(255) default NULL COMMENT '停留时间',
+  `acceptday` varchar(255) default NULL COMMENT '受理时间',
+  `handlepeople` varchar(255) default NULL COMMENT '受理人群',
+  `belongconsulate` varchar(255) default NULL COMMENT '所属领事管',
+  `enternum` varchar(255) default NULL COMMENT '入境次数',
+  `specialtip` longtext COMMENT '特别提示',
+  `bookingtip` longtext COMMENT '预定须知',
+  `material1` longtext COMMENT '所需材料-在职人员',
+  `material2` longtext COMMENT '自由职业',
+  `material3` longtext COMMENT '退休人员',
+  `material4` longtext COMMENT '学龄前儿童',
+  `material5` longtext COMMENT '学生',
+  `ishidden` int(1) default '0',
+  `satisfyscore` varchar(255) default NULL,
+  `bookcount` varchar(255) default NULL,
+  `jifenbook` int(11) default NULL,
+  `jifentprice` int(11) default NULL,
+  `jifencomment` int(11) default NULL,
+  `iconlist` varchar(255) default NULL,
+  `themelist` varchar(255) default NULL,
+  `yesjian` varchar(255) default NULL,
+  `supplierlist` varchar(255) default NULL,
+  `templet` varchar(255) default NULL,
+  `cityid` int(11) default NULL,
+  `material` longtext,
+  `booknotice` longtext,
+  `circuit` longtext COMMENT '办理流程',
+  `friendtip` longtext COMMENT '温馨提示',
+  `paytype` int(1) unsigned default '0',
+  `dingjin` varchar(255) default NULL,
+  `number` int(11) default '-1',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_visa_ 结构
+DROP TABLE IF EXISTS `sline_visa_`;
+CREATE TABLE IF NOT EXISTS `sline_visa_` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `webid` int(11) unsigned default '0',
+  `aid` int(11) unsigned default NULL,
+  `title` varchar(255) default NULL COMMENT '签证名称',
+  `seotitle` varchar(255) default NULL,
+  `keyword` varchar(255) default NULL,
+  `description` varchar(255) default NULL,
+  `tagword` varchar(255) default NULL,
+  `litpic` varchar(255) default NULL COMMENT '图片',
+  `visatype` varchar(255) default NULL COMMENT '签证类型',
+  `handleday` varchar(255) default NULL COMMENT '办理时间',
+  `validday` varchar(255) default NULL COMMENT '有效时间',
+  `needinterview` int(1) unsigned default '0' COMMENT '是否需要面签',
+  `needletter` int(1) unsigned default '0' COMMENT '是否需要邀请函',
+  `price` varchar(255) default NULL COMMENT '网站报价',
+  `marketprice` varchar(255) default NULL COMMENT '市场价',
+  `feeinclude` text COMMENT '费用包含',
+  `content` text COMMENT '内容介绍',
+  `handlerange` varchar(255) default NULL COMMENT '受理范围',
+  `addtime` int(10) unsigned default NULL,
+  `modtime` int(10) unsigned default NULL,
+  `shownum` int(11) unsigned default NULL,
+  `areaid` varchar(255) default NULL COMMENT '区域id',
+  `nationid` varchar(255) default NULL COMMENT '国家id',
+  `displayorder` int(4) unsigned default '9999',
+  `partday` varchar(255) default NULL COMMENT '停留时间',
+  `acceptday` varchar(255) default NULL COMMENT '受理时间',
+  `handlepeople` varchar(255) default NULL COMMENT '受理人群',
+  `belongconsulate` varchar(255) default NULL COMMENT '所属领事管',
+  `cityid` int(20) unsigned default NULL COMMENT '签发城市id',
+  `booknotice` text COMMENT '预订须知',
+  `material` text COMMENT '所需材料',
+  `circuit` text,
+  `friendtip` text COMMENT '温馨提示',
+  `dingjin` varchar(255) default NULL COMMENT '定金',
+  `paytype` int(1) default '1' COMMENT '支付方式',
+  `material1` text,
+  `material2` text,
+  `material3` text,
+  `material4` text,
+  `material5` text,
+  `ishidden` tinyint(4) default '0',
+  `satisfyscore` varchar(255) default NULL,
+  `bookcount` varchar(255) default NULL,
+  `jifenbook` int(11) default NULL,
+  `jifentprice` int(11) default NULL,
+  `jifencomment` int(11) default NULL,
+  `iconlist` varchar(255) default NULL,
+  `themelist` varchar(255) default NULL,
+  `yesjian` varchar(255) default NULL,
+  `supplierlist` varchar(255) default NULL,
+  `templet` varchar(255) default NULL,
+  `specialtip` text,
+  `enternum` int(11) default NULL COMMENT '入境次数',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_visa_area 结构
+DROP TABLE IF EXISTS `sline_visa_area`;
+CREATE TABLE IF NOT EXISTS `sline_visa_area` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `webid` int(2) unsigned default '0',
+  `pid` int(4) unsigned default NULL,
+  `kindname` varchar(255) default NULL,
+  `displayorder` int(4) unsigned default '9999',
+  `isopen` int(1) unsigned default '1',
+  `litpic` varchar(255) default NULL COMMENT '国家封面图片',
+  `bigpic` varchar(255) default NULL COMMENT '国家栏目页顶部图片',
+  `countrypic` varchar(255) default NULL COMMENT '国家国旗',
+  `jieshao` text COMMENT '国家介绍',
+  `pinyin` varchar(255) default NULL COMMENT '国家拼音',
+  `seotitle` varchar(255) default NULL COMMENT '优化标题',
+  `keyword` varchar(255) default NULL COMMENT '关键词',
+  `description` varchar(255) default NULL COMMENT '描述',
+  `ishot` int(1) default '0' COMMENT '是否热门',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_visa_booking 结构
+DROP TABLE IF EXISTS `sline_visa_booking`;
+CREATE TABLE IF NOT EXISTS `sline_visa_booking` (
+  `id` int(3) NOT NULL auto_increment,
+  `webid` int(11) unsigned default '0',
+  `visaid` int(11) NOT NULL,
+  `visaname` varchar(255) default NULL COMMENT '酒店名称',
+  `dingnum` varchar(100) default NULL COMMENT '预订数量',
+  `price` varchar(255) default NULL,
+  `info` varchar(255) default NULL COMMENT '其它备注信息',
+  `dingname` varchar(255) default NULL,
+  `dingtel` varchar(255) default NULL COMMENT '预订联系人电话',
+  `addtime` int(10) unsigned default NULL COMMENT '添加时间',
+  `modtime` int(10) unsigned default NULL COMMENT '处理时间',
+  `status` int(1) unsigned default NULL COMMENT '处理状态',
+  `ordersn` varchar(255) default NULL,
+  `bianhao` varchar(255) default NULL,
+  `email` varchar(255) default NULL,
+  `qq` varchar(255) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_visa_city 结构
+DROP TABLE IF EXISTS `sline_visa_city`;
+CREATE TABLE IF NOT EXISTS `sline_visa_city` (
+  `id` int(11) NOT NULL auto_increment,
+  `kindname` varchar(255) default NULL COMMENT '签证类型',
+  `displayorder` int(4) unsigned default '9999',
+  `isopen` int(1) unsigned default '0',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_visa_content 结构
+DROP TABLE IF EXISTS `sline_visa_content`;
+CREATE TABLE IF NOT EXISTS `sline_visa_content` (
+  `id` int(11) NOT NULL auto_increment,
+  `webid` int(3) default '0',
+  `columnname` varchar(30) default NULL COMMENT '使用的字段名称',
+  `chinesename` varchar(100) default NULL COMMENT '中文显示名称',
+  `displayorder` int(3) default '0' COMMENT '显示顺序',
+  `issystem` int(1) default NULL COMMENT '是否系统字段',
+  `isopen` int(1) default NULL COMMENT '是否使用1，0',
+  `isrealfield` int(1) unsigned default '1' COMMENT '是否真实字段',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='内容分类表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_visa_extend_field 结构
+DROP TABLE IF EXISTS `sline_visa_extend_field`;
+CREATE TABLE IF NOT EXISTS `sline_visa_extend_field` (
+  `id` int(11) NOT NULL auto_increment COMMENT '自增id',
+  `productid` int(11) default NULL COMMENT '产品id',
+  PRIMARY KEY  (`id`),
+  KEY `id` (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='签证字段扩展表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_visa_kind 结构
+DROP TABLE IF EXISTS `sline_visa_kind`;
+CREATE TABLE IF NOT EXISTS `sline_visa_kind` (
+  `id` int(11) NOT NULL auto_increment,
+  `kindname` varchar(255) default NULL COMMENT '签证类型',
+  `displayorder` int(4) unsigned default '9999',
+  `isopen` int(1) unsigned default '0',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_weblist 结构
+DROP TABLE IF EXISTS `sline_weblist`;
+CREATE TABLE IF NOT EXISTS `sline_weblist` (
+  `id` int(11) NOT NULL auto_increment,
+  `webname` varchar(255) default NULL COMMENT '网站名称',
+  `weburl` varchar(255) default NULL COMMENT '网站地址',
+  `webid` int(11) default NULL,
+  `webroot` varchar(255) default NULL,
+  `webprefix` varchar(255) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='sline网站列表';
+
+
+
+
+-- 导出  表 www_standsmore_com.sline_yqlj 结构
+DROP TABLE IF EXISTS `sline_yqlj`;
+CREATE TABLE IF NOT EXISTS `sline_yqlj` (
+  `id` int(10) NOT NULL auto_increment,
+  `webid` int(2) unsigned default '1',
+  `sitename` varchar(50) default NULL COMMENT '网站名字',
+  `siteurl` varchar(255) default NULL COMMENT '链接地址',
+  `addtime` int(10) unsigned default NULL COMMENT '添加时间',
+  `address` varchar(50) default NULL COMMENT '显示栏目',
+  `displayorder` int(11) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='友情链接';
+
+

@@ -1,0 +1,120 @@
+  {sline:php}Helper_Archive::getUserCss('donghead/css/header.css');{/sline:php}
+  
+  <!-- logo and search开始 -->
+  <div class="big top_border">
+    <div class="width_1210">
+      {sline:logo}
+          <div class="logo"><a href="{sline:global.cfg_logourl/}"><img src="{sline:global.cfg_logo/}" alt="{sline:global.cfg_logotitle/}" title="{sline:global.cfg_logotitle/}" class="fl"/></a></div>
+      {/sline:logo}
+
+      <div class="menu">
+          <div class="search_pub">
+          <span class="pub_sou">
+           <input class="sar_text g_search" type="text" name="" value="" placeholder="搜索导游" />
+           <input class="sar_btn cloud_search" type="button" name="" />
+
+          </span>
+              <span class="pub_login" id="pub_login"></span>
+              <!--<span class="pub_phone">{sline:global.cfg_phone/}</span>-->
+          </div>
+        
+        <div class="main_nav_list">
+          <ul>
+            <li><a href="{sline:global.cfg_basehost/}{sline:global.cfg_cmsurl/}/">{sline:global.cfg_indexname/}</a></li>
+             {sline:channel type='top'}
+              <li><a href="[field:typelink/]"
+               [field:linktitle runphp='yes']if(@me!=""){@me="title=\"".@me."\"";}[/field:linktitle]>
+               [field:kind runphp='yes']
+                 if(@me==1)
+                   {
+                    @me='<s class="ico_new"></s>';
+                   }
+                  else if(@me==2)
+                   {
+                    @me='<s class="ico_hot"></s>';
+                   }
+                  else
+                   {
+                    @me='';
+                   }
+               [/field:kind]
+             [field:typename/]</a></li>
+            {/sline:channel}
+          </ul>
+        </div>
+      </div>
+    
+    </div>
+  </div>
+  <!-- 导航结束 -->
+ <script language="javascript">
+  var siteUrl = '{sline:global.cfg_basehost/}{sline:global.cfg_cmsurl/}/';
+  $(function(){
+      
+    //导航的选中状态
+     $(".nav .menu a").each(function(){
+                var url= window.location.href;
+
+
+                url=url.replace('index.php','');
+                url=url.replace('index.html','');
+                var ulink=$(this).attr("href");
+                if(url==ulink)
+                {
+                   $(this).addClass('active');
+                   $(this).prev().addClass('bnone');
+                }
+      })
+     
+
+    //用户登陆状态
+    $.ajax({
+    type: "POST",
+    url: "{sline:global.cfg_cmsurl/}/ajax/ajax_login_dong.php",
+    data: "dopost=LoginStatus",
+    success: function(data){
+      $('#pub_login').html(data);
+            
+
+    }
+     });
+
+      //搜索框事件
+     $(".g_search").focusEffect();
+     
+     //云搜索点击
+     $(".cloud_search").click(function(){
+        var keyword = $(".g_search").val();
+      var def = $(".g_search").attr('datadef');
+      if(keyword=='' || keyword == def){
+          $(".g_search").focus();
+      }
+      else{
+         var searchUrl = siteUrl+'cloudsearch.php?keyword='+keyword;
+       window.open(searchUrl);
+      }
+     
+     })
+
+    hoverCssChange();
+
+
+  })
+
+  function hoverCssChange()
+  {
+      //指向样式
+      $(".bor_bag").mouseover(function(){
+          $(this).css({"background":"#fff","border-left":"1px solid #e6e5e5","border-right":"1px solid #e6e5e5"})
+          $(this).children(".web_nav_ico").css("background","#fff")
+      })
+      $(".bor_bag").mouseout(function(){
+          $(this).css({"background":"none","border-left":"1px solid #f1f1f1","border-right":"1px solid #f1f1f1"});
+          $(this).children(".web_nav_ico").css("background","#f1f1f1");
+      })
+
+  }
+
+  
+  
+</script>

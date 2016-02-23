@@ -1,0 +1,110 @@
+@charset "utf-8";
+.top_border{
+	border-top:3px solid #b3087a}
+.logo{
+	float:left;
+	padding:20px 0}
+.menu{
+	float:right;
+	width:800px}
+.search_pub{
+	float:right;
+	padding-top:20px}
+.pub_sou{
+	float:left;
+	margin-left:20px}
+.pub_sou .sar_text{
+	float:left;
+	width:140px;
+	height:24px;
+	line-height:24px;
+	border:1px solid #b3087a;
+	border-right:0;
+	border-top-left-radius:3px;
+	border-bottom-left-radius:3px;
+	font-family:"微软雅黑";
+	font-size:14px}
+.pub_sou .sar_btn{
+	float:left;
+	width:34px;
+	height:26px;
+	cursor:pointer;
+	border:1px solid #b3087a;
+	border-left:0;
+	border-top-right-radius:3px;
+	border-bottom-right-radius:3px;
+	background:url(../images/home-bg-ico.png) no-repeat 7px -23px}
+.search_pub .pub_login{
+	float:left;
+	height:26px;
+	line-height:26px;
+	font-size:14px;
+	padding-left:30px;
+	margin-left:20px;
+	background:url(../images/home-bg-ico.png) no-repeat 0 -105px}
+.search_pub .pub_login a{
+	float:left;
+	height:26px;
+	line-height:26px;
+	padding:0 5px}
+.search_pub .pub_login s{
+	float:left;}
+.search_pub .pub_phone{
+	float:left;
+	height:26px;
+	line-height:26px;
+	font-size:14px;
+	margin-left:20px;
+	padding-left:33px;
+	background:url(../images/home-bg-ico.png) no-repeat 0 bottom}
+.main_nav_list{
+	float:right;
+	height:60px;
+	line-height:60px}
+.main_nav_list ul{
+	float:left;}
+.main_nav_list ul li{
+	float:left;}
+.main_nav_list ul li a{
+	float:left;
+	color:#b3087a;
+	padding:0 15px;
+	font-size:16px}
+.main_nav_list ul li a.active,
+.main_nav_list ul li a:hover{
+	font-weight:bold;
+	background:url(../images/active-bg.png) bottom center no-repeat}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

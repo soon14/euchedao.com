@@ -1,0 +1,227 @@
+{sline:php}Helper_Archive::getUserCss('dongfoot/css/footer.css');{/sline:php}
+<!-- 底部介绍开始 -->
+  <div class="big">
+    <div class="width_1210">
+      <div class="footer">
+
+
+
+
+
+
+        <div class="foot_menu">
+          {sline:serverlist}
+              <a href="[field:url/]" rel="nofollow">[field:servername/]<s>|</s></a>
+          {/sline:serverlist}
+         
+       
+        </div>
+
+        <div class="foot_con">
+          <p>{sline:global.cfg_footer/}{sline:global.cfg_html_kefu/}</p>
+          <p>{sline:global.cfg_tongjicode function=stripslashes(@me)/}</p>
+          <p>{sline:global.cfg_beian/}</p>
+          <p>技术支持:<a id='tecsupport' href="{sline:kkkk runphp='yes'}
+              global $typeid;
+              if(empty($typeid)||$typeid==0)
+              @me="http://www.euchedao.com/servers/index_1.html";
+              else 
+              @me='javascript:;';
+              {/sline:kkkk}">{sline:id runphp='yes'}
+              global $typeid;
+              if(empty($typeid)||$typeid==0)
+              @me="WIDESPACE INNOVATION & 欧洲小车导游之家科技";
+              else 
+              @me='WIDESPACE INNOVATION& 欧洲小车导游之家科技';
+              {/sline:id}</a></p>
+
+        </div>
+        <div class="foot_img">
+             {sline:licenselist}
+        	   <a href="[field:picurl/]" target="_blank"><img src="[field:litpic/]" alt="[field:title/]" title="[field:title/]" /></a>
+             {/sline:licenselist}
+        	
+        </div>
+      </div>
+
+
+
+
+
+
+<!--<div class="deanfooter">-->
+    <!--<div class="w1180">-->
+        <!--<div class="deanftleftpart">-->
+            <!--<div class="deanftlogo"><img src="$_G['style'][styleimgdir]/ftlogo.png" /></div>-->
+            <!--<div class="deanftwz"><img src="$_G['style'][styleimgdir]/ftwz.png" /></div>-->
+            <!--<div class="deansearch">&lt;!&ndash;{subtemplate common/pubsearchform}&ndash;&gt;</div>-->
+            <!--<div class="clear"></div>-->
+            <!--<div class="deanguanzhu">-->
+                <!--<a class="deanqq" href="#" target="_blank"></a>-->
+                <!--<a class="deanweibo" href="#" target="_blank"></a>-->
+                <!--<a class="deanwangwang" href="#" target="_blank"></a>-->
+                <!--<a class="deanemail" href="#" target="_blank"></a>-->
+                <!--<a class="deanerweima" href="#" target="_blank"><img src="$_G['style'][styleimgdir]/weixinma.png" /></a>-->
+                <!--<div class="clear"></div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="deanftcontacts">-->
+            <!--<h5>联系我们</h5>-->
+            <!--<p>企业电话：4000-88-2020</p>-->
+            <!--<p>服务QQ：3276498637</p>-->
+            <!--<p>服务时间：9:30-23:30</p>-->
+            <!--<p>协会地址：</p>-->
+            <!--<p>商务合作 Business Contact</p>-->
+            <!--<p><a href="#" target="_blank">3276498637@qq.com</a></p>-->
+        <!--</div>-->
+        <!--<div class="deanftrightpart">-->
+            <!--<ul>-->
+                <!--<li>-->
+                    <!--<h5>欧洲车导协会户外旅游</h5>-->
+                    <!--<p><a href="#" target="_blank">赞</a></p>-->
+                    <!--<p><a href="#" target="_blank">免费体验</a></p>-->
+                    <!--<p><a href="#" target="_blank">预订流程</a></p>-->
+                    <!--<p><a href="#" target="_blank">出发提醒</a></p>-->
+                    <!--<p><a href="#" target="_blank">保险计划</a></p>-->
+                    <!--<p><a href="#" target="_blank">签证</a></p>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<h5>发现我们</h5>-->
+                    <!--<p><a href="#" target="_blank">天猫商城</a></p>-->
+                    <!--<p><a href="#" target="_blank">我的淘宝</a></p>-->
+                    <!--<p><a href="#" target="_blank">大众点评</a></p>-->
+                    <!--<p><a href="#" target="_blank">出发提醒</a></p>-->
+                    <!--<p><a href="#" target="_blank">优酷视频</a></p>-->
+                    <!--<p><a href="#" target="_blank">去哪儿</a></p>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<h5>关于我们</h5>-->
+                    <!--<p><a href="#" target="_blank">关于我们</a></p>-->
+                    <!--<p><a href="#" target="_blank">加入我们</a></p>-->
+                    <!--<p><a href="#" target="_blank">联系我们</a></p>-->
+                    <!--<p><a href="#" target="_blank">免责声明</a></p>-->
+                    <!--<p><a href="#" target="_blank">旅游经营许可证</a></p>-->
+                <!--</li>-->
+                <!--<div class="clear"></div>-->
+            <!--</ul>-->
+
+        <!--</div>-->
+        <!--<div class="clear"></div>-->
+        <!--<div class="deanyl" style="border-top:1px solid #f3f3f3; padding-top:20px;margin-top: 20px;">-->
+            <!--<span>合作伙伴：</span>-->
+            <!--<ul>-->
+                <!--<li>-->
+                    <!--<a href="#" target="_blank">网易科技</a>-->
+                    <!--<a href="#" target="_blank">TechWeb</a>-->
+                    <!--<a href="#" target="_blank">凤凰科技</a>-->
+                    <!--<a href="#" target="_blank">环球旅讯</a>-->
+                    <!--<a href="#" target="_blank">劲旅网</a>-->
+                    <!--<a href="#" target="_blank">赛迪网</a>-->
+                    <!--<a href="#" target="_blank">旅业网</a>-->
+                    <!--<a href="#" target="_blank">速途网</a>-->
+                    <!--<a href="#" target="_blank">新华网</a>-->
+                    <!--<a href="#" target="_blank">中国经济网</a>-->
+                    <!--<div class="clear"></div>-->
+                <!--</li>-->
+            <!--</ul>-->
+        <!--</div>-->
+        <!--<div class="clear"></div>-->
+        <!--<div class="deanyl">-->
+            <!--<span>友情链接：</span>-->
+            <!--<ul>-->
+                <!--<li>-->
+                    <!--<a href="#" target="_blank">聚客湾旅游网</a>-->
+                    <!--<a href="#" target="_blank">户外论坛</a>-->
+                    <!--<a href="#" target="_blank">澳大利亚旅游</a>-->
+                    <!--<a href="#" target="_blank">美国旅游</a>-->
+                    <!--<a href="#" target="_blank">美图秀秀官网</a>-->
+                    <!--<a href="#" target="_blank">海外民宿短租</a>-->
+                    <!--<a href="#" target="_blank">陕西旅游网</a>-->
+                    <!--<a href="#" target="_blank">广州国际航班</a>-->
+                    <!--<a href="#" target="_blank">海涛旅游</a>-->
+                    <!--<a href="#" target="_blank">火车票预售期</a>-->
+                    <!--<a href="#" target="_blank">猎聘网</a>-->
+                    <!--<a href="#" target="_blank">碧桂园十里银滩</a>-->
+                    <!--<a href="#" target="_blank">西安旅行社</a>-->
+                    <!--<a href="#" target="_blank">北京婚纱摄影</a>-->
+                    <!--<a href="#" target="_blank">蚂蜂窝</a>-->
+                    <!--<a href="#" target="_blank">中国经济网旅游</a>-->
+                    <!--<a href="#" target="_blank">北京酒店</a>-->
+                    <!--<a href="#" target="_blank">三亚旅游</a>-->
+                    <!--<a href="#" target="_blank">天巡网</a>-->
+                    <!--<a href="#" target="_blank">携程和讯旅游</a>-->
+                    <!--<div class="clear"></div>-->
+                <!--</li>-->
+            <!--</ul>-->
+        <!--</div>-->
+        <!--<div class="clear"></div>-->
+        <!--<div class="deanwebinfo">-->
+
+            <!--<div class="deanwil">-->
+                <!--&lt;!&ndash;{if $_G['setting']['site_qq']}&ndash;&gt;<a href="http://wpa.qq.com/msgrd?V=3&Uin=$_G['setting']['site_qq']&Site=$_G['setting']['bbname']&Menu=yes&from=discuz" target="_blank" title="QQ"><img src="{IMGDIR}/site_qq.jpg" alt="QQ" /></a><span class="pipe">|</span>&lt;!&ndash;{/if}&ndash;&gt;-->
+                <!--&lt;!&ndash;{loop $_G['setting']['footernavs'] $nav}&ndash;&gt;&lt;!&ndash;{if $nav['available'] && ($nav['type'] && (!$nav['level'] || ($nav['level'] == 1 && $_G['uid']) || ($nav['level'] == 2 && $_G['adminid'] > 0) || ($nav['level'] == 3 && $_G['adminid'] == 1)) ||-->
+						<!--!$nav['type'] && ($nav['id'] == 'stat' && $_G['group']['allowstatdata'] || $nav['id'] == 'report' && $_G['uid'] || $nav['id'] == 'archiver' || $nav['id'] == 'mobile' || $nav['id'] == 'darkroom'))}&ndash;&gt;$nav[code]<span class="pipe">|</span>&lt;!&ndash;{/if}&ndash;&gt;&lt;!&ndash;{/loop}&ndash;&gt;-->
+                <!--<a href="$_G['setting']['siteurl']" target="_blank">$_G['setting']['sitename']</a>-->
+                <!--&lt;!&ndash;{if $_G['setting']['icp']}&ndash;&gt;( <a href="http://www.miitbeian.gov.cn/" target="_blank">$_G['setting']['icp']</a> )&lt;!&ndash;{/if}&ndash;&gt;-->
+                <!--&lt;!&ndash;{hook/global_footerlink}&ndash;&gt;-->
+                <!--&lt;!&ndash;{if $_G['setting']['statcode']}&ndash;&gt;$_G['setting']['statcode']&lt;!&ndash;{/if}&ndash;&gt;-->
+            <!--</div>-->
+            <!--<div class="deanwir">-->
+                <!--Powered by <a href="http://www.discuz.net" target="_blank">Discuz!</a> <em>$_G['setting']['version']</em>&lt;!&ndash;{if !empty($_G['setting']['boardlicensed'])}&ndash;&gt; <a href="http://license.comsenz.com/?pid=1&host=$_SERVER[HTTP_HOST]" target="_blank">Licensed</a>&lt;!&ndash;{/if}&ndash;&gt;&copy; 2001-2013 <a href="http://www.comsenz.com" target="_blank">Comsenz Inc.</a>网站备案/许可证编号:沪ICP备12004513号; L-SH-CJ00061-->
+
+            <!--</div>-->
+
+            <!--<div class="deanwebinfoc">新ICP备13003249号 增值电信业务经营性许可证编号：新B2-20140005 旅行社业务许可证 L-XB00109     欧洲车导网旅游网络科技（北京）有限公司</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+<!--</div>-->
+
+
+
+
+    </div>
+  </div>
+
+
+
+<script>
+$(function(){
+	$('#roll').hide();
+	$(window).scroll(function() {
+		if($(window).scrollTop() >= 100){
+			$('#roll').fadeIn(400);
+    }
+    else
+    {
+    	$('#roll').fadeOut(200);
+    }
+  });
+  $('#roll_top').click(function(){$('html,body').animate({scrollTop: '0px'}, 800);});
+});
+</script>
+<style type="text/css">
+#roll_top{
+	position:relative;
+	cursor:pointer;
+	height:53px;
+	width:54px;
+	}
+#roll_top {
+	background:url(/templets/smore/images/top.png) no-repeat 0px -64px;
+	}
+#roll_top:hover { background-position:0px 0px;}
+#roll {
+	display:none;
+	width:54px;
+	position:fixed;
+	right:30px;
+	bottom:30px;
+	_position:absolute;
+	_margin-top:300px;
+	_top:expression(eval(document.documentElement.scrollTop));
+	}
+</style>
+<div id="roll"><div title="回到顶部" id="roll_top"></div></div>  
+<script src="/qqkefu/qqkefu.js"></script>
+<!-- 底部介绍结束 -->

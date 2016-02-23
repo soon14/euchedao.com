@@ -1,0 +1,173 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>{sline:field.pageno/}{sline:field.searchtitle/}-{sline:global.cfg_webname/}</title>
+{sline:field.seokeyword/}
+{sline:field.seodescription/}
+<meta name="author" content="{sline:global.cfg_webname/}" />
+
+{sline:php}Helper_Archive::getScript('jquery-1.8.3.min.js,common.js,spot.search.js');{/sline:php}
+
+
+{sline:php}Helper_Archive::getUserCss('spot_search_WS/css/base.css,spot_search_WS/css/ticket.css');{/sline:php}
+
+
+
+</head>
+
+<body>
+  {sline:include file='public/header.htm'/}
+  
+  <!-- 中间内容开始 -->
+  <div class="big">
+  	<div class="width_1210">
+    	<!-- 面包屑and订单开始 -->
+    	<div class="top_first">
+      		<div class="crumbs"><a href="{sline:global.cfg_basehost/}">{sline:global.cfg_indexname/}</a> » <a href="{sline:global.cfg_cmsurl/}/spots/">{sline:field.typename/}</a>{sline:field.pkname/}</div>
+        {sline:include file='public/scroll_order.htm'/}
+      </div>
+      <!-- 面包屑and订单结束 -->
+      
+      <!--顶部介绍开始-->
+      <div class="hotel_top_menu">
+        <h1><span>{sline:field.dest_name/}探索当地，景点，风土，人文，购物，美食</span><s></s></h1>
+
+      </div>
+   
+      <!--顶部介绍结束-->
+    
+      <!--边栏开始-->
+    	<div class="line_con_rig">
+
+           {sline:getrightcontent pagename='search'/}
+        
+      </div>
+      <!--边栏结束-->
+      
+      <div class="ticket_con_rig">
+      	<!--隐藏栏目介绍开始-->
+      	  <div class="sm_txt" style="{sline:field.dest_jieshao runphp='yes'} if(!empty(@me)) @me='display:block'; else @me='';{/sline:field.dest_jieshao}">
+      		  {sline:field.dest_jieshao/}
+     	  </div>
+        <!--隐藏栏目介绍结束-->
+
+
+        
+        <!--搜索条件开始-->
+      	<div class="serach_menu">
+        	<div class="search_bt"><span>{sline:field.searchname/}</span>  </div>
+
+                <dl>
+                <dt>目的地：</dt>
+                <dd id="destid_list">
+                  <span class="sp_1"><a href="{sline:global.dest_id function=getSearchUrl(0,'dest_id')/}" data-field="destid" data-value="0" >全部</a></span>
+                  <span class="sp_2">
+                    {sline:vlist name='destlist'}
+                     <a href="[field:id function=getSearchUrl(@me,'dest_id')/]" data-field="destid" data-value="[field:id/]" >[field:kindname/]</a>
+                    {/sline:vlist}
+                    
+                  </span>
+                </dd>
+              </dl>
+
+          {sline:attrgrouplist typeid='5'}
+            <dl>
+              <dt>{sline:field.groupname/}：</dt>
+              <dd class="attr_list">
+                <span class="sp_1"><a class="on" href="{sline:field.attrid function=getSearchUrl(null,null,@me)/}" data-field="attrid" data-value="0">全部</a></span>
+                <span class="sp_2">
+                   {sline:getattrbygroup}
+                      <a href="[field:attrid function=getSearchUrl(@me,'attrid')/]"  data-field="attrid" data-value="[field:attrid/]">[field:title/]</a>
+                   {/sline:getattrbygroup}
+                   
+                </span>
+              </dd>
+            </dl>
+          {/sline:attrgrouplist}
+
+          
+          
+        </div>
+        <!--搜索条件结束-->
+        
+
+        <!--搜索排序导航结束-->
+        
+        <!--搜索列表内容开始-->
+        <div class="rig_list_con">
+           {sline:list}
+        	<div class="list_ticket">
+          	 <div class="base_describe">
+            	<div class="des_img"><a class="fl" href="[field:url/]"  target="_blank"><img class="fl" src="[field:lit240/]"  alt="[field:spotname/]" title="[field:spotname/]" /></a></div>
+              <div class="des_txt">
+              	<h3><a href="[field:url/]">[field:spotname/]</a></h3>
+                <p>[field:sellpoint function="cutstr_html(@me,60)"/] </p>
+          
+
+
+                
+              </div>
+            
+             </div>
+             <div id="ticket_list_[field:id/]" class="spot_ticket_list" data-id="[field:id/]">
+              
+             </div>
+            </div>
+           {/sline:list}
+          
+        </div>
+        <!--搜索列表内容结束-->
+        
+        <!--分页代码样式开始-->
+        <div class="main_mod_page clear">
+           {sline:pagelist isstatic='1'/}
+        </div>
+        <div style="clear:both"></div>
+        <!--分页代码样式结束-->
+        
+      </div>
+
+ 	<!--热卖开始-->
+      	<div class="hot_time">
+        	<h3>热门的景点 人文 美食</h3>
+          {sline:getspotlist type='mdd' flag='recommend' row='6'}
+           <div class="tj_box">
+          	<div class="tj_img"><a class="fl" href="[field:url/]" target="_blank"><img class="fl" src="[field:lit160/]" width="150" height="auto" alt="[field:title/]" /></a></div>
+            <div class="tj_txt"><a href="[field:url/]" target="_blank">[field:title/]</a>
+
+
+ <span>[field:sellpoint function="cutstr_html(@me,20)"/] </span>
+</div>
+          
+          </div>
+          {/sline:getspotlist}
+        </div>
+        <!--热卖结束-->
+
+
+
+      
+    </div>
+  </div>
+  <!-- 中间内容结束 -->
+  
+
+     
+
+    {sline:include file='public/help.htm'/}
+  
+  {sline:include file='public/footer.htm'/}
+ <!--隐藏域-->
+  <input type="hidden" id="destid" value="{sline:global.dest_id/}"/>
+  <input type="hidden" id="attrid" value="{sline:global.attrid/}"/>
+  <input type="hidden" id="priceid" value="{sline:global.priceid/}"/>
+  <input type="hidden" id="sorttype" value="{sline:global.sorttype/}"/>
+  <input type="hidden" id="keyword" value="{sline:global.keyword/}"/>
+  <input type="hidden" id="pinyin" value="{sline:field.pinyin/}"/>
+
+
+
+
+</body>
+</html>

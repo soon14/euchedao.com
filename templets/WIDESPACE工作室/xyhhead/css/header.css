@@ -1,0 +1,283 @@
+@charset "utf-8";
+/* 公用顶部 */
+.top_1210{
+	width:1210px;
+	margin:0 auto}
+.top_mt{
+	float:left;
+	width:1210px;
+	position:relative}	
+.logo{
+	float:left;
+	padding:20px 0}	
+.all_search{
+	float:right;
+	width:800px;
+	position:absolute;
+	top:50%;
+	right:0;
+	margin-top:-16px}
+.top_search{
+	float:left;
+	width:550px}
+.top {
+	float:left;
+	height:32px;
+	line-height:32px;
+	width:100%;
+	background:#f1f1f1}
+.top ul {
+	width:1210px;
+	height:32px;
+	margin:auto;
+	position:relative}
+.top ul li.txt{
+	width:580px;
+	height:32px;
+	overflow:hidden;
+	text-overflow:ellipsis}
+.top ul li a {
+	color:#666;
+	display:inline-block;
+	margin-left:10px}
+.top ul li a:hover {
+	color:#f60}
+.top ul li .my-booking{
+	display:inline-block;
+	position:relative;
+	width:85px;
+	text-align:center;
+	border-left:1px solid #f1f1f1;
+	border-right:1px solid #f1f1f1}	
+.top ul li .my-booking .mb-a{
+	display:block;
+	margin-left:0}
+.top ul li .my-booking .mb-hide{
+	display:none;
+	position:absolute;
+	left:-1px;
+	top:32px;
+	width:85px;
+	background:#fff;
+	border:1px solid #e6e5e5;
+	border-top:0;
+	z-index:9}
+.top ul li .my-booking .mb-hide a{
+	display:block;
+	width:75px;
+	height:28px;
+	line-height:28px;
+	margin-left:0;
+	padding:0 5px;
+	text-align:left;
+	border-top:1px solid #e6e5e5}
+.top ul li .my-booking .mb-hide a.bk_ico1 s{
+	float:left;
+	display:inline-block;
+	width:12px;
+	height:12px;
+	margin:8px 5px 0 0;
+	background:url(../images/booking_ico1.gif) left no-repeat}
+.top ul li .my-booking .mb-hide a.bk_ico2 s{
+	float:left;
+	display:inline-block;
+	width:12px;
+	height:12px;
+	margin:8px 5px 0 0;
+	background:url(../images/booking_ico2.gif) left no-repeat}
+.top ul li .my-booking .mb-hide a.bk_ico3 s{
+	float:left;
+	display:inline-block;
+	width:12px;
+	height:12px;
+	margin:8px 5px 0 0;
+	background:url(../images/booking_ico3.gif) left no-repeat}
+.top ul li a.wb_ico{
+	padding-left:20px;
+	background:url(../images/weibo_ico.png) left no-repeat}
+.top ul li a.wx_ico{
+	padding-left:20px;
+	background:url(../images/weixin_ico.png) left no-repeat}
+.top ul li a.web_nav_ico{
+	padding-left:10px;
+	padding-right:10px;
+	margin:0;
+	position:relative;
+	z-index:99999}
+.top ul li a.web_nav_ico s{
+	float:left;
+	width:10px;
+	height:10px;
+	margin:11px 5px 0 0;
+	background:url(../images/web_nav_ico.png) left no-repeat}
+.wx_img{
+	display:none;
+	width:143px;
+	height:176px;
+	position:absolute;
+	top:32px;
+	right:40px;
+	z-index:9999;
+	background:url(../images/sao_wx_bg.png) left no-repeat}
+.wx_img p{
+	width:124px;
+	height:125px;
+	overflow:hidden;
+	margin:15px 0 0 10px}
+.w_nav_map{
+	display:none;
+	position:absolute;
+	top:31px;
+	right:0;
+	z-index:9999;
+	border:1px solid #e6e5e5;
+	width:148px;
+	background:#fff}
+.w_nav_map a{
+	width:60px;}
+.top_web_map{
+	display:inline-block;
+	border-left:1px solid #f1f1f1;
+	border-right:1px solid #f1f1f1}
+.s_txt{
+	float:left;
+	width:400px;
+	height:28px;
+	line-height:28px;
+	color:#ccc;
+	font-family:"微软雅黑";
+	border:2px solid #9B7338;
+	border-right:0;
+	border-left:0}
+.top_search s{
+	float:left;
+	display:block;
+	width:14px;
+	height:14px;
+	padding:7px;
+	border:2px solid #9B7338;
+	border-right:0}
+.s_btn{
+	float:left;
+	width:66px;
+	height:32px;
+	line-height:32px;
+	border:0;
+	cursor:pointer;
+	color:#fff;
+	font-family:"微软雅黑";
+	font-size:14px;
+	background:#5A3908}
+.searcg_hot{
+	float:left;
+	width:400px;
+	padding-top:10px;
+	overflow:hidden}
+.searcg_hot span{
+	float:left;
+	color:#555}
+.searcg_hot a{
+	float:left;
+	color:#555;
+	margin-right:10px}
+.more_zx{
+	float:right}
+.more_zx a{
+	float:left;
+	color:#a0a0a0;
+	height:32px;
+	line-height:32px;
+	padding:0 20px 0 30px;
+	margin-left:10px;
+	text-align:center;
+	font-family:"微软雅黑";
+	font-size:14px;
+	background:url(../images/ico01.png) no-repeat #f1f1f1}
+.more_zx a.hdj_ico{
+	background-position:10px -77px}
+.more_zx a.dd_ico{
+	background-position:10px -107px}
+.h_phone_num{
+	float:right;
+	width:160px;
+	height:46px;
+	padding:10px 0 0 70px;
+	background:url(../images/24hour.png) left no-repeat}
+.h_phone_num span{
+	float:left;
+	color:#555;
+	width:160px;
+	height:20px;}
+.h_phone_num p{
+	float:left;
+	color:#356cd2;
+	width:160px;
+	font-size:18px;
+	font-family:Arial}
+.nav{
+	float:left;
+	width:100%;
+	height:40px;
+	position:relative;
+	background:#9B7338;}
+.menu{
+	position:relative;
+	margin:0 auto;
+	width:1210px;
+	height:40px;
+	line-height:40px}
+.menu a{
+	float:left;
+	color:#fff;
+	height:40px;
+	line-height:40px;
+	padding:0 45px;
+	font-size:21px;
+border-right:1px dashed #fff;
+font-family:heiti;
+
+}
+.menu a.active,
+.menu a:hover{
+	color:#fff;
+	background:#9B7338;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

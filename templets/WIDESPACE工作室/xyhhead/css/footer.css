@@ -1,0 +1,87 @@
+@charset "utf-8";
+/* 品质保证 */
+.character{
+	float:left;
+	width:1210px;
+	height:40px;
+	padding:10px 0;
+	margin-top:20px;
+	background:#fff}
+.character ul{
+	float:left;
+	width:1210px;}
+.character ul li{
+	float:left;
+	color:#7d7d7d;
+	width:171px;
+	height:40px;
+	line-height:40px;
+	padding-left:70px;
+	font-size:14px;
+	border-right:1px solid #ededed;
+	background:url(../images/ico02.png) no-repeat}
+.character ul li.ico01{
+	background-position:45px 5px}
+.character ul li.ico02{
+	background-position:40px -50px}
+.character ul li.ico03{
+	background-position:35px -105px}
+.character ul li.ico04{
+	background-position:40px -165px}
+.character ul li.ico05{
+	border:0;
+	background-position:45px -215px}
+/* 友情链接 */
+.link{
+	float:left;
+	width:1210px;
+	margin:20px 0;
+	padding:0 0 20px;
+	font-family:"宋体";
+	border-top:1px solid #d9d7d7}
+.link dl{
+	float:left;
+	width:1190px;
+	padding-top:20px;
+	border-top:1px solid #f8f8f8}
+.link dl dt{
+	color:#777;
+	float:left;
+	width:1210px;
+	height:30px;
+	font-size:14px;
+	font-weight:bold}
+.link dl dd{
+	float:left;
+	width:1210px;
+	font-size:12px}
+.link dl dd a{
+	float:left;
+	color:#818181;
+	margin:0 15px 10px 0;}
+
+.footer{
+	padding:20px 0;
+	background:#fff;
+	border-top:2px solid #ff0c8a}
+.bom_logo{
+	float:left}
+.foot_con{
+	float:right;
+	width:700px;
+	font-family:"宋体"}
+.foot_menu{
+	float:right;
+	padding:10px 0}
+.foot_menu a{
+	float:left;
+	color:#5d5d5d;
+	padding:0 10px;
+	font-size:14px}
+.foot_con p{
+	color:#5d5d5d;
+	float:right;
+	width:700px;
+	line-height:20px;
+	text-align:right}
+
